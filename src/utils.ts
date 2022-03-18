@@ -17,8 +17,6 @@ export function JSONResponse(
     })
 }
 
-
-
 export function JSONErrorResponse(errMessage: string, status = 500): Response {
     return JSONResponse({ Error: errMessage }, status)
-  }
+}

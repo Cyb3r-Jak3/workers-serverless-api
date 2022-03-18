@@ -24,9 +24,9 @@ const redirects: Redirect[] = [
         redirect: 'github.com/Cyb3r-Jak3/html5validator-docker',
     },
     {
-      path: '/blog',
-      redirect: 'blog.cyberjake.xyz'
-    }
+        path: '/blog',
+        redirect: 'blog.cyberjake.xyz',
+    },
 ]
 const cache = caches.default
 export const RedirectPath = '/redirect'
