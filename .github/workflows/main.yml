@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/*'
+      - 'dist/*'
+      - '.github/workflows/deploy.yml'
+      - 'package.json'
+    tags:
+      - "v*"
+  pull_request:
+    branches: [main]
+    paths: ['package.json']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Compare the expected and actual dist/ directories
+        run: |
+          npm run build
+          if [ "$(git diff --ignore-space-at-eol dist/ | wc -l)" -gt "0" ]; then
+            echo "Detected uncommitted changes after build.  See status below:"
+            git diff
+            exit 1
+          fi
+
+      - name: Publish
+        uses: cloudflare/wrangler-action@1.3.0
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+        env:
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
