@@ -1,4 +1,4 @@
-name = "severless-api"
+name = "severless-api-dev"
 type = "javascript"
 zone_id = ""
 account_id = ""
@@ -18,5 +18,7 @@ format = "service-worker"
 [vars]
 PRODUCTION = "false"
 
+[env.production]
+name = "severless-api"
 [env.production.vars]
 PRODUCTION = "true"

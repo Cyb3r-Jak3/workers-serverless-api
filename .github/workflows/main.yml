@@ -50,6 +50,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          environment: production
         env:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
