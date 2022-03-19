@@ -4,7 +4,6 @@ import { GravatarHash } from './misc'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 
 const router = Router()
-let PRODUCTION = 'false' // eslint-disable-line prefer-const
 
 if (PRODUCTION === 'true') {
     router.get('/', () =>

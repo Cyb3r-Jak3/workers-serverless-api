@@ -14,3 +14,9 @@ kv_namespaces = [
 command = "npm install && npm run build"
 [build.upload]
 format = "service-worker"
+
+[vars]
+PRODUCTION = "false"
+
+[env.production.vars]
+PRODUCTION = "true"
