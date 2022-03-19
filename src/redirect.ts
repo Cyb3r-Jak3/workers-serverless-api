@@ -127,7 +127,7 @@ const render_Page =
                         (redirect: Redirect) => `
                   <tr>
                     <td class="border px-4 py-2">${redirect.path}</td>
-                    <td class="border px-4 py-2">${redirect.redirect}</td>
+                    <td class="border px-4 py-2"><a href="https://${redirect.redirect}>${redirect.redirect}</a></td>
                   </tr>
                 `
                     )

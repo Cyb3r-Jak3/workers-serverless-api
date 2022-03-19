@@ -2,13 +2,18 @@ import { Router } from 'itty-router'
 import { GithubRepos, GithubUser } from './git'
 import { GravatarHash } from './misc'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
-import { JSONResponse } from './utils'
 
 const router = Router()
+let PRODUCTION = 'false' // eslint-disable-line prefer-const
 
-router.get('/', () => {
-    return JSONResponse(router.routes)
-})
+if (PRODUCTION === 'true') {
+    router.get('/', () =>
+        Response.redirect(
+            'https://github.com/Cyb3r-Jak3/workers-serverless-api',
+            302
+        )
+    )
+}
 
 router.get('/git/repos', GithubRepos)
 // router.get('/git/repos/list', GithubRepos)
