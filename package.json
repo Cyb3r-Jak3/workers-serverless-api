@@ -43,6 +43,6 @@
     },
     "dependencies": {
         "@octokit/core": "^3.6.0",
-        "itty-router": "^2.1.9"
+        "itty-router": "^2.6.1"
     }
 }
