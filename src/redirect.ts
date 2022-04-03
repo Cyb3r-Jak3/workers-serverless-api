@@ -28,9 +28,9 @@ const redirects: Redirect[] = [
         redirect: 'blog.cyberjake.xyz',
     },
     {
-      path: '/home',
-      redirect: 'cyberjake.xyz'
-    }
+        path: '/home',
+        redirect: 'cyberjake.xyz',
+    },
 ]
 const cache = caches.default
 export const RedirectPath = '/redirects'
@@ -42,7 +42,10 @@ export function RedirectLanding(): Response {
 export async function Redirects(req: Request): Promise<Response> {
     let response = await cache.match(req)
     if (!response) {
-        const redirectSelection = new URL(req.url).pathname.replace(RedirectPath, '')
+        const redirectSelection = new URL(req.url).pathname.replace(
+            RedirectPath,
+            ''
+        )
 
         redirects.forEach(async (redirect) => {
             if (redirect.path == redirectSelection) {
