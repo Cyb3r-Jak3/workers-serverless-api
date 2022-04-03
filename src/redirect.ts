@@ -27,6 +27,10 @@ const redirects: Redirect[] = [
         path: '/blog',
         redirect: 'blog.cyberjake.xyz',
     },
+    {
+      path: '/home',
+      redirect: 'cyberjake.xyz'
+    }
 ]
 const cache = caches.default
 export const RedirectPath = '/redirect'
@@ -77,7 +81,7 @@ const render_Page =
 <html>
   <head>
     <title>Lil Redirector</title>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
       .bg-gray-50 {
         background-color: #f9fafb;
