@@ -33,7 +33,7 @@ const redirects: Redirect[] = [
     }
 ]
 const cache = caches.default
-export const RedirectPath = '/redirect'
+export const RedirectPath = '/redirects'
 
 export function RedirectLanding(): Response {
     return renderHtml(render_Page({ RedirectPath, redirects }))
@@ -42,9 +42,7 @@ export function RedirectLanding(): Response {
 export async function Redirects(req: Request): Promise<Response> {
     let response = await cache.match(req)
     if (!response) {
-        const redirectURL = new URL(req.url)
-        const redirectSelection = redirectURL.pathname.replace(RedirectPath, '')
-        console.log(redirectSelection)
+        const redirectSelection = new URL(req.url).pathname.replace(RedirectPath, '')
 
         redirects.forEach(async (redirect) => {
             if (redirect.path == redirectSelection) {
@@ -70,7 +68,7 @@ export interface Redirect {
 
 export const renderHtml = (page: () => string): Response =>
     new Response(page(), {
-        headers: { 'Content-type': 'text/html' },
+        headers: { 'Content-type': 'text/html; charset=UTF-8' },
     })
 
 const render_Page =
@@ -80,7 +78,7 @@ const render_Page =
 <!doctype html>
 <html>
   <head>
-    <title>Lil Redirector</title>
+    <title>Redirects</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
       .bg-gray-50 {
