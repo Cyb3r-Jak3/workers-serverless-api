@@ -31,7 +31,7 @@
         "eslint-plugin-jest": "^26.1.5",
         "jest": "^27.5.1",
         "jest-environment-miniflare": "^2.4.0",
-        "miniflare": "^2.4.0",
+        "miniflare": "^2.5.0",
         "node-fetch": "^3.2.4",
         "prettier": "^2.6.2",
         "service-worker-mock": "^2.0.5",
