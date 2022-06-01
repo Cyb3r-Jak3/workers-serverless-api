@@ -30,7 +30,7 @@
         "eslint-config-typescript": "^3.0.0",
         "eslint-plugin-jest": "^26.4.6",
         "jest": "^27.5.1",
-        "jest-environment-miniflare": "^2.4.0",
+        "jest-environment-miniflare": "^2.5.0",
         "miniflare": "^2.5.0",
         "node-fetch": "^3.2.4",
         "prettier": "^2.6.2",
