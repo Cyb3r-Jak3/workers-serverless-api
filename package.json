@@ -32,7 +32,7 @@
         "jest": "^27.5.1",
         "jest-environment-miniflare": "^2.4.0",
         "miniflare": "^2.5.0",
-        "node-fetch": "^3.2.4",
+        "node-fetch": "^3.2.5",
         "prettier": "^2.6.2",
         "service-worker-mock": "^2.0.5",
         "ts-jest": "^27.1.4",
