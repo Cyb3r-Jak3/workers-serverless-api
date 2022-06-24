@@ -18,6 +18,6 @@ Returns a JSON response of my Github Profile
 
 You can either do a GET request to `/misc/gravatar/<email here>` and get a text response or POST request to `/misc/gravatar` with a JSON body field of `email`
 
-#### `/redirect/`
+#### `/redirects/`
 
 A list of redirects to my stuff. Based off of [lilredirector](https://github.com/codewithkristian/lilredirector)

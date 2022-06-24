@@ -33,9 +33,6 @@ export async function GithubUser(req: Request): Promise<Response> {
             const user = await octokit.request('GET /users/{username}', {
                 username: GithubUsername,
             })
-            // const user = await octokit.users.getByUsername({
-            //     username: GithubUsername,
-            // })
             user.data.email = PublicEmail
             user.data.url = user.data.html_url
             data = user.data
@@ -49,22 +46,28 @@ export async function GithubUser(req: Request): Promise<Response> {
     return resp
 }
 
-// export async function GithubRepoList(): Promise<Response> {
-//     const data = await KV.get('GithubRepoList', { type: 'json' })
-//     if (!data) {
-//         const repos = await KV.get('GithubReposData', { type: 'json' })
-//         if (!repos) {
-//             const repos = await octokit.request("GET /users/{username}/repos",  {username: GithubUsername, sort: 'pushed'})
-//             await KV.put('GithubReposData', JSON.stringify(repos.data), {
-//                 expirationTtl: 3600,
-//             })
-//         }
-//         // for (let repo of fullRepos)
-//         // let screened: [] = []
-//         // repos.forEach((repo) => {
-//         //     screened.push(repo)
-//         // })
-//         // await KV.put("GithubRepoList", JSON.stringify(screened), {expirationTtl: 3600})
-//     }
-//     return JSONResponse(data)
-// }
+export async function GithubRepoList(req: Request): Promise<Response> {
+    let resp = await cache.match(req)
+    if (!resp) {
+        const data = await KV.get('GithubRepoList', { type: 'json' })
+        if (!data) {
+            const repos = await KV.get('GithubReposData', { type: 'json' })
+            if (!repos) {
+                const repos = await octokit.request(
+                    'GET /users/{username}/repos',
+                    { username: GithubUsername, sort: 'pushed' }
+                )
+                console.log(repos.data)
+                await KV.put('GithubReposData', JSON.stringify(repos.data), {
+                    expirationTtl: 3600,
+                })
+            }
+            console.log(repos)
+            // await KV.put("GithubRepoList", JSON.stringify(screened), {expirationTtl: 3600})
+        }
+        // resp = JSONResponse(data, 200, [['Cache-Control', '3600']])
+        resp = JSONResponse(data)
+        await cache.put(req, resp.clone())
+    }
+    return resp
+}

@@ -31,6 +31,10 @@ const redirects: Redirect[] = [
         path: '/home',
         redirect: 'cyberjake.xyz',
     },
+    {
+        path: 'cf',
+        redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
+    },
 ]
 const cache = caches.default
 export const RedirectPath = '/redirects'
@@ -58,7 +62,10 @@ export async function Redirects(req: Request): Promise<Response> {
             }
         })
         if (!response) {
-            return new Response(`You requested redirect: ${redirectSelection}`)
+            return new Response(
+                `You requested redirect: ${redirectSelection} and it does not exist`,
+                { status: 404 }
+            )
         }
     }
     return response
@@ -94,7 +101,7 @@ const render_Page =
     <ul class="flex items-center px-4 py-2">
       <div class="flex-1 flex items-center">
         <img class="w-16 h-16 mr-2" src="https://raw.githubusercontent.com/signalnerve/lilredirector/master/.github/logo.png" />
-        <h1 class="text-2xl font-bold">Lil Redirector</h1>
+        <h1 class="text-2xl font-bold"> <a href="https://github.com/codewithkristian/lilredirector">Lil Redirector</a></h1>
       </div>
       <span><code>v1.0.1</code></span>
     </ul>
@@ -131,7 +138,7 @@ const render_Page =
                     .map(
                         (redirect: Redirect) => `
                   <tr>
-                    <td class="border px-4 py-2">${redirect.path}</td>
+                    <td class="border px-4 py-2"><a href="https://serverless.cyberjake.xyz/redirects${redirect.path}"> ${redirect.path} </a></td>
                     <td class="border px-4 py-2"><a href="https://${redirect.redirect}">${redirect.redirect}</a></td>
                   </tr>
                 `

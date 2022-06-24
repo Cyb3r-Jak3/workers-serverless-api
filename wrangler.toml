@@ -1,10 +1,6 @@
 name = "severless-api-dev"
-type = "javascript"
-zone_id = ""
-account_id = ""
-routes = ["serverless.cyberjake.xyz/*"]
 workers_dev = true
-compatibility_date = "2022-03-02"
+compatibility_date = "2022-06-24"
 
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
@@ -12,8 +8,6 @@ kv_namespaces = [
 
 [build]
 command = "npm install && npm run build"
-[build.upload]
-format = "service-worker"
 
 [vars]
 PRODUCTION = "false"
@@ -23,5 +17,6 @@ name = "severless-api"
 kv_namespaces = [
     { binding = "KV", id = "902aa7ef8f574c66a87d80fd9a3e9ebe" }
 ]
+routes = ["serverless.cyberjake.xyz/*"]
 [env.production.vars]
 PRODUCTION = "true"

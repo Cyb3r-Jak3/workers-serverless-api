@@ -1,5 +1,5 @@
 import { Router } from 'itty-router'
-import { GithubRepos, GithubUser } from './git'
+import { GithubRepos, GithubUser, GithubRepoList } from './git'
 import { GravatarHash } from './misc'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 
@@ -9,13 +9,13 @@ if (PRODUCTION === 'true') {
     router.get('/', () =>
         Response.redirect(
             'https://github.com/Cyb3r-Jak3/workers-serverless-api',
-            302
+            301
         )
     )
 }
 
 router.get('/git/repos', GithubRepos)
-// router.get('/git/repos/list', GithubRepos)
+router.get('/git/repos/list', GithubRepoList)
 router.get('/git/user', GithubUser)
 router.post('/misc/gravatar', GravatarHash)
 router.get('/misc/gravatar/:email', GravatarHash)
