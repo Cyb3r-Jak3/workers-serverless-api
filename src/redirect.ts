@@ -32,10 +32,15 @@ const redirects: Redirect[] = [
         redirect: 'cyberjake.xyz',
     },
     {
-        path: 'cf',
+        path: '/cf',
         redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
     },
+    {
+        path: '/cf-api-scheme',
+        redirect: 'api.cloudflare.com/schemas.json',
+    },
 ]
+
 const cache = caches.default
 export const RedirectPath = '/redirects'
 

@@ -1,13 +1,12 @@
 {
     "name": "serverless-api",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Serverless version of my API",
     "main": "dist/worker.js",
     "scripts": {
         "build": "webpack",
-        "format": "prettier --write *.{json,js} src/**/*.{js,ts} test/**/*.{js,ts}",
-        "lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts} test/**/*.{js,ts}",
-        "test": "jest --config jestconfig.json --verbose"
+        "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
+        "lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}"
     },
     "author": "cyb3r-jak3",
     "license": "MIT",
@@ -20,14 +19,12 @@
     },
     "devDependencies": {
         "@cloudflare/workers-types": "^3.11.0",
-        "@types/jest": "^27.0.2",
         "@types/node-fetch": "^3.0.3",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.1.0",
         "eslint-config-typescript": "^3.0.0",
-        "miniflare": "^2.4.0",
         "node-fetch": "^3.2.4",
         "prettier": "^2.6.2",
         "service-worker-mock": "^2.0.5",
