@@ -2,7 +2,7 @@ import { Router } from 'itty-router'
 import { GithubRepos, GithubUser } from './git'
 import { GravatarHash } from './misc'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
-import { CORSHandle, CORS_ENDPOINT } from './CORS'
+import { CORSHandle, CORS_ENDPOINT } from './cors'
 
 const router = Router()
 
