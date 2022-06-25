@@ -18,7 +18,8 @@ export async function CORSHandle(req: Request): Promise<Response> {
         return HandleOptions(req)
     }
     const url = new URL(req.url)
-    const apiUrl = url.searchParams.get('apiurl')
+    const apiUrl = url.searchParams.get('api_url')
+    const allowWildCard = url.searchParams.get('allow_wild')
     if (!apiUrl) {
         response = new Response(null, { status: 404 })
     }
@@ -31,7 +32,14 @@ export async function CORSHandle(req: Request): Promise<Response> {
                 cors_req.headers.set('Origin', new URL(full_url).origin)
                 const cors_resp = await fetch(cors_req)
                 response = new Response(cors_resp.body, cors_resp)
-                response.headers.set('Access-Control-Allow-Origin', url.origin)
+                if (allowWildCard === 'true') {
+                    response.headers.set('Access-Control-Allow-Origin', '*')
+                } else {
+                    response.headers.set(
+                        'Access-Control-Allow-Origin',
+                        url.origin
+                    )
+                }
                 response.headers.append('Vary', 'Origin')
             }
         }
