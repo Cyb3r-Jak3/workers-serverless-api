@@ -1,9 +1,15 @@
-import { JSONResponse } from './utils'
+import { HandleCachedResponse, JSONResponse } from './utils'
+const cache = caches.default
 
 interface GravatarRequestBody {
     email: string
 }
 
+/**
+ * Turns the array buffer from crypto into a string. Stolen from stackoverflow
+ * @param buffer Crypto Buffer
+ * @returns Hex string
+ */
 function hex(buffer: ArrayBuffer): string {
     const hexCodes = []
     const view = new DataView(buffer)
@@ -22,6 +28,11 @@ function hex(buffer: ArrayBuffer): string {
     return hexCodes.join('')
 }
 
+/**
+ * Generates a MD5 hash from an email
+ * @param email Email address
+ * @returns MD5 Hash
+ */
 async function GenerateHash(email: string): Promise<string> {
     return hex(
         await crypto.subtle.digest(
@@ -32,23 +43,30 @@ async function GenerateHash(email: string): Promise<string> {
 }
 
 export async function GravatarHash(req: Request): Promise<Response> {
+    let response = await cache.match(req)
+    if (response) {
+        return HandleCachedResponse(response)
+    }
     switch (req.method.toUpperCase()) {
         case 'POST': {
             const request: GravatarRequestBody = await req.json()
-            return JSONResponse({ hash: await GenerateHash(request.email) })
+            response = JSONResponse({ hash: await GenerateHash(request.email) })
+            break
         }
         case 'GET': {
             const parsedData = new URL(req.url).pathname.replace(
                 '/misc/gravatar/',
                 ''
             )
-
-            return new Response(await GenerateHash(parsedData))
+            response = new Response(await GenerateHash(parsedData))
+            break
         }
         default: {
-            return new Response('Only GET and POST are allowed', {
+            response = new Response('Only GET and POST are allowed', {
                 status: 405,
             })
         }
     }
+    await cache.put(req, response.clone())
+    return response
 }

@@ -1,3 +1,5 @@
+import { HandleCachedResponse } from './utils'
+
 const redirects: Redirect[] = [
     {
         path: '/github',
@@ -35,43 +37,54 @@ const redirects: Redirect[] = [
         path: '/cf',
         redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
     },
-    {
-        path: '/cf-api-scheme',
-        redirect: 'api.cloudflare.com/schemas.json',
-    },
 ]
 
 const cache = caches.default
 export const RedirectPath = '/redirects'
 
-export function RedirectLanding(): Response {
-    return renderHtml(render_Page({ RedirectPath, redirects }))
+/**
+ * Renders the redirect landing page
+ * @param req Incoming Cloudflare request
+ * @returns HTML page
+ */
+export async function RedirectLanding(req: Request): Promise<Response> {
+    let response = await cache.match(req)
+    if (response) {
+        return HandleCachedResponse(response)
+    }
+    response = renderHtml(render_Page({ RedirectPath, redirects }))
+    response.headers.set('Cache-Control', '3600')
+    await cache.put(req, response.clone())
+    return response
 }
 
+/**
+ * Returns a user based on the path they gave
+ * @param req Incoming Cloudflare request
+ * @returns Redirect Response if redirect found or 404 error
+ */
 export async function Redirects(req: Request): Promise<Response> {
     let response = await cache.match(req)
-    if (!response) {
-        const redirectSelection = new URL(req.url).pathname.replace(
-            RedirectPath,
-            ''
-        )
+    if (response) {
+        return HandleCachedResponse(response)
+    }
+    const redirectSelection = new URL(req.url).pathname.replace(
+        RedirectPath,
+        ''
+    )
 
-        redirects.forEach(async (redirect) => {
-            if (redirect.path == redirectSelection) {
-                response = Response.redirect(
-                    `https://${redirect.redirect}`,
-                    302
-                )
-                await cache.put(req, response.clone())
-                return response
-            }
-        })
-        if (!response) {
-            return new Response(
-                `You requested redirect: ${redirectSelection} and it does not exist`,
-                { status: 404 }
-            )
+    for (const redirect of redirects) {
+        if (redirect.path == redirectSelection) {
+            response = Response.redirect(`https://${redirect.redirect}`, 302)
+            await cache.put(req, response.clone())
+            return response
         }
+    }
+    if (!response) {
+        return new Response(
+            `You requested redirect: ${redirectSelection} and it does not exist`,
+            { status: 404 }
+        )
     }
     return response
 }
