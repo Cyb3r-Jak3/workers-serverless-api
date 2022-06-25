@@ -3,10 +3,10 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - '**'
     paths:
-      - 'src/*'
-      - 'dist/*'
+      - 'src/**'
+      - 'dist/**'
       - '.github/workflows/main.yml'
       - 'package.json'
     tags:

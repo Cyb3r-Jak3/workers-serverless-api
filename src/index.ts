@@ -1,7 +1,8 @@
 import { Router } from 'itty-router'
-import { GithubRepos, GithubUser, GithubRepoList } from './git'
+import { GithubRepos, GithubUser } from './git'
 import { GravatarHash } from './misc'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
+import { CORSHandle, CORS_ENDPOINT } from './cors'
 
 const router = Router()
 
@@ -15,12 +16,12 @@ if (PRODUCTION === 'true') {
 }
 
 router.get('/git/repos', GithubRepos)
-router.get('/git/repos/list', GithubRepoList)
 router.get('/git/user', GithubUser)
 router.post('/misc/gravatar', GravatarHash)
 router.get('/misc/gravatar/:email', GravatarHash)
 router.get(`${RedirectPath}/`, RedirectLanding)
 router.get(`${RedirectPath}/:short_link`, Redirects)
+router.all(`${CORS_ENDPOINT}/`, CORSHandle)
 router.all('*', () => new Response('404, not found!', { status: 404 }))
 
 addEventListener('fetch', (e) => {
