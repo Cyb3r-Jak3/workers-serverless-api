@@ -1,12 +1,13 @@
 import { HandleCachedResponse, HandleOptions } from './utils'
-
+import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
 const Allowed: string[] = ['api.cloudflare.com/schemas.json']
 
 const cache = caches.default
 
-export async function CORSHandle(req: Request): Promise<Response> {
+export async function CORSHandle(c: Context): Promise<Response> {
+    const req = c.req
     // Find request in cache
     let response = await cache.match(req)
 
