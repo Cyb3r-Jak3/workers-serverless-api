@@ -21,3 +21,7 @@ You can either do a GET request to `/misc/gravatar/<email here>` and get a text 
 #### [`/redirects/`](https://serverless.cyberjake.xyz/redirects)
 
 A list of redirects to my stuff. Based off of [lilredirector](https://github.com/codewithkristian/lilredirector)
+
+#### [`/ping`](https://serverless.cyberjake.xyz/ping)
+
+Ping endpoint. Returns Cloudflare headers and published git hash.
