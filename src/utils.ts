@@ -74,7 +74,12 @@ export function HandleOptions(request: Request): Response {
     }
 }
 
-//Found Cache response
+/**
+ *
+ * @param resp Response that hit cache
+ * @returns Response with X-Worker-Cache Header
+ */
+
 export function HandleCachedResponse(resp: Response): Response {
     const newHeaders = new Headers(resp.headers)
     newHeaders.set('X-Worker-Cache', 'HIT')

@@ -1,5 +1,5 @@
 import { GithubRepos, GithubUser } from './git'
-import { GravatarHash } from './misc'
+import { GravatarHash } from './gravatar'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
@@ -16,14 +16,16 @@ app.get('/git/user', GithubUser)
 app.post('/misc/gravatar', GravatarHash)
 app.get('/misc/gravatar/:email', GravatarHash)
 app.get(`${RedirectPath}/`, RedirectLanding)
-app.get(`${RedirectPath}/:short_link`)
+app.get(`${RedirectPath}/:short_link`, Redirects)
 app.all(`${CORS_ENDPOINT}/`, CORSHandle)
 
 app.all('/', async (c) => {
     if (c.env.PRODUCTION === 'true') {
-        return c.redirect('https://github.com/Cyb3r-Jak3/workers-serverless-api', 301)
-    } else
-    return await c.notFound()
+        return c.redirect(
+            'https://github.com/Cyb3r-Jak3/workers-serverless-api',
+            301
+        )
+    } else return await c.notFound()
 })
 app.all('*', (c) => c.notFound())
 
