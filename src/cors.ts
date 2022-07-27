@@ -6,7 +6,7 @@ const Allowed: string[] = ['api.cloudflare.com/schemas.json']
 const AllowedOrigins: string[] = [
     'cf-api.cyberjake.xyz',
     'cloudflare-api-pretty.pages.dev',
-    'localhost:8877',
+    'localhost:8788',
 ]
 
 const cache = caches.default
@@ -42,10 +42,12 @@ export async function CORSHandle(c: Context): Promise<Response> {
                     response.headers.set('Access-Control-Allow-Origin', '*')
                 } else if (allowedOrigin !== null) {
                     for (const allowed_origin of AllowedOrigins) {
-                        if (allowed_origin === allowedOrigin) {
+                        console.log(allowed_origin)
+                        if (new URL(allowedOrigin).host === allowed_origin) {
+                            console.log(`Hit on ${allowedOrigin}`)
                             response.headers.set(
                                 'Access-Control-Allow-Origin',
-                                `http://${allowedOrigin}`
+                                allowedOrigin
                             )
                         }
                     }
