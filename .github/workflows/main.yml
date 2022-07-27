@@ -44,4 +44,4 @@ jobs:
         env:
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
-          GitHash: ${{ env.GITHUB_SHA }}
+          GitHash: ${{ github.sha }}
