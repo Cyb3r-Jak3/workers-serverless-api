@@ -1,5 +1,5 @@
 import { HandleCachedResponse } from './utils'
-
+import { Context } from 'hono'
 const redirects: Redirect[] = [
     {
         path: '/github',
@@ -44,17 +44,17 @@ export const RedirectPath = '/redirects'
 
 /**
  * Renders the redirect landing page
- * @param req Incoming Cloudflare request
+ * @param c Hono Context
  * @returns HTML page
  */
-export async function RedirectLanding(req: Request): Promise<Response> {
-    let response = await cache.match(req)
+export async function RedirectLanding(c: Context): Promise<Response> {
+    let response = await cache.match(c.req)
     if (response) {
         return HandleCachedResponse(response)
     }
     response = renderHtml(render_Page({ RedirectPath, redirects }))
     response.headers.set('Cache-Control', '3600')
-    await cache.put(req, response.clone())
+    await cache.put(c.req, response.clone())
     return response
 }
 
@@ -63,12 +63,12 @@ export async function RedirectLanding(req: Request): Promise<Response> {
  * @param req Incoming Cloudflare request
  * @returns Redirect Response if redirect found or 404 error
  */
-export async function Redirects(req: Request): Promise<Response> {
-    let response = await cache.match(req)
+export async function Redirects(c: Context): Promise<Response> {
+    let response = await cache.match(c.req)
     if (response) {
         return HandleCachedResponse(response)
     }
-    const redirectSelection = new URL(req.url).pathname.replace(
+    const redirectSelection = new URL(c.req.url).pathname.replace(
         RedirectPath,
         ''
     )
@@ -76,7 +76,7 @@ export async function Redirects(req: Request): Promise<Response> {
     for (const redirect of redirects) {
         if (redirect.path == redirectSelection) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
-            await cache.put(req, response.clone())
+            await cache.put(c.req, response.clone())
             return response
         }
     }

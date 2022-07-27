@@ -1,29 +1,32 @@
-import { Router } from 'itty-router'
 import { GithubRepos, GithubUser } from './git'
-import { GravatarHash } from './misc'
+import { GravatarHash } from './gravatar'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
+import { Hono } from 'hono'
 
-const router = Router()
+interface ENV {
+    KV: KVNamespace
+    PRODUCTION: 'false' | 'true'
+}
 
-if (PRODUCTION === 'true') {
-    router.get('/', () =>
-        Response.redirect(
+const app = new Hono<ENV>()
+
+app.get('/git/repos', GithubRepos)
+app.get('/git/user', GithubUser)
+app.post('/misc/gravatar', GravatarHash)
+app.get('/misc/gravatar/:email', GravatarHash)
+app.get(`${RedirectPath}/`, RedirectLanding)
+app.get(`${RedirectPath}/:short_link`, Redirects)
+app.all(`${CORS_ENDPOINT}/`, CORSHandle)
+
+app.all('/', async (c) => {
+    if (c.env.PRODUCTION === 'true') {
+        return c.redirect(
             'https://github.com/Cyb3r-Jak3/workers-serverless-api',
             301
         )
-    )
-}
-
-router.get('/git/repos', GithubRepos)
-router.get('/git/user', GithubUser)
-router.post('/misc/gravatar', GravatarHash)
-router.get('/misc/gravatar/:email', GravatarHash)
-router.get(`${RedirectPath}/`, RedirectLanding)
-router.get(`${RedirectPath}/:short_link`, Redirects)
-router.all(`${CORS_ENDPOINT}/`, CORSHandle)
-router.all('*', () => new Response('404, not found!', { status: 404 }))
-
-addEventListener('fetch', (e) => {
-    e.respondWith(router.handle(e.request))
+    } else return await c.notFound()
 })
+app.all('*', (c) => c.notFound())
+
+export default app
