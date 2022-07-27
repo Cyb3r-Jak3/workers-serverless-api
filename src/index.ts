@@ -19,7 +19,7 @@ app.post('/misc/gravatar', GravatarHash)
 app.get('/misc/gravatar/:email', GravatarHash)
 app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
-app.get("/ping", PingEndpoint)
+app.get('/ping', PingEndpoint)
 app.all(`${CORS_ENDPOINT}/`, CORSHandle)
 
 app.all('/', async (c) => {
