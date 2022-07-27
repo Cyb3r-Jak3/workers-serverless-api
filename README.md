@@ -6,7 +6,7 @@ This is a rewrite of my [go api](https://github.com/Cyb3r-Jak3/go-api). Written 
 
 The following endpoints are available
 
-#### [`/git/repos`]((https://serverless.cyberjake.xyz/git/repos)
+#### [`/git/repos`](https://serverless.cyberjake.xyz/git/repos)
 
 Returns a JSON response of my Github Repos
 
