@@ -3,6 +3,11 @@ import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
 const Allowed: string[] = ['api.cloudflare.com/schemas.json']
+const AllowedOrigins: string[] = [
+    'cf-api.cyberjake.xyz',
+    'cloudflare-api-pretty.pages.dev',
+    'localhost:8877',
+]
 
 const cache = caches.default
 
@@ -27,7 +32,6 @@ export async function CORSHandle(c: Context): Promise<Response> {
     }
     if (!response) {
         for (const allowed_url of Allowed) {
-            console.log(allowed_url)
             if (allowed_url == apiUrl) {
                 const full_url = `https://${allowed_url}`
                 const cors_req = new Request(full_url, req)
@@ -37,10 +41,14 @@ export async function CORSHandle(c: Context): Promise<Response> {
                 if (allowWildCard === 'true') {
                     response.headers.set('Access-Control-Allow-Origin', '*')
                 } else if (allowedOrigin !== null) {
-                    response.headers.set(
-                        'Access-Control-Allow-Origin',
-                        allowedOrigin
-                    )
+                    for (const allowed_origin of AllowedOrigins) {
+                        if (allowed_origin === allowedOrigin) {
+                            response.headers.set(
+                                'Access-Control-Allow-Origin',
+                                `http://${allowedOrigin}`
+                            )
+                        }
+                    }
                 } else {
                     response.headers.set(
                         'Access-Control-Allow-Origin',
