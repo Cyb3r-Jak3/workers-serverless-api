@@ -3,10 +3,12 @@ import { GravatarHash } from './gravatar'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
+import { PingEndpoint } from './ping'
 
 interface ENV {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
+    GitHash: string
 }
 
 const app = new Hono<ENV>()
@@ -17,6 +19,7 @@ app.post('/misc/gravatar', GravatarHash)
 app.get('/misc/gravatar/:email', GravatarHash)
 app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
+app.get('/ping', PingEndpoint)
 app.all(`${CORS_ENDPOINT}/`, CORSHandle)
 
 app.all('/', async (c) => {
