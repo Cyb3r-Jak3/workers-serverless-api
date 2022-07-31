@@ -33,15 +33,15 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Publish
-        uses: cloudflare/wrangler-action@2.0.0
+      - name: Deploy to Cloudflare with Wrangler
+        uses: Cyb3r-Jak3/wrangler-action@v1.0.0
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
           environment: production
           secrets: |
             GitHash
         env:
-          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          # CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           GitHash: ${{ github.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
