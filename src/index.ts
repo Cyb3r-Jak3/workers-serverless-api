@@ -3,13 +3,14 @@ import { GravatarHash } from './gravatar'
 import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
-import { PingEndpoint } from './ping'
 import { EncryptResumeEndpoint } from './resume'
+import { VersionEndpoint, CFEndpoint } from './misc'
 
 interface ENV {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
     GitHash: string
+    BuildTime: string
 }
 
 const app = new Hono<ENV>()
@@ -21,7 +22,8 @@ app.post('/encrypted_resume', EncryptResumeEndpoint)
 app.get('/misc/gravatar/:email', GravatarHash)
 app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
-app.get('/ping', PingEndpoint)
+app.get('/cf', CFEndpoint)
+app.get('/version', VersionEndpoint)
 app.all(`${CORS_ENDPOINT}/`, CORSHandle)
 
 app.all('/', async (c) => {
