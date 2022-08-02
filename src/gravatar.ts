@@ -1,6 +1,5 @@
-import { HandleCachedResponse, JSONResponse } from './utils'
+import { HandleCachedResponse, JSONResponse, GenerateHash } from './utils'
 import { Context } from 'hono'
-import { GenerateHash } from './misc'
 const cache = caches.default
 
 interface GravatarRequestBody {

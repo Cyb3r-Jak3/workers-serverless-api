@@ -39,7 +39,9 @@ jobs:
           environment: production
           secrets: |
             GitHash
+            BuiltTime
         env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           GitHash: ${{ github.sha }}
+          BuiltTime:  ${{ github.event.repository.updated_at}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
