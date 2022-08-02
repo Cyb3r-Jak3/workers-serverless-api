@@ -2,20 +2,24 @@ import { HandleCachedResponse } from './utils'
 import { Context } from 'hono'
 const redirects: Redirect[] = [
     {
-        path: '/github',
-        redirect: 'www.github.com/Cyb3r-Jak3',
+        path: '/blog',
+        redirect: 'blog.cyberjake.xyz',
     },
     {
-        path: '/gitlab',
-        redirect: 'www.gitlab.com/Cyb3r-Jak3',
+        path: '/cf',
+        redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
     },
     {
         path: '/docker',
         redirect: 'hub.docker.com/u/cyb3rjak3',
     },
     {
-        path: '/twitter',
-        redirect: 'twitter.com/Cyb3r_Jak3',
+        path: '/github',
+        redirect: 'www.github.com/Cyb3r-Jak3',
+    },
+    {
+        path: '/gitlab',
+        redirect: 'www.gitlab.com/Cyb3r-Jak3',
     },
     {
         path: '/html5action',
@@ -26,16 +30,16 @@ const redirects: Redirect[] = [
         redirect: 'github.com/Cyb3r-Jak3/html5validator-docker',
     },
     {
-        path: '/blog',
-        redirect: 'blog.cyberjake.xyz',
-    },
-    {
         path: '/home',
         redirect: 'cyberjake.xyz',
     },
     {
-        path: '/cf',
-        redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
+        path: '/status',
+        redirect: 'status.cyberjake.xyz',
+    },
+    {
+        path: '/twitter',
+        redirect: 'twitter.com/Cyb3r_Jak3',
     },
 ]
 
@@ -44,7 +48,7 @@ export const RedirectPath = '/redirects'
 
 /**
  * Renders the redirect landing page
- * @param c Hono Context
+ * @param c Request Context
  * @returns HTML page
  */
 export async function RedirectLanding(c: Context): Promise<Response> {
@@ -60,7 +64,7 @@ export async function RedirectLanding(c: Context): Promise<Response> {
 
 /**
  * Returns a user based on the path they gave
- * @param req Incoming Cloudflare request
+ * @param c Request Context
  * @returns Redirect Response if redirect found or 404 error
  */
 export async function Redirects(c: Context): Promise<Response> {
