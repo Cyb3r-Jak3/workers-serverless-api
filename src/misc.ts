@@ -6,16 +6,13 @@ export async function CFEndpoint(c: Context): Promise<Response> {
 }
 
 export async function VersionEndpoint(c: Context): Promise<Response> {
-    const headers: any = {};
     let gitHash = c.env.GitHash
     if (!gitHash) {
         gitHash = 'dev'
     }
-    headers["GitHash"] = gitHash
     let buildTime = c.env.BuildTime
     if (!buildTime) {
-        buildTime =  new Date().toString()
+        buildTime = new Date().toString()
     }
-    headers["BuildTime"] = buildTime
-    return JSONResponse(headers)
+    return JSONResponse({ GitHash: gitHash, BuiltTime: buildTime })
 }

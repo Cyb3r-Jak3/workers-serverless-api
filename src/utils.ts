@@ -90,13 +90,12 @@ export function HandleCachedResponse(resp: Response): Response {
     })
 }
 
-
 /**
  * Turns the array buffer from crypto into a string. Stolen from stackoverflow
  * @param buffer Crypto Buffer
  * @returns Hex string
  */
- function hex(buffer: ArrayBuffer): string {
+function hex(buffer: ArrayBuffer): string {
     const hexCodes = []
     const view = new DataView(buffer)
     for (let i = 0; i < view.byteLength; i += 4) {
