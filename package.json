@@ -17,7 +17,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/workers-types": "^3.14.1",
+        "@cloudflare/workers-types": "^3.16.0",
         "@openpgp/web-stream-tools": "^0.0.11",
         "@types/node-fetch": "^3.0.3",
         "@typescript-eslint/eslint-plugin": "^5.31.0",
