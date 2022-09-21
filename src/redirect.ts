@@ -34,6 +34,10 @@ const redirects: Redirect[] = [
         redirect: 'cyberjake.xyz',
     },
     {
+        path: 'keybase',
+        redirect: 'keybase.io/cyb3rjak3',
+    },
+    {
         path: '/status',
         redirect: 'status.cyberjake.xyz',
     },
@@ -57,7 +61,7 @@ export async function RedirectLanding(c: Context): Promise<Response> {
         return HandleCachedResponse(response)
     }
     response = renderHtml(render_Page({ RedirectPath, redirects }))
-    response.headers.set('Cache-Control', '3600')
+    response.headers.set('Cache-Control', 'public, max-age=3600')
     await cache.put(c.req, response.clone())
     return response
 }
@@ -80,6 +84,7 @@ export async function Redirects(c: Context): Promise<Response> {
     for (const redirect of redirects) {
         if (redirect.path == redirectSelection) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
+            response.headers.set('Cache-Control', 'public, max-age=3600')
             await cache.put(c.req, response.clone())
             return response
         }
@@ -160,7 +165,7 @@ const render_Page =
                     .map(
                         (redirect: Redirect) => `
                   <tr>
-                    <td class="border px-4 py-2"><a href="https://serverless.cyberjake.xyz/redirects${redirect.path}"> ${redirect.path} </a></td>
+                    <td class="border px-4 py-2"><a href="https://api.cyberjake.xyz/redirects${redirect.path}"> ${redirect.path} </a></td>
                     <td class="border px-4 py-2"><a href="https://${redirect.redirect}">${redirect.redirect}</a></td>
                   </tr>
                 `

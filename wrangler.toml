@@ -1,6 +1,6 @@
 name = "severless-api-dev"
 workers_dev = true
-compatibility_date = "2022-07-24"
+compatibility_date = "2022-09-20"
 
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
@@ -16,6 +16,5 @@ name = "severless-api"
 kv_namespaces = [
     { binding = "KV", id = "902aa7ef8f574c66a87d80fd9a3e9ebe" }
 ]
-routes = ["serverless.cyberjake.xyz/*"]
 [env.production.vars]
 PRODUCTION = "true"

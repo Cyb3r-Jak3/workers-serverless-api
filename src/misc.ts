@@ -14,5 +14,8 @@ export async function VersionEndpoint(c: Context): Promise<Response> {
     if (!buildTime) {
         buildTime = new Date().toString()
     }
-    return JSONResponse({ GitHash: gitHash, BuiltTime: buildTime })
+    return JSONResponse(
+        { GitHash: gitHash, BuiltTime: buildTime },
+        { extra_headers: [['Cache-Control', 'public, max-age=3600']] }
+    )
 }

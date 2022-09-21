@@ -3,26 +3,33 @@ const corsHeaders = {
     'Access-Control-Allow-Methods': 'GET,HEAD,POST,OPTIONS',
     'Access-Control-Max-Age': '86400',
 }
+
+interface JSONResponseOptions {
+    status?: number
+    extra_headers?: string[][]
+}
+
 /**
  * Creates a JSON response
  * @param ResponseData Object to turn into JSON data
- * @param status HTTP status code
- * @param extra_headers Any extra headers to add
+ * @param options Extra options for
  * @returns JSON Response
  */
 export function JSONResponse(
     ResponseData: string | unknown,
-    status?: number,
-    extra_headers?: string[][]
+    options?: JSONResponseOptions
 ): Response {
-    if (!status) {
+    let status
+    if (options === undefined || options.status === undefined) {
         status = 200
+    } else {
+        status = options.status
     }
     const send_headers = new Headers({
         'content-type': 'application/json; charset=UTF-8',
     })
-    if (extra_headers) {
-        extra_headers.forEach((element) => {
+    if (options?.extra_headers) {
+        options.extra_headers.forEach((element) => {
             send_headers.append(element[0], element[1])
         })
     }
@@ -39,7 +46,7 @@ export function JSONResponse(
  * @returns
  */
 export function JSONErrorResponse(errMessage: string, status = 500): Response {
-    return JSONResponse({ Error: errMessage }, status)
+    return JSONResponse({ Error: errMessage }, { status: status })
 }
 
 /**
