@@ -25,7 +25,9 @@ export async function GithubRepos(c: Context): Promise<Response> {
                 expirationTtl: 3600,
             })
         }
-        resp = JSONResponse(data, 200, [['Cache-Control', '3600']])
+        resp = JSONResponse(data, {
+            extra_headers: [['Cache-Control', 'public, max-age=3600']],
+        })
         await cache.put(c.req, resp.clone())
     }
     return resp
@@ -48,7 +50,9 @@ export async function GithubUser(c: Context): Promise<Response> {
             expirationTtl: 3600,
         })
     }
-    resp = JSONResponse(data, 200, [['Cache-Control', '3600']])
+    resp = JSONResponse(data, {
+        extra_headers: [['Cache-Control', 'public, max-age=3600']],
+    })
     await cache.put(c.req, resp.clone())
     return resp
 }

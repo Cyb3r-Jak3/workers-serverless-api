@@ -13,7 +13,7 @@ interface ENV {
     BuildTime: string
 }
 
-const app = new Hono<ENV>()
+const app = new Hono<{ Bindings: ENV }>()
 
 app.get('/git/repos', GithubRepos)
 app.get('/git/user', GithubUser)

@@ -32,6 +32,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
             })
         }
     }
+    response.headers.set('Cache-Control', 'public, max-age=3600')
     await cache.put(req, response.clone())
     return response
 }

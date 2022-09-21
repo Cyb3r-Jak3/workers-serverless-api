@@ -72,6 +72,5 @@ export async function CORSHandle(c: Context): Promise<Response> {
     if (response.status !== 404) {
         await cache.put(req, response.clone())
     }
-    response.headers.set('X-Worker-Cache', 'Miss')
     return response
 }
