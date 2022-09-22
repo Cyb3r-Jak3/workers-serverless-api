@@ -6,7 +6,7 @@ const corsHeaders = {
 
 interface JSONResponseOptions {
     status?: number
-    extra_headers?: string[][]
+    extra_headers?: Record<string, string>
 }
 
 /**
@@ -29,9 +29,9 @@ export function JSONResponse(
         'content-type': 'application/json; charset=UTF-8',
     })
     if (options?.extra_headers) {
-        options.extra_headers.forEach((element) => {
-            send_headers.append(element[0], element[1])
-        })
+        for (const key of Object.keys(options.extra_headers)) {
+            send_headers.append(key, options.extra_headers[key])
+        }
     }
     return new Response(JSON.stringify(ResponseData), {
         status: status,

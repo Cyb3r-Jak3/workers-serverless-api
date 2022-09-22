@@ -16,6 +16,6 @@ export async function VersionEndpoint(c: Context): Promise<Response> {
     }
     return JSONResponse(
         { GitHash: gitHash, BuiltTime: buildTime },
-        { extra_headers: [['Cache-Control', 'public, max-age=3600']] }
+        { extra_headers: { 'Cache-Control': 'public, max-age=3600' } }
     )
 }

@@ -5,7 +5,7 @@ import { Context } from 'hono'
 
 const octokit = new Octokit()
 const GithubUsername = 'Cyb3r-Jak3'
-const PublicEmail = 'git@cyberjake.xyz'
+const PublicEmail = 'connect@cyberjake.xyz'
 const cache = caches.default
 
 export async function GithubRepos(c: Context): Promise<Response> {
@@ -26,7 +26,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
             })
         }
         resp = JSONResponse(data, {
-            extra_headers: [['Cache-Control', 'public, max-age=3600']],
+            extra_headers: { 'Cache-Control': 'public, max-age=3600' },
         })
         await cache.put(c.req, resp.clone())
     }
@@ -51,7 +51,7 @@ export async function GithubUser(c: Context): Promise<Response> {
         })
     }
     resp = JSONResponse(data, {
-        extra_headers: [['Cache-Control', 'public, max-age=3600']],
+        extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
     await cache.put(c.req, resp.clone())
     return resp
