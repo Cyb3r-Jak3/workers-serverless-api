@@ -5,10 +5,12 @@ import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
 import { VersionEndpoint, CFEndpoint } from './misc'
+import { AnalyticsEngine, LogToAE } from './utils'
 
 interface ENV {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
+    AE: AnalyticsEngine
     GitHash: string
     BuildTime: string
 }
@@ -35,6 +37,7 @@ app.all('/', async (c) => {
         )
     } else return await c.notFound()
 })
+app.use('*', LogToAE)
 app.all('*', (c) => c.notFound())
 
 export default app
