@@ -150,6 +150,7 @@ Data input format
  - Country
  - TLS Version
  - ClientTrustScore
+ - Worker Cache Hit Header
 */
 
 function WriteDataPoint(c: Context, error = ''): void {
@@ -166,6 +167,7 @@ function WriteDataPoint(c: Context, error = ''): void {
             req.cf?.colo || 'missing colo',
             req.cf?.country || 'missing country',
             req.cf?.tlsVersion || 'invalid TLS',
+            c.res.headers.get("X-Worker-Cache")
         ],
         doubles: [
             c.res.status,
