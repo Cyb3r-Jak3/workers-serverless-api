@@ -167,7 +167,7 @@ function WriteDataPoint(c: Context, error = ''): void {
             req.cf?.colo || 'missing colo',
             req.cf?.country || 'missing country',
             req.cf?.tlsVersion || 'invalid TLS',
-            c.res.headers.get("X-Worker-Cache")
+            c.res.headers.get('X-Worker-Cache'),
         ],
         doubles: [
             c.res.status,
