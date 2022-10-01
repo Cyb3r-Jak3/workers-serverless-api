@@ -154,6 +154,9 @@ Data input format
 */
 
 function WriteDataPoint(c: Context, error = ''): void {
+    if (c.env.PRODUCTION !== 'true') {
+        return
+    }
     const req = c.req
     const AE: AnalyticsEngine = c.env.AE
     AE.writeDataPoint({

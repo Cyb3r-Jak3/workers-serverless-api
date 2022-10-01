@@ -17,6 +17,7 @@ interface ENV {
 
 const app = new Hono<{ Bindings: ENV }>()
 
+app.use('*', LogToAE)
 app.get('/git/repos', GithubRepos)
 app.get('/git/user', GithubUser)
 app.post('/misc/gravatar', GravatarHash)
@@ -27,7 +28,7 @@ app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
 app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
-app.all(`${CORS_ENDPOINT}/`, CORSHandle)
+app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 app.all('/', async (c) => {
     if (c.env.PRODUCTION === 'true') {
@@ -37,7 +38,6 @@ app.all('/', async (c) => {
         )
     } else return await c.notFound()
 })
-app.use('*', LogToAE)
 app.all('*', (c) => c.notFound())
 
 export default app

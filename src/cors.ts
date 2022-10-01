@@ -19,7 +19,7 @@ export async function CORSHandle(c: Context): Promise<Response> {
     if (response) {
         return HandleCachedResponse(response)
     }
-    // Handle CORS
+    // Handle Options
     if (req.method == 'OPTIONS') {
         return HandleOptions(req)
     }
