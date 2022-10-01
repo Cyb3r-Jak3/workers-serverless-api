@@ -33,7 +33,7 @@
     },
     "dependencies": {
         "@octokit/core": "^4.0.5",
-        "hono": "^2.2.1",
+        "hono": "^2.2.3",
         "openpgp": "^5.5.0"
     }
 }
