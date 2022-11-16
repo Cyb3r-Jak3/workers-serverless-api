@@ -2,7 +2,10 @@ import { HandleCachedResponse, HandleOptions } from './utils'
 import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
-const Allowed: string[] = ['api.cloudflare.com/schemas.json', 'developers.cloudflare.com/schema']
+const Allowed: string[] = [
+    'api.cloudflare.com/schemas.json',
+    'developers.cloudflare.com/schema',
+]
 const AllowedOrigins: string[] = [
     'cf-api.cyberjake.xyz',
     'cloudflare-api-pretty.pages.dev',
