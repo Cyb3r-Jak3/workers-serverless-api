@@ -2,7 +2,7 @@ import { HandleCachedResponse, HandleOptions } from './utils'
 import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
-const Allowed: string[] = ['api.cloudflare.com/schemas.json']
+const Allowed: string[] = ['api.cloudflare.com/schemas.json', 'developers.cloudflare.com/schema']
 const AllowedOrigins: string[] = [
     'cf-api.cyberjake.xyz',
     'cloudflare-api-pretty.pages.dev',
@@ -42,9 +42,7 @@ export async function CORSHandle(c: Context): Promise<Response> {
                     response.headers.set('Access-Control-Allow-Origin', '*')
                 } else if (allowedOrigin !== null) {
                     for (const allowed_origin of AllowedOrigins) {
-                        console.log(allowed_origin)
                         if (new URL(allowedOrigin).host === allowed_origin) {
-                            console.log(`Hit on ${allowedOrigin}`)
                             response.headers.set(
                                 'Access-Control-Allow-Origin',
                                 allowedOrigin
@@ -63,7 +61,6 @@ export async function CORSHandle(c: Context): Promise<Response> {
     }
 
     if (!response) {
-        console.log('Setting 400 response')
         response = new Response(`API URL '${apiUrl}' is not allowed`, {
             status: 400,
         })
