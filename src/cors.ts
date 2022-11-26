@@ -1,4 +1,4 @@
-import { HandleCachedResponse, HandleOptions } from './utils'
+import { HandleCachedResponse, HandleCORS } from '@cyb3rjak3/common'
 import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
@@ -24,7 +24,7 @@ export async function CORSHandle(c: Context): Promise<Response> {
     }
     // Handle Options
     if (req.method == 'OPTIONS') {
-        return HandleOptions(req)
+        return HandleCORS(req)
     }
     const url = new URL(req.url)
     const apiUrl = url.searchParams.get('api_url')

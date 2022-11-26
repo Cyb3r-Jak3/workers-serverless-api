@@ -1,6 +1,6 @@
-import { HandleCachedResponse, JSONResponse, GenerateHash } from './utils'
+import { GenerateHash } from './utils'
+import { HandleCachedResponse, JSONResponse} from '@cyb3rjak3/common'
 import { Context } from 'hono'
-const cache = caches.default
 
 interface GravatarRequestBody {
     email: string
@@ -8,6 +8,8 @@ interface GravatarRequestBody {
 
 export async function GravatarHash(c: Context): Promise<Response> {
     const req = c.req
+    const cache = caches.default
+
     let response = await cache.match(req)
     if (response) {
         return HandleCachedResponse(response)

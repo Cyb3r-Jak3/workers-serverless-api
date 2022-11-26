@@ -1,6 +1,5 @@
 import { Octokit } from '@octokit/core'
-import { JSONResponse } from './utils'
-import { HandleCachedResponse } from './utils'
+import { JSONResponse, HandleCachedResponse } from '@cyb3rjak3/common'
 import { Context } from 'hono'
 
 const octokit = new Octokit()
