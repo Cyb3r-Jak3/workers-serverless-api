@@ -1,6 +1,6 @@
 import { Context } from 'hono'
 import * as openpgp from 'openpgp'
-import { JSONErrorResponse } from '@cyb3rjak3/common'
+import { JSONErrorResponse } from '@cyb3r-jak3/common'
 
 const RESUME_URL = 'https://cyberjake.xyz/resumes/JacobWhiteResume.pdf'
 const RESUME_KEY = 'RESUME_FILE'
@@ -43,6 +43,6 @@ async function GetResume(c: Context): Promise<Uint8Array> {
     }
     const req = await fetch(RESUME_URL)
     resume = await (await req.blob()).arrayBuffer()
-    await KV.put(RESUME_KEY, resume)
+    c.executionCtx.waitUntil(KV.put(RESUME_KEY, resume))
     return new Uint8Array(resume)
 }

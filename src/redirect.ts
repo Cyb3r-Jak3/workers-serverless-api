@@ -1,4 +1,4 @@
-import { HandleCachedResponse } from '@cyb3rjak3/common'
+import { HandleCachedResponse } from '@cyb3r-jak3/common'
 import { Context } from 'hono'
 const redirects: Redirect[] = [
     {
@@ -62,7 +62,7 @@ export async function RedirectLanding(c: Context): Promise<Response> {
     }
     response = renderHtml(render_Page({ RedirectPath, redirects }))
     response.headers.set('Cache-Control', 'public, max-age=3600')
-    await cache.put(c.req, response.clone())
+    c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
     return response
 }
 
@@ -85,7 +85,7 @@ export async function Redirects(c: Context): Promise<Response> {
         if (redirect.path == redirectSelection) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
             response.headers.set('Cache-Control', 'public, max-age=3600')
-            await cache.put(c.req, response.clone())
+            c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
             return response
         }
     }

@@ -1,5 +1,8 @@
-import { GenerateHash } from './utils'
-import { HandleCachedResponse, JSONResponse } from '@cyb3rjak3/common'
+import {
+    HandleCachedResponse,
+    JSONResponse,
+    GenerateHash,
+} from '@cyb3r-jak3/common'
 import { Context } from 'hono'
 
 interface GravatarRequestBody {
@@ -17,7 +20,9 @@ export async function GravatarHash(c: Context): Promise<Response> {
     switch (req.method.toUpperCase()) {
         case 'POST': {
             const request: GravatarRequestBody = await req.json()
-            response = JSONResponse({ hash: await GenerateHash(request.email) })
+            response = JSONResponse({
+                hash: await GenerateHash(request.email, 'md5'),
+            })
             break
         }
         case 'GET': {
@@ -25,7 +30,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
                 '/misc/gravatar/',
                 ''
             )
-            response = new Response(await GenerateHash(parsedData))
+            response = new Response(await GenerateHash(parsedData, 'md5'))
             break
         }
         default: {
@@ -34,7 +39,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
             })
         }
     }
-    response.headers.set('Cache-Control', 'public, max-age=3600')
-    await cache.put(req, response.clone())
+    response.headers.set('Cache-Control', 'public, max-age=86400')
+    c.executionCtx.waitUntil(cache.put(req, response.clone()))
     return response
 }

@@ -1,4 +1,4 @@
-import { HandleCachedResponse, HandleCORS } from '@cyb3rjak3/common'
+import { HandleCachedResponse, HandleCORS } from '@cyb3r-jak3/common'
 import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
@@ -31,35 +31,30 @@ export async function CORSHandle(c: Context): Promise<Response> {
     const allowWildCard = url.searchParams.get('allow_wild')
     const allowedOrigin = url.searchParams.get('allowed_origin')
     if (!apiUrl) {
-        response = new Response(null, { status: 404 })
+        return new Response(null, { status: 404 })
     }
-    if (!response) {
-        for (const allowed_url of Allowed) {
-            if (allowed_url == apiUrl) {
-                const full_url = `https://${allowed_url}`
-                const cors_req = new Request(full_url, req)
-                cors_req.headers.set('Origin', new URL(full_url).origin)
-                const cors_resp = await fetch(cors_req)
-                response = new Response(cors_resp.body, cors_resp)
-                if (allowWildCard === 'true') {
-                    response.headers.set('Access-Control-Allow-Origin', '*')
-                } else if (allowedOrigin !== null) {
-                    for (const allowed_origin of AllowedOrigins) {
-                        if (new URL(allowedOrigin).host === allowed_origin) {
-                            response.headers.set(
-                                'Access-Control-Allow-Origin',
-                                allowedOrigin
-                            )
-                        }
+    for (const allowed_url of Allowed) {
+        if (allowed_url == apiUrl) {
+            const full_url = `https://${allowed_url}`
+            const cors_req = new Request(full_url, req)
+            cors_req.headers.set('Origin', new URL(full_url).origin)
+            const cors_resp = await fetch(cors_req)
+            response = new Response(cors_resp.body, cors_resp)
+            if (allowWildCard === 'true') {
+                response.headers.set('Access-Control-Allow-Origin', '*')
+            } else if (allowedOrigin !== null) {
+                for (const allowed_origin of AllowedOrigins) {
+                    if (new URL(allowedOrigin).host === allowed_origin) {
+                        response.headers.set(
+                            'Access-Control-Allow-Origin',
+                            allowedOrigin
+                        )
                     }
-                } else {
-                    response.headers.set(
-                        'Access-Control-Allow-Origin',
-                        url.origin
-                    )
                 }
-                response.headers.append('Vary', 'Origin')
+            } else {
+                response.headers.set('Access-Control-Allow-Origin', url.origin)
             }
+            response.headers.append('Vary', 'Origin')
         }
     }
 
@@ -70,7 +65,7 @@ export async function CORSHandle(c: Context): Promise<Response> {
     }
 
     if (response.status !== 404) {
-        await cache.put(req, response.clone())
+        c.executionCtx.waitUntil(cache.put(req, response.clone()))
     }
     return response
 }

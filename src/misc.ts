@@ -1,5 +1,5 @@
 import { Context } from 'hono'
-import { JSONResponse } from '@cyb3rjak3/common'
+import { JSONResponse } from '@cyb3r-jak3/common'
 
 export async function CFEndpoint(c: Context): Promise<Response> {
     return JSONResponse(c.req.cf)

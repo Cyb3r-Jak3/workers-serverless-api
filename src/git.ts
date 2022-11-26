@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/core'
-import { JSONResponse, HandleCachedResponse } from '@cyb3rjak3/common'
+import { JSONResponse, HandleCachedResponse } from '@cyb3r-jak3/common'
 import { Context } from 'hono'
 
 const octokit = new Octokit()
@@ -12,23 +12,23 @@ export async function GithubRepos(c: Context): Promise<Response> {
     if (resp) {
         return HandleCachedResponse(resp)
     }
-    if (!resp) {
-        let data = await c.env.KV.get('GithubReposData', { type: 'json' })
-        if (!data) {
-            const repos = await octokit.request('GET /users/{username}/repos', {
-                username: GithubUsername,
-                sort: 'pushed',
-            })
-            data = repos.data
+    let data = await c.env.KV.get('GithubReposData', { type: 'json' })
+    if (!data) {
+        const repos = await octokit.request('GET /users/{username}/repos', {
+            username: GithubUsername,
+            sort: 'pushed',
+        })
+        data = repos.data
+        c.executionCtx.waitUntil(
             await c.env.KV.put('GithubReposData', JSON.stringify(data), {
                 expirationTtl: 3600,
             })
-        }
-        resp = JSONResponse(data, {
-            extra_headers: { 'Cache-Control': 'public, max-age=3600' },
-        })
-        await cache.put(c.req, resp.clone())
+        )
     }
+    resp = JSONResponse(data, {
+        extra_headers: { 'Cache-Control': 'public, max-age=3600' },
+    })
+    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
     return resp
 }
 
