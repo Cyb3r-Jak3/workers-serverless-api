@@ -1,13 +1,13 @@
 {
     "name": "serverless-api",
-    "version": "0.0.11",
+    "version": "0.0.10",
     "description": "Serverless version of my API",
     "main": "dist/worker.js",
     "scripts": {
         "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
         "lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}"
     },
-    "author": "cyb3r-jak3",
+    "author": "cyb3rjak3",
     "license": "MIT",
     "eslintConfig": {
         "root": true,

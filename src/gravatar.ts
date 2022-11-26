@@ -1,5 +1,5 @@
 import { GenerateHash } from './utils'
-import { HandleCachedResponse, JSONResponse} from '@cyb3rjak3/common'
+import { HandleCachedResponse, JSONResponse } from '@cyb3rjak3/common'
 import { Context } from 'hono'
 
 interface GravatarRequestBody {
