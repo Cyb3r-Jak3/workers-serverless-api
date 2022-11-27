@@ -2,12 +2,13 @@ import { Octokit } from '@octokit/core'
 import { JSONResponse, HandleCachedResponse } from '@cyb3r-jak3/common'
 import { Context } from 'hono'
 
-const octokit = new Octokit()
 const GithubUsername = 'Cyb3r-Jak3'
 const PublicEmail = 'connect@cyberjake.xyz'
-const cache = caches.default
 
 export async function GithubRepos(c: Context): Promise<Response> {
+    const cache = caches.default
+    const octokit = new Octokit()
+
     let resp = await cache.match(c.req)
     if (resp) {
         return HandleCachedResponse(resp)
@@ -17,6 +18,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
         const repos = await octokit.request('GET /users/{username}/repos', {
             username: GithubUsername,
             sort: 'pushed',
+            per_page: 100,
         })
         data = repos.data
         c.executionCtx.waitUntil(
@@ -33,6 +35,8 @@ export async function GithubRepos(c: Context): Promise<Response> {
 }
 
 export async function GithubUser(c: Context): Promise<Response> {
+    const cache = caches.default
+    const octokit = new Octokit()
     let resp = await cache.match(c.req)
     if (resp) {
         return HandleCachedResponse(resp)
@@ -45,13 +49,15 @@ export async function GithubUser(c: Context): Promise<Response> {
         user.data.email = PublicEmail
         user.data.url = user.data.html_url
         data = user.data
-        await c.env.KV.put('GithubUserData', JSON.stringify(data), {
-            expirationTtl: 3600,
-        })
+        c.executionCtx.waitUntil(
+            c.env.KV.put('GithubUserData', JSON.stringify(data), {
+                expirationTtl: 3600,
+            })
+        )
     }
     resp = JSONResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
-    await cache.put(c.req, resp.clone())
+    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
     return resp
 }
