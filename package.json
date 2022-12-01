@@ -33,7 +33,7 @@
         "wrangler": "^2.4.4"
     },
     "dependencies": {
-        "@cyb3r-jak3/common": "^3.0.0",
+        "@cyb3r-jak3/common": "^3.2.0",
         "@octokit/core": "^4.1.0",
         "hono": "^2.5.6",
         "openpgp": "^5.5.0"
