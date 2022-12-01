@@ -17,7 +17,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/workers-types": "^3.18.0",
+        "@cloudflare/workers-types": "^4.20221111.1",
         "@openpgp/web-stream-tools": "^0.0.12",
         "@types/node-fetch": "^3.0.3",
         "@types/openpgp": "^4.4.18",
