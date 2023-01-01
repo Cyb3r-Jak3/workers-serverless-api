@@ -35,7 +35,7 @@
     "dependencies": {
         "@cyb3r-jak3/common": "^3.2.0",
         "@octokit/core": "^4.1.0",
-        "hono": "^2.5.6",
+        "hono": "^2.7.1",
         "openpgp": "^5.5.0"
     }
 }
