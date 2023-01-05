@@ -5,12 +5,12 @@ import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
 import { VersionEndpoint, CFEndpoint } from './misc'
-import { AnalyticsEngine, LogToAE } from './utils'
+import { LogToAE } from './utils'
 
 interface ENV {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
-    AE: AnalyticsEngine
+    AE: AnalyticsEngineDataset
     GitHash: string
     BuildTime: string
 }

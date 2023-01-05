@@ -1,5 +1,5 @@
 import { Octokit } from '@octokit/core'
-import { JSONResponse, HandleCachedResponse } from '@cyb3r-jak3/common'
+import { JSONResponse, HandleCachedResponse } from '@cyb3r-jak3/workers-common'
 import { Context } from 'hono'
 
 const GithubUsername = 'Cyb3r-Jak3'

@@ -1,4 +1,4 @@
-import { HandleCachedResponse } from '@cyb3r-jak3/common'
+import { HandleCachedResponse } from '@cyb3r-jak3/workers-common'
 import { Context } from 'hono'
 const redirects: Redirect[] = [
     {

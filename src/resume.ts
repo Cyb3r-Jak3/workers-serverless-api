@@ -1,6 +1,6 @@
 import { Context } from 'hono'
 import * as openpgp from 'openpgp'
-import { JSONErrorResponse } from '@cyb3r-jak3/common'
+import { JSONErrorResponse } from '@cyb3r-jak3/workers-common'
 
 const RESUME_URL = 'https://cyberjake.xyz/resumes/JacobWhiteResume.pdf'
 const RESUME_KEY = 'RESUME_FILE'

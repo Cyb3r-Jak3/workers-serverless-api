@@ -2,7 +2,7 @@ import {
     HandleCachedResponse,
     JSONResponse,
     GenerateHash,
-} from '@cyb3r-jak3/common'
+} from '@cyb3r-jak3/workers-common'
 import { Context } from 'hono'
 
 interface GravatarRequestBody {

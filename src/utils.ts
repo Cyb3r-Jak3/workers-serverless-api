@@ -1,5 +1,5 @@
-import { Context, Handler } from 'hono'
-
+import { Context } from 'hono'
+import type { Handler } from 'hono/dist/types/types'
 /*
 Data input format
  - Date
@@ -18,12 +18,11 @@ Data input format
 */
 
 function WriteDataPoint(c: Context, error = ''): void {
-    if (c.env.PRODUCTION !== 'true') {
+    if (!c.env || c.env.PRODUCTION !== 'true') {
         return
     }
     const req = c.req
-    const AE: AnalyticsEngine = c.env.AE
-    AE.writeDataPoint({
+    c.env.AE.writeDataPoint({
         blobs: [
             new Date().toUTCString(),
             req.url,
@@ -51,14 +50,4 @@ export const LogToAE: Handler = async (c, next) => {
     } catch (error) {
         WriteDataPoint(c, error)
     }
-}
-
-// This does not exist in Cloudflare types yet
-export interface AnalyticsEngine {
-    writeDataPoint(event: AnalyticsEngineEvent): void
-}
-
-export interface AnalyticsEngineEvent {
-    readonly doubles?: number[]
-    readonly blobs?: (ArrayBuffer | string | null)[]
 }

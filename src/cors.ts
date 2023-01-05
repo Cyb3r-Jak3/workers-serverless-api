@@ -1,4 +1,4 @@
-import { HandleCachedResponse, HandleCORS } from '@cyb3r-jak3/common'
+import { HandleCachedResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
 import { Context } from 'hono'
 export const CORS_ENDPOINT = '/cors'
 
