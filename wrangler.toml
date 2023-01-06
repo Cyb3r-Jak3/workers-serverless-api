@@ -11,11 +11,10 @@ main = "./src/index.ts"
 [vars]
 PRODUCTION = "false"
 
-[[unsafe.bindings]]
-type = "analytics_engine"
-name = "AE"
-dataset = "api-dev"
 
+analytics_engine_datasets = [
+    {binding = "AE", dataset = "api-dev"}
+]
 
 [env.production]
 name = "severless-api"
@@ -25,7 +24,6 @@ kv_namespaces = [
 [env.production.vars]
 PRODUCTION = "true"
 
-[[env.production.unsafe.bindings]]
-type = "analytics_engine"
-name = "AE"
-dataset = "api-prod"
+analytics_engine_datasets = [
+    {binding = "AE", dataset = "api-prod"}
+]
