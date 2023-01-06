@@ -1,5 +1,4 @@
 name = "severless-api-dev"
-workers_dev = true
 compatibility_date = "2022-09-20"
 
 kv_namespaces = [
