@@ -21,8 +21,8 @@ app.use('*', LogToAE)
 app.get('/git/repos', GithubRepos)
 app.get('/git/user', GithubUser)
 app.post('/misc/gravatar', GravatarHash)
-app.post('/encrypted_resume', EncryptResumeEndpoint)
 app.get('/misc/gravatar/:email', GravatarHash)
+app.all('/encrypted_resume', EncryptResumeEndpoint)
 app.get(`${RedirectPath}`, RedirectLanding)
 app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
@@ -32,10 +32,7 @@ app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 app.all('/', async (c) => {
     if (c.env.PRODUCTION === 'true') {
-        return c.redirect(
-            'https://github.com/Cyb3r-Jak3/workers-serverless-api',
-            301
-        )
+        return c.redirect('https://cyberjake.xyz/', 301)
     } else return await c.notFound()
 })
 app.all('*', (c) => c.notFound())

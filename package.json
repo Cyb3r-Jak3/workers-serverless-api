@@ -9,7 +9,7 @@
         "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
         "lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}"
     },
-    "author": "cyb3rjak3",
+    "author": "cyb3r-jak3",
     "license": "MIT",
     "eslintConfig": {
         "root": true,

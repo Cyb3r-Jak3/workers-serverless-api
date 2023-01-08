@@ -25,7 +25,7 @@ function WriteDataPoint(c: Context, error = ''): void {
     c.env.AE.writeDataPoint({
         blobs: [
             new Date().toUTCString(),
-            req.url,
+            new URL(req.url).pathname,
             req.cf?.httpProtocol || 'invalid',
             error,
             req.headers.get('user-agent'),
@@ -38,7 +38,7 @@ function WriteDataPoint(c: Context, error = ''): void {
         doubles: [
             c.res.status,
             req.cf?.asn || 0,
-            req.cf?.clientTrustScore || 0,
+            req.cf?.botManagement.score || 0,
         ],
     })
 }

@@ -34,7 +34,7 @@ const redirects: Redirect[] = [
         redirect: 'cyberjake.xyz',
     },
     {
-        path: 'keybase',
+        path: '/keybase',
         redirect: 'keybase.io/cyb3rjak3',
     },
     {
