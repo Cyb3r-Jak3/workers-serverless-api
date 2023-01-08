@@ -1,6 +1,6 @@
 {
     "name": "serverless-api",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "Serverless version of my API",
     "main": "dist/worker.js",
     "scripts": {
