@@ -48,6 +48,10 @@ export const LogToAE: Handler = async (c, next) => {
         await next()
         WriteDataPoint(c)
     } catch (error) {
-        WriteDataPoint(c, error)
+        try {
+            WriteDataPoint(c, error)
+        } catch (error) {
+            console.log(`Error writing data point - ${error}`)
+        }
     }
 }
