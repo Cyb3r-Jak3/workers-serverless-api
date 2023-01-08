@@ -1,28 +1,28 @@
 name = "severless-api-dev"
 compatibility_date = "2022-09-20"
 workers_dev = false
+main = "./src/index.ts"
+
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
 ]
 
-main = "./src/index.ts"
-
-[vars]
-PRODUCTION = "false"
-
-
 analytics_engine_datasets = [
     {binding = "AE", dataset = "api-dev"}
 ]
+
+[vars]
+PRODUCTION = "false"
 
 [env.production]
 name = "severless-api"
 kv_namespaces = [
     { binding = "KV", id = "902aa7ef8f574c66a87d80fd9a3e9ebe", preview_id = "a3030e4701ed406ba337ca8bd9108dda" }
 ]
-[env.production.vars]
-PRODUCTION = "true"
 
 analytics_engine_datasets = [
     {binding = "AE", dataset = "api-prod"}
 ]
+
+[env.production.vars]
+PRODUCTION = "true"
