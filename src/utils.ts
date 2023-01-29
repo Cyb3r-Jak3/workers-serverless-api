@@ -22,6 +22,9 @@ function WriteDataPoint(c: Context, error = ''): void {
         return
     }
     const req = c.req
+    if (req.headers.get('user-agent')?.toLowerCase() === 'cyb3r uptime') {
+        return
+    }
     c.env.AE.writeDataPoint({
         blobs: [
             new Date().toUTCString(),
@@ -52,6 +55,7 @@ export const LogToAE: Handler = async (c, next) => {
             WriteDataPoint(c, error)
         } catch (error) {
             console.log(`Error writing data point - ${error}`)
+            return new Response('Uncaught AE error', { status: 500 })
         }
     }
 }

@@ -1,53 +1,52 @@
 import { HandleCachedResponse } from '@cyb3r-jak3/workers-common'
-import { Context } from 'hono'
+import type { Context } from 'hono'
 const redirects: Redirect[] = [
     {
-        path: '/blog',
+        path: 'blog',
         redirect: 'blog.cyberjake.xyz',
     },
     {
-        path: '/cf',
+        path: 'cf',
         redirect: 'community.cloudflare.com/u/cyb3r-jak3/summary',
     },
     {
-        path: '/docker',
+        path: 'docker',
         redirect: 'hub.docker.com/u/cyb3rjak3',
     },
     {
-        path: '/github',
-        redirect: 'www.github.com/Cyb3r-Jak3',
+        path: 'github',
+        redirect: 'github.com/Cyb3r-Jak3',
     },
     {
-        path: '/gitlab',
-        redirect: 'www.gitlab.com/Cyb3r-Jak3',
+        path: 'gitlab',
+        redirect: 'gitlab.com/Cyb3r-Jak3',
     },
     {
-        path: '/html5action',
+        path: 'html5action',
         redirect: 'github.com/Cyb3r-Jak3/html5validator-action',
     },
     {
-        path: '/html5docker',
+        path: 'html5docker',
         redirect: 'github.com/Cyb3r-Jak3/html5validator-docker',
     },
     {
-        path: '/home',
+        path: 'home',
         redirect: 'cyberjake.xyz',
     },
     {
-        path: '/keybase',
+        path: 'keybase',
         redirect: 'keybase.io/cyb3rjak3',
     },
     {
-        path: '/status',
+        path: 'status',
         redirect: 'status.cyberjake.xyz',
     },
     {
-        path: '/twitter',
+        path: 'twitter',
         redirect: 'twitter.com/Cyb3r_Jak3',
     },
 ]
 
-const cache = caches.default
 export const RedirectPath = '/redirects'
 
 /**
@@ -56,11 +55,14 @@ export const RedirectPath = '/redirects'
  * @returns HTML page
  */
 export async function RedirectLanding(c: Context): Promise<Response> {
+    const cache = caches.default
     let response = await cache.match(c.req)
     if (response) {
         return HandleCachedResponse(response)
     }
-    response = renderHtml(render_Page({ RedirectPath, redirects }))
+    const host = new URL(c.req.url).hostname
+    console.log(host)
+    response = renderHtml(render_Page({ RedirectPath, redirects, host }))
     response.headers.set('Cache-Control', 'public, max-age=3600')
     c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
     return response
@@ -72,26 +74,23 @@ export async function RedirectLanding(c: Context): Promise<Response> {
  * @returns Redirect Response if redirect found or 404 error
  */
 export async function Redirects(c: Context): Promise<Response> {
+    const cache = caches.default
+
     let response = await cache.match(c.req)
     if (response) {
         return HandleCachedResponse(response)
     }
-    const redirectSelection = new URL(c.req.url).pathname.replace(
-        RedirectPath,
-        ''
-    )
-
+    const {short_link} = c.req.param()
     for (const redirect of redirects) {
-        if (redirect.path == redirectSelection) {
+        if (redirect.path == short_link) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
-            response.headers.set('Cache-Control', 'public, max-age=3600')
+            // response.headers.set('Cache-Control', 'public, max-age=86400')
             c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
-            return response
         }
     }
     if (!response) {
         return new Response(
-            `You requested redirect: ${redirectSelection} and it does not exist`,
+            `You requested redirect '${short_link}' and it does not exist`,
             { status: 404 }
         )
     }
@@ -109,7 +108,14 @@ export const renderHtml = (page: () => string): Response =>
     })
 
 const render_Page =
-    ({ redirects }: { RedirectPath: string; redirects: Redirect[] }) =>
+    ({
+        redirects,
+        host,
+    }: {
+        RedirectPath: string
+        redirects: Redirect[]
+        host: string
+    }) =>
     () =>
         `
 <!doctype html>
@@ -165,7 +171,7 @@ const render_Page =
                     .map(
                         (redirect: Redirect) => `
                   <tr>
-                    <td class="border px-4 py-2"><a href="https://api.cyberjake.xyz/redirects${redirect.path}"> ${redirect.path} </a></td>
+                    <td class="border px-4 py-2"><a href="https://${host}/redirects/${redirect.path}"> ${redirect.path} </a></td>
                     <td class="border px-4 py-2"><a href="https://${redirect.redirect}">${redirect.redirect}</a></td>
                   </tr>
                 `
