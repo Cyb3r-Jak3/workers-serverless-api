@@ -37,7 +37,9 @@
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^4.0.0",
         "@octokit/core": "^4.2.0",
+        "domhandler": "^5.0.3",
         "hono": "^2.7.5",
+        "htmlparser2": "^8.0.1",
         "openpgp": "^5.5.0"
     }
 }

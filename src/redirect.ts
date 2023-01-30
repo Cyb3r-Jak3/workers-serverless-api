@@ -80,7 +80,7 @@ export async function Redirects(c: Context): Promise<Response> {
     if (response) {
         return HandleCachedResponse(response)
     }
-    const {short_link} = c.req.param()
+    const { short_link } = c.req.param()
     for (const redirect of redirects) {
         if (redirect.path == short_link) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)

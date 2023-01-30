@@ -6,6 +6,7 @@ import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
 import { VersionEndpoint, CFEndpoint } from './misc'
 import { LogToAE } from './utils'
+import { PyPyChecksumsEndpoint } from './pypy'
 
 interface ENV {
     KV: KVNamespace
@@ -28,6 +29,7 @@ app.get(`${RedirectPath}/`, RedirectLanding)
 app.get(`${RedirectPath}/:short_link`, Redirects)
 app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
+app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 app.all('/', async (c) => {
