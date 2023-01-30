@@ -71,7 +71,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     }
 
     const checksum_file_regex =
-        /[A-Fa-f0-9]{64}\s\spypy\d.\d\-v\d.\d.\d\d?-.{7,20}/g
+        /[A-Fa-f0-9]{64}\s\spypy\d.\d-v\d.\d.\d{1,2}-.{7,20}/g
     const checksum_file_matches: RegExpMatchArray[] = []
     const parser = new Parser({
         ontext(text) {
