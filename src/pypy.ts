@@ -120,7 +120,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         }
     }
 
-    if (kvKey) {
+    if (kvKey && checksum_response.length !== 0) {
         c.executionCtx.waitUntil(
             c.env.KV.put(kvKey, JSON.stringify(checksum_response))
         )
@@ -129,6 +129,8 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     response = JSONResponse(checksum_response, {
         extra_headers: { 'Cache-control': 'public; max-age=604800' },
     })
-    c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+    if (checksum_response.length !== 0) {
+        c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+    }
     return response
 }
