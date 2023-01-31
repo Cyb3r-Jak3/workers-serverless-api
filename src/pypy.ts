@@ -80,7 +80,7 @@ const CacheToKV = async (KV: KVNamespace) => {
         return
     }
     await KV.put('pypy_checksums_all', JSON.stringify(check_sums), {
-        expirationTtl: 21600,
+        expirationTtl: 86400,
     })
 }
 
