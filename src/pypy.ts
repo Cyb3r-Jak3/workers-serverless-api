@@ -73,6 +73,17 @@ async function ParseChecksumsHTML(
     return checksum_pairs
 }
 
+const CacheToKV = async (KV: KVNamespace) => {
+    console.log('PyPy: Triggering CacheToKV')
+    const check_sums = await ParseChecksumsHTML('all', 'all')
+    if (check_sums.length === 1 && check_sums[0].filename === 'error') {
+        return
+    }
+    await KV.put('pypy_checksums_all', JSON.stringify(check_sums), {
+        expirationTtl: 21600,
+    })
+}
+
 export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     const cache = caches.default
     let response = await cache.match(c.req)
@@ -145,6 +156,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         }
     } else {
         checksum_response = await ParseChecksumsHTML(filename, checksum_mode)
+        c.executionCtx.waitUntil(CacheToKV(c.env.KV))
         if (
             checksum_response.length === 1 &&
             checksum_response[0].filename === 'error'
