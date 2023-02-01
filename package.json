@@ -23,7 +23,7 @@
         "@openpgp/web-stream-tools": "^0.0.13",
         "@types/node-fetch": "^3.0.3",
         "@types/openpgp": "^4.4.18",
-        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@typescript-eslint/eslint-plugin": "^5.50.0",
         "@typescript-eslint/parser": "^5.50.0",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^8.5.0",
