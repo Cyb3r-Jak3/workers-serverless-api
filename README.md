@@ -1,5 +1,7 @@
 # Serverless API
 
+[![Deploy](https://github.com/Cyb3r-Jak3/workers-serverless-api/actions/workflows/main.yml/badge.svg)](https://github.com/Cyb3r-Jak3/workers-serverless-api/actions/workflows/main.yml)
+
 This is a rewrite of my [go api](https://github.com/Cyb3r-Jak3/go-api). Written in typescript and written to run on [Cloudflare's Workers](https://developers.cloudflare.com/workers/)
 
 ## Endpoints
@@ -33,3 +35,9 @@ Return version info
 #### [`/encrypted_resume`](https://api.cyberjake.xyz/encrypted_resume)
 
 Returns an encrypted version of my resume. Requires a POST formdata request with your public key as a file called `key`
+
+#### [`/pypy/checksums/:filename`](https://api.cyberjake.xyz/pypy/checksums/all)
+
+Get a JSON array of [PyPy Checksums](https://www.pypy.org/checksums.html).
+
+For `filename` you can use `all` to get all checksums or you can filter down to version (`pypy3.9-v7.3.11`) or single file (`pypy3.9-v7.3.11-src.tar.bz2`).
