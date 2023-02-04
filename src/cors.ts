@@ -27,39 +27,53 @@ export async function CORSHandle(c: Context): Promise<Response> {
         return HandleCORS(req)
     }
     const url = new URL(req.url)
-    const apiUrl = url.searchParams.get('api_url')
-    const allowWildCard = url.searchParams.get('allow_wild')
-    const allowedOrigin = url.searchParams.get('allowed_origin')
-    if (!apiUrl) {
+    const givenURL = url.searchParams.get('api_url')
+    const givenWildCard = url.searchParams.get('allow_wild')
+    const givenOrigin = url.searchParams.get('allowed_origin')
+    if (!givenURL) {
         return new Response(null, { status: 404 })
     }
+
+    let originSet = false
+
     for (const allowed_url of Allowed) {
-        if (allowed_url == apiUrl) {
+        if (allowed_url == givenURL) {
             const full_url = `https://${allowed_url}`
             const cors_req = new Request(full_url, req)
+
             cors_req.headers.set('Origin', new URL(full_url).origin)
+
             const cors_resp = await fetch(cors_req)
             response = new Response(cors_resp.body, cors_resp)
-            if (allowWildCard === 'true') {
+
+            if (givenWildCard === 'true') {
                 response.headers.set('Access-Control-Allow-Origin', '*')
-            } else if (allowedOrigin !== null) {
+                originSet = true
+            } else if (givenOrigin !== null) {
                 for (const allowed_origin of AllowedOrigins) {
-                    if (new URL(allowedOrigin).host === allowed_origin) {
+                    if (new URL(givenOrigin).host === allowed_origin) {
                         response.headers.set(
                             'Access-Control-Allow-Origin',
-                            allowedOrigin
+                            givenOrigin
                         )
+                        originSet = true
                     }
                 }
             } else {
                 response.headers.set('Access-Control-Allow-Origin', url.origin)
+                originSet = true
             }
             response.headers.append('Vary', 'Origin')
         }
     }
+    if (!originSet) {
+        response = new Response(`Origin is not allowed`, {
+            status: 400,
+        })
+    }
 
     if (!response) {
-        response = new Response(`API URL '${apiUrl}' is not allowed`, {
+        response = new Response(`API URL '${givenURL}' is not allowed`, {
             status: 400,
         })
     }

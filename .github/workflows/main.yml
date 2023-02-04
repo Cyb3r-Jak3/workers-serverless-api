@@ -40,6 +40,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Lint
+        run: npm run test
+
       - name: Deploy to Cloudflare with Wrangler
         uses: cloudflare/wrangler-action@2.0.0
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}

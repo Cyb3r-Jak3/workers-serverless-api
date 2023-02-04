@@ -1,9 +1,8 @@
 {
     "compilerOptions": {
-        "outDir": "./dist",
-        "module": "commonjs",
-        "target": "ES2020",
-        "lib": ["ES2020"],
+        "module": "ES2022",
+        "target": "ES2021",
+        "lib": ["ES2021"],
         "alwaysStrict": true,
         "strict": true,
         "preserveConstEnums": true,
@@ -16,6 +15,11 @@
             "@types/node"
         ]
     },
-    "include": ["src"],
+    "include": [
+        "src",
+        "__tests__/index.test.ts",
+        "src/misc.test.ts",
+        "src/index.test.ts"
+    ],
     "exclude": ["node_modules", "dist", "test"]
 }

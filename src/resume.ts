@@ -2,10 +2,11 @@ import { Context } from 'hono'
 import * as openpgp from 'openpgp'
 import { JSONErrorResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
 
-const RESUME_URL = 'https://cyberjake.xyz/resumes/JacobWhiteResume.pdf'
+const RESUME_URL = 'https://cyberjake.xyz/files/resume.pdf'
 const RESUME_KEY = 'RESUME_FILE'
 
 export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
+    console.log('Starting resume')
     const req = c.req
 
     // Handle Options
@@ -45,13 +46,14 @@ export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
 }
 
 async function GetResume(c: Context): Promise<Uint8Array> {
-    const KV: KVNamespace = c.env.KV
-    let resume = await KV.get(RESUME_KEY, { type: 'arrayBuffer' })
+    let resume: ArrayBuffer | null = await c.env.KV.get(RESUME_KEY, {
+        type: 'arrayBuffer',
+    })
     if (resume) {
         return new Uint8Array(resume)
     }
     const req = await fetch(RESUME_URL)
     resume = await (await req.blob()).arrayBuffer()
-    c.executionCtx.waitUntil(KV.put(RESUME_KEY, resume))
+    c.executionCtx.waitUntil(c.env.KV.put(RESUME_KEY, resume))
     return new Uint8Array(resume)
 }

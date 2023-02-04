@@ -20,17 +20,20 @@ export async function GravatarHash(c: Context): Promise<Response> {
     switch (req.method.toUpperCase()) {
         case 'POST': {
             const request: GravatarRequestBody = await req.json()
+            if (!request.email) {
+                return c.notFound()
+            }
             response = JSONResponse({
                 hash: await GenerateHash(request.email, 'md5'),
             })
             break
         }
         case 'GET': {
-            const parsedData = new URL(req.url).pathname.replace(
-                '/misc/gravatar/',
-                ''
-            )
-            response = new Response(await GenerateHash(parsedData, 'md5'))
+            const email = c.req.param('email')
+            if (!email) {
+                return c.notFound()
+            }
+            response = new Response(await GenerateHash(email, 'md5'))
             break
         }
         default: {
