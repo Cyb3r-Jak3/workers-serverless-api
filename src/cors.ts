@@ -79,7 +79,10 @@ export async function CORSHandle(c: Context): Promise<Response> {
     }
 
     if (response.status !== 404) {
-        c.executionCtx.waitUntil(cache.put(req, response.clone()))
+        response.headers.set("cache-control", "max-age=3600")
+        // c.executionCtx.waitUntil(cache.put(req.url, response.clone() ))
+        // Fix for https://github.com/cloudflare/miniflare/issues/527
+        c.executionCtx.waitUntil(cache.put(req.url, new Response(undefined, response)))
     }
     return response
 }

@@ -1,5 +1,5 @@
 name = "severless-api-dev"
-compatibility_date = "2022-09-20"
+compatibility_date = "2022-11-30"
 workers_dev = false
 main = "./src/index.ts"
 
