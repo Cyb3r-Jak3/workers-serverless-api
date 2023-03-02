@@ -6,12 +6,11 @@ const RESUME_URL = 'https://cyberjake.xyz/files/resume.pdf'
 const RESUME_KEY = 'RESUME_FILE'
 
 export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
-    console.log('Starting resume')
     const req = c.req
 
     // Handle Options
     if (req.method == 'OPTIONS') {
-        return HandleCORS(req)
+        return HandleCORS(req.raw)
     }
     if (req.method != 'POST') {
         return new Response('Method not allowed', { status: 405 })

@@ -9,7 +9,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
 
-    let resp = await cache.match(c.req)
+    let resp = await cache.match(c.req.raw)
     if (resp) {
         return HandleCachedResponse(resp)
     }
@@ -30,14 +30,14 @@ export async function GithubRepos(c: Context): Promise<Response> {
     resp = JSONResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
-    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
+    c.executionCtx.waitUntil(cache.put(c.req.raw, resp.clone()))
     return resp
 }
 
 export async function GithubUser(c: Context): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
-    let resp = await cache.match(c.req)
+    let resp = await cache.match(c.req.raw)
     if (resp) {
         return HandleCachedResponse(resp)
     }
@@ -58,6 +58,6 @@ export async function GithubUser(c: Context): Promise<Response> {
     resp = JSONResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
-    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
+    c.executionCtx.waitUntil(cache.put(c.req.raw, resp.clone()))
     return resp
 }

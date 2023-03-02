@@ -13,7 +13,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
     const req = c.req
     const cache = caches.default
 
-    let response = await cache.match(req)
+    let response = await cache.match(req.raw)
     if (response) {
         return HandleCachedResponse(response)
     }
@@ -43,6 +43,6 @@ export async function GravatarHash(c: Context): Promise<Response> {
         }
     }
     response.headers.set('Cache-Control', 'public, max-age=86400')
-    c.executionCtx.waitUntil(cache.put(req, response.clone()))
+    c.executionCtx.waitUntil(cache.put(req.raw, response.clone()))
     return response
 }

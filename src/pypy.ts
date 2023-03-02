@@ -86,7 +86,7 @@ const CacheToKV = async (KV: KVNamespace) => {
 
 export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     const cache = caches.default
-    let response = await cache.match(c.req)
+    let response = await cache.match(c.req.raw)
     if (response) {
         return HandleCachedResponse(response)
     }
@@ -130,7 +130,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
             response = JSONResponse(data, {
                 extra_headers: { 'Cache-control': 'public; max-age=604800' },
             })
-            c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+            c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
             return response
         }
     }
@@ -175,7 +175,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         extra_headers: { 'cache-control': 'public; max-age=604800' },
     })
     if (checksum_response.length !== 0) {
-        c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+        c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
     }
     return response
 }

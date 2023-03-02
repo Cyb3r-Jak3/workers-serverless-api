@@ -17,14 +17,14 @@ const cache = caches.default
 export async function CORSHandle(c: Context): Promise<Response> {
     const req = c.req
     // Find request in cache
-    let response = await cache.match(req)
+    let response = await cache.match(req.raw)
 
     if (response) {
         return HandleCachedResponse(response)
     }
     // Handle Options
     if (req.method == 'OPTIONS') {
-        return HandleCORS(req)
+        return HandleCORS(req.raw)
     }
     const url = new URL(req.url)
     const givenURL = url.searchParams.get('api_url')

@@ -1,5 +1,5 @@
 import { Context } from 'hono'
-import type { Handler } from 'hono/dist/types/types'
+
 /*
 Data input format
  - Date
@@ -17,11 +17,11 @@ Data input format
  - Worker Cache Hit Header
 */
 
-function WriteDataPoint(c: Context, error = ''): void {
+export function WriteDataPoint(c: Context, error: Error | undefined): void {
     if (!c.env || c.env.PRODUCTION !== 'true') {
         return
     }
-    const req = c.req
+    const req = c.req.raw
     if (req.headers.get('user-agent')?.toLowerCase() === 'cyb3r uptime') {
         return
     }
@@ -44,18 +44,4 @@ function WriteDataPoint(c: Context, error = ''): void {
             req.cf?.botManagement.score || 0,
         ],
     })
-}
-
-export const LogToAE: Handler = async (c, next) => {
-    try {
-        await next()
-        WriteDataPoint(c)
-    } catch (error) {
-        try {
-            WriteDataPoint(c, error)
-        } catch (error) {
-            console.log(`Error writing data point - ${error}`)
-            return new Response('Uncaught AE error', { status: 500 })
-        }
-    }
 }

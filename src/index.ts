@@ -5,10 +5,10 @@ import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
 import { VersionEndpoint, CFEndpoint } from './misc'
-import { LogToAE } from './utils'
+import { WriteDataPoint } from './utils'
 import { PyPyChecksumsEndpoint } from './pypy'
 
-interface ENV {
+type ENV = {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
     AE: AnalyticsEngineDataset
@@ -18,7 +18,11 @@ interface ENV {
 
 const app = new Hono<{ Bindings: ENV }>()
 
-app.use('*', LogToAE)
+app.use('*', async (c, next) => {
+    await next()
+    WriteDataPoint(c, c.error)
+})
+
 app.get('/git/repos', GithubRepos)
 app.get('/git/user', GithubUser)
 app.post('/misc/gravatar', GravatarHash)
