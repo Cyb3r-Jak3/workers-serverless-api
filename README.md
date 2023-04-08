@@ -41,3 +41,15 @@ Returns an encrypted version of my resume. Requires a POST formdata request with
 Get a JSON array of [PyPy Checksums](https://www.pypy.org/checksums.html).
 
 For `filename` you can use `all` to get all checksums or you can filter down to version (`pypy3.9-v7.3.11`) or single file (`pypy3.9-v7.3.11-src.tar.bz2`).
+
+#### [`/cloudflare_api/alert_types`](https://api.cyberjake.xyz/cloudflare_api/alert_types)
+
+Get all of the alert types that Cloudflare has.
+
+#### [`/cloudflare_api/token_permissions`](https://api.cyberjake.xyz/cloudflare_api/token_permissions)
+
+Get all of the possible permissions for a Cloudflare API Token.
+
+## Development
+
+Create an API Token using this [link](https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22api_tokens%22%2C%22type%22%3A%22read%22%7D%5D&name=Serverless+API+Reader) then add it and the account id to your `.dev.vars` file for local development.

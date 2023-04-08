@@ -1,8 +1,8 @@
 import { Parser } from 'htmlparser2'
 import {
     HandleCachedResponse,
-    JSONErrorResponse,
-    JSONResponse,
+    JSONAPIErrorResponse,
+    JSONAPIResponse,
 } from '@cyb3r-jak3/workers-common'
 import type { Context } from 'hono'
 
@@ -74,7 +74,6 @@ async function ParseChecksumsHTML(
 }
 
 const CacheToKV = async (KV: KVNamespace) => {
-    console.log('PyPy: Triggering CacheToKV')
     const check_sums = await ParseChecksumsHTML('all', 'all')
     if (check_sums.length === 1 && check_sums[0].filename === 'error') {
         return
@@ -86,14 +85,14 @@ const CacheToKV = async (KV: KVNamespace) => {
 
 export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     const cache = caches.default
-    let response = await cache.match(c.req)
+    let response = await cache.match(c.req.raw)
     if (response) {
         return HandleCachedResponse(response)
     }
 
     const { filename } = c.req.param()
     if (!filename) {
-        return JSONErrorResponse('filename is required', 400)
+        return JSONAPIErrorResponse('filename is required', 400)
     }
 
     let checksum_mode: 'single' | 'bulk' | 'all'
@@ -127,10 +126,10 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         const data = await c.env.KV.get(kvKey, { type: 'json' })
         if (data) {
             console.log(`PyPy: Got KV hit: ${kvKey}`)
-            response = JSONResponse(data, {
+            response = JSONAPIResponse(data, {
                 extra_headers: { 'Cache-control': 'public; max-age=604800' },
             })
-            c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+            c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
             return response
         }
     }
@@ -141,7 +140,6 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     )
 
     if (cached_data) {
-        console.log('PyPy: Parsing from KV all cache')
         for (const pair of cached_data) {
             if (checksum_mode === 'single' && pair.filename === filename) {
                 checksum_response = [pair]
@@ -161,7 +159,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
             checksum_response.length === 1 &&
             checksum_response[0].filename === 'error'
         ) {
-            return JSONResponse(checksum_response)
+            return JSONAPIResponse(checksum_response)
         }
     }
 
@@ -171,11 +169,13 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         )
     }
 
-    response = JSONResponse(checksum_response, {
+    response = JSONAPIResponse(checksum_response, {
         extra_headers: { 'cache-control': 'public; max-age=604800' },
     })
+
     if (checksum_response.length !== 0) {
-        c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+        c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
     }
+
     return response
 }
