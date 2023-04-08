@@ -1,5 +1,8 @@
 import { Octokit } from '@octokit/core'
-import { JSONResponse, HandleCachedResponse } from '@cyb3r-jak3/workers-common'
+import {
+    JSONAPIResponse,
+    HandleCachedResponse,
+} from '@cyb3r-jak3/workers-common'
 import { Context } from 'hono'
 
 const GithubUsername = 'Cyb3r-Jak3'
@@ -9,7 +12,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
 
-    let resp = await cache.match(c.req)
+    let resp = await cache.match(c.req.raw)
     if (resp) {
         return HandleCachedResponse(resp)
     }
@@ -27,17 +30,17 @@ export async function GithubRepos(c: Context): Promise<Response> {
             })
         )
     }
-    resp = JSONResponse(data, {
+    resp = JSONAPIResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
-    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
+    c.executionCtx.waitUntil(cache.put(c.req.raw, resp.clone()))
     return resp
 }
 
 export async function GithubUser(c: Context): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
-    let resp = await cache.match(c.req)
+    let resp = await cache.match(c.req.raw)
     if (resp) {
         return HandleCachedResponse(resp)
     }
@@ -55,9 +58,9 @@ export async function GithubUser(c: Context): Promise<Response> {
             })
         )
     }
-    resp = JSONResponse(data, {
+    resp = JSONAPIResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },
     })
-    c.executionCtx.waitUntil(cache.put(c.req, resp.clone()))
+    c.executionCtx.waitUntil(cache.put(c.req.raw, resp.clone()))
     return resp
 }

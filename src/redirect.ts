@@ -56,14 +56,14 @@ export const RedirectPath = '/redirects'
  */
 export async function RedirectLanding(c: Context): Promise<Response> {
     const cache = caches.default
-    let response = await cache.match(c.req)
+    let response = await cache.match(c.req.raw)
     if (response) {
         return HandleCachedResponse(response)
     }
     const host = new URL(c.req.url).hostname
     response = renderHtml(render_Page({ RedirectPath, redirects, host }))
     response.headers.set('Cache-Control', 'public, max-age=3600')
-    c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+    c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
     return response
 }
 
@@ -76,7 +76,7 @@ export async function Redirects(c: Context): Promise<Response> {
     console.log('Hitting redirects')
     const cache = caches.default
 
-    let response = await cache.match(c.req)
+    let response = await cache.match(c.req.raw)
     if (response) {
         return HandleCachedResponse(response)
     }
@@ -85,7 +85,7 @@ export async function Redirects(c: Context): Promise<Response> {
         if (redirect.path == short_link) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
             // response.headers.set('Cache-Control', 'public, max-age=86400')
-            c.executionCtx.waitUntil(cache.put(c.req, response.clone()))
+            c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
             break
         }
     }

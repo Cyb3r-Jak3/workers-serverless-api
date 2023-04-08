@@ -5,20 +5,30 @@ import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
 import { VersionEndpoint, CFEndpoint } from './misc'
-import { LogToAE } from './utils'
+import { WriteDataPoint } from './utils'
 import { PyPyChecksumsEndpoint } from './pypy'
+import {
+    ScrapeCloudflareAPISettings,
+    CloudflareAPIEndpoint,
+} from './cloudflare_api_proxy'
 
-interface ENV {
+export type ENV = {
     KV: KVNamespace
     PRODUCTION: 'false' | 'true'
     AE: AnalyticsEngineDataset
     GitHash: string
     BuildTime: string
+    ScrapeToken?: string
+    ScrapeAccountID?: string
 }
 
 const app = new Hono<{ Bindings: ENV }>()
 
-app.use('*', LogToAE)
+app.use('*', async (c, next) => {
+    await next()
+    WriteDataPoint(c, c.error)
+})
+
 app.get('/git/repos', GithubRepos)
 app.get('/git/user', GithubUser)
 app.post('/misc/gravatar', GravatarHash)
@@ -30,6 +40,7 @@ app.get(`${RedirectPath}/:short_link`, Redirects)
 app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
 app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
+app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 app.all('/', async (c) => {
@@ -39,4 +50,9 @@ app.all('/', async (c) => {
 })
 app.all('*', (c) => c.notFound())
 
-export default app
+export default {
+    fetch: app.fetch,
+    async scheduled(_: ScheduledEvent, env: ENV, ctx: ExecutionContext) {
+        ctx.waitUntil(ScrapeCloudflareAPISettings(env, ctx))
+    },
+}

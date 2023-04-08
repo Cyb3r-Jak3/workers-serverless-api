@@ -1,6 +1,6 @@
 import { Context } from 'hono'
 import * as openpgp from 'openpgp'
-import { JSONErrorResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
+import { JSONAPIErrorResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
 
 const RESUME_URL = 'https://cyberjake.xyz/files/resume.pdf'
 const RESUME_KEY = 'RESUME_FILE'
@@ -11,20 +11,23 @@ export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
 
     // Handle Options
     if (req.method == 'OPTIONS') {
-        return HandleCORS(req)
+        return HandleCORS(req.raw)
     }
     if (req.method != 'POST') {
         return new Response('Method not allowed', { status: 405 })
     }
 
     if (req.headers.get('Content-Type') === null) {
-        return JSONErrorResponse('Not multipart form request', 400)
+        return JSONAPIErrorResponse('Not multipart form request', 400)
     }
     const data = await req.formData()
 
     const key = data.get('key')
     if (!key || typeof key === 'string') {
-        return JSONErrorResponse('Need a key uploaded and there was none', 400)
+        return JSONAPIErrorResponse(
+            'Need a key uploaded and there was none',
+            400
+        )
     }
 
     const keyText = await key.text()

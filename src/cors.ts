@@ -16,21 +16,21 @@ const cache = caches.default
 
 export async function CORSHandle(c: Context): Promise<Response> {
     const req = c.req
-    // Find request in cache
-    let response = await cache.match(req)
+    let response = await cache.match(req.raw)
 
     if (response) {
         return HandleCachedResponse(response)
     }
     // Handle Options
     if (req.method == 'OPTIONS') {
-        return HandleCORS(req)
+        return HandleCORS(req.raw)
     }
-    const url = new URL(req.url)
-    const givenURL = url.searchParams.get('api_url')
-    const givenWildCard = url.searchParams.get('allow_wild')
-    const givenOrigin = url.searchParams.get('allowed_origin')
-    if (!givenURL) {
+
+    const givenURL = c.req.query('api_url')
+    const givenWildCard = c.req.query('allow_wild')
+    const givenOrigin = c.req.query('allowed_origin')
+    console.log(givenURL, givenWildCard, givenOrigin)
+    if (!givenURL || !givenOrigin) {
         return new Response(null, { status: 404 })
     }
 
@@ -39,7 +39,7 @@ export async function CORSHandle(c: Context): Promise<Response> {
     for (const allowed_url of Allowed) {
         if (allowed_url == givenURL) {
             const full_url = `https://${allowed_url}`
-            const cors_req = new Request(full_url, req)
+            const cors_req = new Request(full_url, req.raw)
 
             cors_req.headers.set('Origin', new URL(full_url).origin)
 
@@ -60,7 +60,10 @@ export async function CORSHandle(c: Context): Promise<Response> {
                     }
                 }
             } else {
-                response.headers.set('Access-Control-Allow-Origin', url.origin)
+                response.headers.set(
+                    'Access-Control-Allow-Origin',
+                    new URL(c.req.url).origin
+                )
                 originSet = true
             }
             response.headers.append('Vary', 'Origin')
@@ -80,8 +83,9 @@ export async function CORSHandle(c: Context): Promise<Response> {
 
     if (response.status !== 404) {
         response.headers.set('cache-control', 'max-age=3600')
-        // c.executionCtx.waitUntil(cache.put(req.url, response.clone() ))
+        // c.executionCtx.waitUntil(cache.put(req.raw.url, response.clone()))
         // Fix for https://github.com/cloudflare/miniflare/issues/527
+        // Can't upgrade until https://github.com/cloudflare/miniflare/issues/454
         c.executionCtx.waitUntil(
             cache.put(req.url, new Response(undefined, response))
         )

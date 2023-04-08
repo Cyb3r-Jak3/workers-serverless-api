@@ -24,5 +24,8 @@ analytics_engine_datasets = [
     {binding = "AE", dataset = "api-prod"}
 ]
 
+[triggers]
+crons = ["0 * * * *"]
+
 [env.production.vars]
 PRODUCTION = "true"

@@ -1,9 +1,10 @@
 import { Context } from 'hono'
-import type { Handler } from 'hono/dist/types/types'
+
 /*
 Data input format
  - Date
  - URL
+ - IP 
  - HTTP Protocol
  - Error
  - Response code
@@ -17,18 +18,23 @@ Data input format
  - Worker Cache Hit Header
 */
 
-function WriteDataPoint(c: Context, error = ''): void {
+export function WriteDataPoint(c: Context, error: Error | undefined): void {
     if (!c.env || c.env.PRODUCTION !== 'true') {
         return
     }
-    const req = c.req
+    if (!c.env.AE) {
+        console.error('Analytics Engine is not defined')
+        return
+    }
+    const req = c.req.raw
     if (req.headers.get('user-agent')?.toLowerCase() === 'cyb3r uptime') {
         return
     }
     c.env.AE.writeDataPoint({
         blobs: [
             new Date().toUTCString(),
-            new URL(req.url).pathname,
+            req.url,
+            req.headers.get('x-real-ip'),
             req.cf?.httpProtocol || 'invalid',
             error,
             req.headers.get('user-agent'),
@@ -41,21 +47,7 @@ function WriteDataPoint(c: Context, error = ''): void {
         doubles: [
             c.res.status,
             req.cf?.asn || 0,
-            req.cf?.botManagement.score || 0,
+            req.cf?.botManagement.score || -1,
         ],
     })
-}
-
-export const LogToAE: Handler = async (c, next) => {
-    try {
-        await next()
-        WriteDataPoint(c)
-    } catch (error) {
-        try {
-            WriteDataPoint(c, error)
-        } catch (error) {
-            console.log(`Error writing data point - ${error}`)
-            return new Response('Uncaught AE error', { status: 500 })
-        }
-    }
 }
