@@ -2,7 +2,10 @@ import type { Context } from 'hono'
 import { JSONResponse, JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 
 export async function CFEndpoint(c: Context): Promise<Response> {
-    return JSONResponse(c.req.raw.cf)
+    return JSONResponse({
+        headers: c.req.headers,
+        cf: c.req.raw.cf,
+    })
 }
 
 export async function VersionEndpoint(c: Context): Promise<Response> {
