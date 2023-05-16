@@ -47,7 +47,7 @@ jobs:
         uses: cloudflare/wrangler-action@2.0.0
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
-          environment: production
+          command: publish --minify --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
           secrets: |
             GitHash
