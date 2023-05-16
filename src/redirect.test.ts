@@ -8,6 +8,7 @@ describe('Redirect Endpoints', () => {
     beforeAll(async () => {
         worker = await unstable_dev('src/index.ts', {
             experimental: { disableExperimentalWarning: true },
+            local: true,
         })
     })
 

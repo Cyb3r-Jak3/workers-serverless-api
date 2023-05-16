@@ -8,6 +8,7 @@ describe('Worker dev', () => {
     beforeAll(async () => {
         worker = await unstable_dev('src/index.ts', {
             experimental: { disableExperimentalWarning: true },
+            local: true,
         })
     })
 
@@ -28,6 +29,7 @@ describe('Worker Prod', () => {
         worker = await unstable_dev('src/index.ts', {
             experimental: { disableExperimentalWarning: true },
             env: 'production',
+            local: true,
         })
     })
 

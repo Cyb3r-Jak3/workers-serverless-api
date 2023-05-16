@@ -1,5 +1,4 @@
 import { Context } from 'hono'
-
 /*
 Data input format
  - Date
@@ -18,8 +17,10 @@ Data input format
  - Worker Cache Hit Header
 */
 
+declare const PRODUCTION: string
+
 export function WriteDataPoint(c: Context, error: Error | undefined): void {
-    if (!c.env || c.env.PRODUCTION !== 'true') {
+    if (!c.env || PRODUCTION !== 'true') {
         return
     }
     if (!c.env.AE) {

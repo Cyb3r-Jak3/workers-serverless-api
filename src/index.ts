@@ -12,9 +12,10 @@ import {
     CloudflareAPIEndpoint,
 } from './cloudflare_api_proxy'
 
+declare const PRODUCTION: string
+
 export type ENV = {
     KV: KVNamespace
-    PRODUCTION: 'false' | 'true'
     AE: AnalyticsEngineDataset
     GitHash: string
     BuildTime: string
@@ -44,7 +45,7 @@ app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 app.all('/', async (c) => {
-    if (c.env.PRODUCTION === 'true') {
+    if (PRODUCTION === 'true') {
         return c.redirect('https://cyberjake.xyz/', 301)
     } else return await c.notFound()
 })

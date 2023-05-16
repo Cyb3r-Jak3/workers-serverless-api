@@ -19,9 +19,8 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/workers-types": "^4.20230228.0",
+        "@cloudflare/workers-types": "^4.20230511.0",
         "@openpgp/web-stream-tools": "^0.0.13",
-        "@types/node-fetch": "^3.0.3",
         "@types/openpgp": "^4.4.18",
         "@typescript-eslint/eslint-plugin": "^5.57.0",
         "@typescript-eslint/parser": "^5.54.0",
@@ -35,13 +34,13 @@
         "typescript": "^5.0.4",
         "vitest": "^0.29.8",
         "vitest-environment-miniflare": "^2.13.0",
-        "wrangler": "^2.13.0"
+        "wrangler": "^2.20.0"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.0.1",
         "@octokit/core": "^4.2.0",
         "domhandler": "^5.0.3",
-        "hono": "^3.1.7",
+        "hono": "^3.1.8",
         "htmlparser2": "^8.0.1",
         "openpgp": "^5.8.0"
     }

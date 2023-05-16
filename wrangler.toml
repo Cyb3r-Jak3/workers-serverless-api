@@ -11,8 +11,8 @@ analytics_engine_datasets = [
     {binding = "AE", dataset = "api-dev"}
 ]
 
-[vars]
-PRODUCTION = "false"
+[define]
+PRODUCTION = '"false"'
 
 [env.production]
 name = "severless-api"
@@ -27,5 +27,6 @@ analytics_engine_datasets = [
 [triggers]
 crons = ["0 * * * *"]
 
-[env.production.vars]
-PRODUCTION = "true"
+
+[env.production.define]
+PRODUCTION = '"true"'
