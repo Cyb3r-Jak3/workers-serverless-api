@@ -75,7 +75,7 @@ export async function RedirectLanding(c: Context): Promise<Response> {
 export async function Redirects(c: Context): Promise<Response> {
     const cache = caches.default
 
-    let response 
+    let response
     const { short_link } = c.req.param()
     for (const redirect of redirects) {
         if (redirect.path == short_link) {
