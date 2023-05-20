@@ -73,7 +73,6 @@ export async function RedirectLanding(c: Context): Promise<Response> {
  * @returns Redirect Response if redirect found or 404 error
  */
 export async function Redirects(c: Context): Promise<Response> {
-    console.log('Hitting redirects')
     const cache = caches.default
 
     let response = await cache.match(c.req.raw)
@@ -84,7 +83,7 @@ export async function Redirects(c: Context): Promise<Response> {
     for (const redirect of redirects) {
         if (redirect.path == short_link) {
             response = Response.redirect(`https://${redirect.redirect}`, 302)
-            // response.headers.set('Cache-Control', 'public, max-age=86400')
+            response.headers.set('Cache-Control', 'public, max-age=86400')
             c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
             break
         }

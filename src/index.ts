@@ -44,11 +44,11 @@ app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
-app.all('/', async (c) => {
-    if (PRODUCTION === 'true') {
+if (PRODUCTION === 'true') {
+    app.all('/', async (c) => {
         return c.redirect('https://cyberjake.xyz/', 301)
-    } else return await c.notFound()
-})
+    })
+}
 app.all('*', (c) => c.notFound())
 
 export default {
