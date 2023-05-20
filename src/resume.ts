@@ -6,7 +6,6 @@ const RESUME_URL = 'https://cyberjake.xyz/files/resume.pdf'
 const RESUME_KEY = 'RESUME_FILE'
 
 export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
-    console.log('Starting resume')
     const req = c.req
 
     // Handle Options
