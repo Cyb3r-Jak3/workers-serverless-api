@@ -40,6 +40,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Rebuild Packages
+        run: |
+          npm rebuild better-sqlite3 --update-binary
+          npm rebuild integer --update-binary
+
       - name: Lint
         run: npm run lint
 
