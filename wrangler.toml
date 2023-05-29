@@ -29,7 +29,7 @@ analytics_engine_datasets = [
 ]
 
 tail_consumers = [
-    {service = "worker-ae-analytics", environment = "production"}
+    {service = "worker-ae-analytics", environment = ""}
 ]
 
 [triggers]
