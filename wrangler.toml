@@ -11,7 +11,7 @@ analytics_engine_datasets = [
     {binding = "AE", dataset = "api-dev"}
 ]
 tail_consumers = [
-    {service = "worker-ae-analytics-dev", environment = "production"}
+    {service = "worker-ae-analytics-dev", environment = ""}
 ]
 
 [define]
