@@ -21,9 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: "Hack: install libc++1"
-        run: sudo apt-get install -y libc++1
-
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
@@ -40,15 +37,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Rebuild Packages
-        run: |
-          npm rebuild better-sqlite3 --update-binary
-          npm rebuild integer --update-binary
-
       - name: Lint
+        if: ${{github.ref_type == 'branch'}}
         run: npm run lint
 
       - name: Test
+        if: ${{github.ref_type == 'branch'}}
         run: npm run test
 
       - name: Deploy to Cloudflare with Wrangler
@@ -57,7 +51,7 @@ jobs:
         with:
           command: deploy --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          wranglerVersion: 3.0.1
+          wranglerVersion: 3.1.1
           secrets: |
             GitHash
             BuiltTime

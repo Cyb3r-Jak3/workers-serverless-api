@@ -11,7 +11,7 @@ import {
     ScrapeCloudflareAPISettings,
     CloudflareAPIEndpoint,
 } from './cloudflare_api_proxy'
-
+import { MavenDownloadEndpoint } from './download_proxy'
 declare const PRODUCTION: string
 
 export type ENV = {
@@ -21,6 +21,7 @@ export type ENV = {
     BuildTime: string
     ScrapeToken?: string
     ScrapeAccountID?: string
+    PUBLIC_FILES: R2Bucket
 }
 
 const app = new Hono<{ Bindings: ENV }>()
@@ -42,6 +43,8 @@ app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
 app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
+app.get('/download_proxy/', MavenDownloadEndpoint)
+app.get('/download_proxy/:program', MavenDownloadEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
