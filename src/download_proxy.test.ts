@@ -24,7 +24,9 @@ describe('Download proxy ', () => {
     it('Invalid program', async () => {
         const resp = await worker.fetch('/download_proxy/not_a_program')
         expect(resp.status).toBe(400)
-        expect(await resp.text()).toBe("program 'not_a_program; is not supported")
+        expect(await resp.text()).toBe(
+            "program 'not_a_program; is not supported"
+        )
     })
 
     it('Missing version', async () => {
