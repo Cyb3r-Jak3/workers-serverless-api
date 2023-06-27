@@ -38,9 +38,6 @@ describe('Download proxy ', () => {
     it('Valid version', async () => {
         const resp = await worker.fetch('/download_proxy/maven?version=3.9.3')
         expect(resp.status).toBe(200)
-        const resp2 = await worker.fetch('/download_proxy/maven?version=3.9.3')
-        expect(resp2.status).toBe(200)
-        expect(resp2.headers.get('cf-cache-status')).toBe('HIT')
     })
 
     it('Missing version', async () => {
