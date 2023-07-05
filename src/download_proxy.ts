@@ -61,7 +61,7 @@ export async function DownloadProxyEndpoint(c: Context): Promise<Response> {
         return new Response('version is required', { status: 400 })
     }
 
-    if (!supported_programs.hasOwnProperty(program)) {
+    if (!Object.prototype.hasOwnProperty.call(supported_programs, program)) {
         return new Response(`program '${program}; is not supported`, {
             status: 400,
         })
