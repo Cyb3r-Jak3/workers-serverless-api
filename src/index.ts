@@ -11,7 +11,7 @@ import {
     ScrapeCloudflareAPISettings,
     CloudflareAPIEndpoint,
 } from './cloudflare_api_proxy'
-import { MavenDownloadEndpoint } from './download_proxy'
+import { DownloadProxyEndpoint } from './download_proxy'
 declare const PRODUCTION: string
 
 export type ENV = {
@@ -43,8 +43,8 @@ app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
 app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
-app.get('/download_proxy/', MavenDownloadEndpoint)
-app.get('/download_proxy/:program', MavenDownloadEndpoint)
+app.get('/download_proxy/', DownloadProxyEndpoint)
+app.get('/download_proxy/:program', DownloadProxyEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
