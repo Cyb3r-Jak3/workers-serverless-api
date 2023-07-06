@@ -21,6 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Upgrade some packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install libc6-dev libc++-dev libstdc++6 lld
+
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
