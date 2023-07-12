@@ -32,7 +32,7 @@ async function ParseChecksumsHTML(
     }
 
     const checksum_file_regex =
-        /[A-Fa-f0-9]{64}\s\spypy\d.\d-v\d.\d.\d{1,2}-.{7,20}/g
+        /[A-Fa-f0-9]{64}\s\spypy\d.\d\d?-v\d.\d.\d{1,2}-.{7,20}/g
     const checksum_file_matches: RegExpMatchArray[] = []
     const parser = new Parser({
         ontext(text) {
@@ -170,7 +170,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
     }
 
     response = JSONAPIResponse(checksum_response, {
-        extra_headers: { 'cache-control': 'public; max-age=604800' },
+        extra_headers: { 'cache-control': 'public; max-age=86400' },
     })
 
     if (checksum_response.length !== 0) {

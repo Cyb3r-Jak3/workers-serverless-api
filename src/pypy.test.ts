@@ -35,6 +35,15 @@ describe('PyPy Endpoints', () => {
         const json_resp = await resp.json()
         expect(json_resp.results.length).toEqual(9)
     })
+    it('PyPy 3.10 Version', async () => {
+        const resp = await worker.fetch('/pypy/checksums/pypy3.10-v7.3.12')
+        expect(resp.status).toBe(200)
+        expect(resp.headers.get('content-type')).toEqual(
+            'application/json; charset=UTF-8'
+        )
+        const json_resp = await resp.json()
+        expect(json_resp.results.length).toEqual(9)
+    })
 
     it('PyPy File', async () => {
         const resp = await worker.fetch(
