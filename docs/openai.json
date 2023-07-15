@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Cyb3r-Jak3 API",
+    "contact": {
+      "name": "Cyb3r-Jak3",
+      "url": "https://cyberjake.xyz",
+      "email": "git@cyberjake.xyz"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/Cyb3r-Jak3/workers-serverless-api/blob/main/LICENSE"
+    },
+    "version": "1.7.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.cyberjake.xyz",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/git/repos": {
+      "get": {
+        "tags": [
+          "git"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/base_api_response_object(1)"
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {}
+        ]
+      },
+      "summary": "Get all GitHub repos",
+      "description": "Returns a list of all my GitHub Repos"
+    },
+    "/git/user": {
+      "get": {
+        "tags": [
+          "git"
+        ],
+        "summary": "Get my GitHub user profile",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/git_user_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/version": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/version_response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "base_api_response_object": {
+        "type": "object",
+        "title": "api response",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "If the request was successful"
+          },
+          "error": {
+            "type": "object",
+            "description": "If there was an error with the request",
+            "properties": {
+              "Error": {
+                "type": "string",
+                "description": "Error string"
+              }
+            },
+            "nullable": true,
+            "readOnly": false
+          }
+        },
+        "nullable": false
+      },
+      "base_api_response_object(1)": {
+        "type": "object",
+        "title": "git repos response",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "description": "Array of GitHub repos",
+              "nullable": false
+            },
+            "nullable": false
+          }
+        },
+        "additionalProperties": true,
+        "nullable": false,
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_api_response_object"
+          }
+        ]
+      },
+      "git_user_response": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "description": "My GitHub user profile",
+            "nullable": false
+          }
+        },
+        "additionalProperties": true,
+        "nullable": false,
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_api_response_object"
+          }
+        ]
+      },
+      "version_response": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "object",
+            "required": [
+              "GitHash",
+              "BuiltTime"
+            ],
+            "properties": {
+              "GitHash": {
+                "type": "string",
+                "description": "Long GitHub hash of version that is published."
+              },
+              "BuiltTime": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date time of when the current was published."
+              }
+            },
+            "nullable": false
+          }
+        },
+        "additionalProperties": true,
+        "nullable": false,
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/base_api_response_object"
+          }
+        ]
+      }
+    },
+    "headers": {
+      "User-Agent": {
+        "description": "User-Agent header. If there is no user-agent set then the request will be blocked.",
+        "schema": {
+          "type": "object",
+          "nullable": false
+        },
+        "examples": {
+          "User-Agent": {
+            "description": "\"My-User-Agent\""
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1988 @@
+{
+    "modelName": "Serverless API",
+    "collections": [
+        {
+            "collectionName": "get",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "parameters",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "structureType": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "subtype": "anyParameter",
+                    "nullable": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "a9de958d-493e-4f62-8afe-78516c8c074c"
+                },
+                {
+                    "name": "requestBody",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "snippet": "requestBody",
+                    "subtype": "media",
+                    "childType": "requestBody",
+                    "type": "document",
+                    "GUID": "66bf95da-fd61-45c8-821a-20804efbecd4"
+                },
+                {
+                    "name": "callbacks",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "structureType": true,
+                    "properties": [],
+                    "childType": "operationObject",
+                    "type": "document",
+                    "subtype": "callback",
+                    "GUID": "d3e15e8a-e83a-48c6-8a88-640c70133fa1"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "2ee3c9a1-befb-4553-93d3-80b84a1f848b"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "request",
+            "subtype": "requestBody",
+            "GUID": "af7f1e6c-5f4d-4a9d-a2a5-bbc3880768e6",
+            "bucketId": "4a301a0c-7d1c-4586-b13a-9acc3dabf0a1",
+            "tags": [
+                {
+                    "GUID": "204dff3b-fa87-4611-9c73-eff59204d132",
+                    "tag": "git"
+                }
+            ],
+            "servers": [
+                {
+                    "GUID": "8c5862d7-6652-46a6-9bb0-33bb78c110b8"
+                }
+            ],
+            "childCollection": [
+                "b8d247a2-a3f0-49f3-9a63-353c585a233a"
+            ]
+        },
+        {
+            "collectionName": "200",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "response",
+                    "hackoladeMeta": {
+                        "disableAdd": true,
+                        "resetInsteadOfDelete": true,
+                        "disableAppend": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [
+                        {
+                            "name": "headers",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": true,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "header",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "29f86ea1-8a26-43e7-b779-97f39a28dda3",
+                            "error": {}
+                        },
+                        {
+                            "name": "content",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [
+                                {
+                                    "name": "application/json",
+                                    "hackoladeMeta": {
+                                        "disableReference": true
+                                    },
+                                    "isActivated": true,
+                                    "schemeType": "apiKey",
+                                    "required": false,
+                                    "properties": [
+                                        {
+                                            "name": "examples",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "example",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "d3d18cee-88c0-40a0-83ac-20579349fc14"
+                                        },
+                                        {
+                                            "name": "encoding",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "encoding",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "7667559e-f84c-4ce0-b945-359f90bb33b5"
+                                        },
+                                        {
+                                            "GUID": "fdf52d6f-054a-438c-ab7b-c470ff09fdee",
+                                            "name": "git repos response",
+                                            "type": "reference",
+                                            "$ref": "#model/definitions/schemas/git repos response",
+                                            "refType": "model",
+                                            "ref": "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                                            "refIdPath": [
+                                                "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                                "4ef5475c-9193-4c8d-984f-a661e4b8baaf"
+                                            ],
+                                            "isActivated": true,
+                                            "code": "base api response object(1)",
+                                            "required": false,
+                                            "nullable": false,
+                                            "error": {
+                                                "name": false,
+                                                "code": false
+                                            }
+                                        }
+                                    ],
+                                    "ignore_z_value": true,
+                                    "snippet": "media",
+                                    "additionalProperties": false,
+                                    "subtype": "structuralSchema",
+                                    "childType": "media",
+                                    "type": "document",
+                                    "GUID": "1624f5a7-0219-4f23-96ff-40f5b37ed498",
+                                    "error": {}
+                                }
+                            ],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "media",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "4790cb95-1ec5-480d-bdac-ea889aa84161"
+                        },
+                        {
+                            "name": "links",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "link",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "d87b8aaa-8bf3-4412-a2c9-0f77706d952c"
+                        }
+                    ],
+                    "ignore_z_value": true,
+                    "snippet": "response",
+                    "subtype": "snippetChildrenOnly",
+                    "additionalProperties": false,
+                    "childType": "response",
+                    "type": "document",
+                    "GUID": "64329577-2fb8-418b-939d-251bbc91b78b"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "3bb390f3-d5b7-4e76-bae7-f1f3e8e34b7a"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "response",
+            "subtype": "response",
+            "GUID": "b8d247a2-a3f0-49f3-9a63-353c585a233a",
+            "bucketId": "4a301a0c-7d1c-4586-b13a-9acc3dabf0a1",
+            "parentCollection": "af7f1e6c-5f4d-4a9d-a2a5-bbc3880768e6"
+        },
+        {
+            "collectionName": "get",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "parameters",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "structureType": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "subtype": "anyParameter",
+                    "nullable": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "72939a78-a5b3-42a3-838d-018d08599c28"
+                },
+                {
+                    "name": "requestBody",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "snippet": "requestBody",
+                    "subtype": "media",
+                    "childType": "requestBody",
+                    "type": "document",
+                    "GUID": "a5960287-06fa-43c4-aacd-abbb140e8e91"
+                },
+                {
+                    "name": "callbacks",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "structureType": true,
+                    "properties": [],
+                    "childType": "operationObject",
+                    "type": "document",
+                    "subtype": "callback",
+                    "GUID": "ab3de8eb-974d-49d6-a1da-cf61f97bee8a"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "8eeca739-9399-49c1-8e33-e7f7ca39937c"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "request",
+            "subtype": "requestBody",
+            "GUID": "7677e347-2628-4454-ad3f-1e3344df4bf9",
+            "bucketId": "6d801d36-1b6e-49a4-9f4d-58c018ee0e35",
+            "tags": [
+                {
+                    "GUID": "2576da0e-cb7c-4ae3-bdd9-39ef6470b2a2",
+                    "tag": "git"
+                }
+            ],
+            "summary": "Get my GitHub user profile",
+            "childCollection": [
+                "bdaf152d-0bca-49ef-9633-ffbce422b2a8"
+            ]
+        },
+        {
+            "collectionName": "200",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "response",
+                    "hackoladeMeta": {
+                        "disableAdd": true,
+                        "resetInsteadOfDelete": true,
+                        "disableAppend": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [
+                        {
+                            "name": "headers",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "header",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "d5826196-ed6f-4f21-93a2-0364bdaf4c8e"
+                        },
+                        {
+                            "name": "content",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [
+                                {
+                                    "name": "application/json",
+                                    "hackoladeMeta": {
+                                        "disableReference": true
+                                    },
+                                    "isActivated": true,
+                                    "schemeType": "apiKey",
+                                    "required": false,
+                                    "properties": [
+                                        {
+                                            "GUID": "e675410c-542f-4cd9-a438-4dcee203439a",
+                                            "name": "schema",
+                                            "type": "reference",
+                                            "$ref": "#model/definitions/schemas/git user response",
+                                            "refType": "model",
+                                            "ref": "0dbe4c19-88e3-4710-8854-e369b16f1b5e",
+                                            "refIdPath": [
+                                                "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                                "0dbe4c19-88e3-4710-8854-e369b16f1b5e"
+                                            ],
+                                            "isActivated": true,
+                                            "required": false,
+                                            "nullable": false,
+                                            "hackoladeMeta": {}
+                                        },
+                                        {
+                                            "name": "examples",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "example",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "cf755752-167d-4aa6-b8d9-4275908570ca"
+                                        },
+                                        {
+                                            "name": "encoding",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "encoding",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "ca107404-013e-4b4e-b838-775cdc0bb3e6"
+                                        }
+                                    ],
+                                    "ignore_z_value": true,
+                                    "snippet": "media",
+                                    "additionalProperties": false,
+                                    "subtype": "structuralSchema",
+                                    "childType": "media",
+                                    "type": "document",
+                                    "GUID": "f35441bc-02c3-4943-9c9f-1b676661566e"
+                                }
+                            ],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "media",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "4bef09df-1809-4609-9b4b-a84ad9c0150b"
+                        },
+                        {
+                            "name": "links",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "link",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "1a84f9c8-e27e-45d7-be5d-a01780094914"
+                        }
+                    ],
+                    "ignore_z_value": true,
+                    "snippet": "response",
+                    "subtype": "snippetChildrenOnly",
+                    "additionalProperties": false,
+                    "childType": "response",
+                    "type": "document",
+                    "GUID": "c046c467-e1b1-43cd-bd6e-bc31bb735652"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "e19b8f0a-8e5c-440e-af7e-c96b0ec7a1dc"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "response",
+            "subtype": "response",
+            "GUID": "bdaf152d-0bca-49ef-9633-ffbce422b2a8",
+            "bucketId": "6d801d36-1b6e-49a4-9f4d-58c018ee0e35",
+            "parentCollection": "7677e347-2628-4454-ad3f-1e3344df4bf9"
+        },
+        {
+            "collectionName": "get",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "parameters",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "structureType": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "primaryKey": false,
+                    "additionalItems": true,
+                    "uniqueItems": false,
+                    "subtype": "anyParameter",
+                    "nullable": false,
+                    "childType": "array",
+                    "type": "array",
+                    "GUID": "882e78fe-29c5-4277-9c08-b2783535991c"
+                },
+                {
+                    "name": "requestBody",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [],
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "snippet": "requestBody",
+                    "subtype": "media",
+                    "childType": "requestBody",
+                    "type": "document",
+                    "GUID": "1487f544-face-4b67-886b-75b53d479f7b"
+                },
+                {
+                    "name": "callbacks",
+                    "hackoladeMeta": {
+                        "disableAdd": false,
+                        "disableDelete": false,
+                        "disableAppend": true,
+                        "resetInsteadOfDelete": true,
+                        "disableChoices": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "ignore_z_value": true,
+                    "additionalProperties": false,
+                    "structureType": true,
+                    "properties": [],
+                    "childType": "operationObject",
+                    "type": "document",
+                    "subtype": "callback",
+                    "GUID": "630e36ad-e83f-4198-8ecd-59f289a89358"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "da9a8c47-1f7f-457f-a453-e285cc2addb3"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "request",
+            "subtype": "requestBody",
+            "GUID": "abed3812-5b10-4953-921c-e5dce7c6f032",
+            "bucketId": "d1850253-f3b0-485c-870c-b582c7c45a87",
+            "childCollection": [
+                "3a04bc37-a367-4eff-86dc-88704c4a98c3"
+            ]
+        },
+        {
+            "collectionName": "200",
+            "type": "object",
+            "properties": [
+                {
+                    "name": "response",
+                    "hackoladeMeta": {
+                        "disableAdd": true,
+                        "resetInsteadOfDelete": true,
+                        "disableAppend": true
+                    },
+                    "isActivated": true,
+                    "schemeType": "apiKey",
+                    "required": false,
+                    "properties": [
+                        {
+                            "name": "headers",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "header",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "c9981fb2-b865-47f9-91aa-057bed4b78a7"
+                        },
+                        {
+                            "name": "content",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [
+                                {
+                                    "name": "application/json",
+                                    "hackoladeMeta": {
+                                        "disableReference": true
+                                    },
+                                    "isActivated": true,
+                                    "schemeType": "apiKey",
+                                    "required": false,
+                                    "properties": [
+                                        {
+                                            "GUID": "faa5a59a-3bfc-4158-833b-cf052aeb9375",
+                                            "name": "schema",
+                                            "type": "reference",
+                                            "$ref": "#model/definitions/schemas/version response",
+                                            "refType": "model",
+                                            "ref": "65db44b8-4f1c-4e5a-a94f-dd8ba368fbc7",
+                                            "refIdPath": [
+                                                "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                                "65db44b8-4f1c-4e5a-a94f-dd8ba368fbc7"
+                                            ],
+                                            "isActivated": true,
+                                            "required": false,
+                                            "nullable": false,
+                                            "hackoladeMeta": {}
+                                        },
+                                        {
+                                            "name": "examples",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "example",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "08d7a2e6-7145-492d-b2aa-59687ec48fe5"
+                                        },
+                                        {
+                                            "name": "encoding",
+                                            "hackoladeMeta": {
+                                                "disableAppend": true,
+                                                "disableReference": true
+                                            },
+                                            "isActivated": true,
+                                            "structureType": true,
+                                            "schemeType": "apiKey",
+                                            "required": false,
+                                            "primaryKey": false,
+                                            "properties": [],
+                                            "additionalProperties": false,
+                                            "additionalPropControl": "Boolean",
+                                            "additionalPropertiesObjectType": "integer",
+                                            "additionalPropertiesIntegerFormat": "int32",
+                                            "subtype": "encoding",
+                                            "nullable": false,
+                                            "childType": "object",
+                                            "type": "document",
+                                            "GUID": "f1f1fae3-f95f-4481-a3b4-23f0adf036c1"
+                                        }
+                                    ],
+                                    "ignore_z_value": true,
+                                    "snippet": "media",
+                                    "additionalProperties": false,
+                                    "subtype": "structuralSchema",
+                                    "childType": "media",
+                                    "type": "document",
+                                    "GUID": "bdbedd62-212f-49e3-8c27-28b65fd96bad"
+                                }
+                            ],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "media",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "a0c5fff5-156e-4423-83bc-28dd5b38311c"
+                        },
+                        {
+                            "name": "links",
+                            "hackoladeMeta": {
+                                "disableAppend": true,
+                                "disableReference": true
+                            },
+                            "isActivated": true,
+                            "structureType": true,
+                            "schemeType": "apiKey",
+                            "required": false,
+                            "primaryKey": false,
+                            "properties": [],
+                            "additionalProperties": false,
+                            "additionalPropControl": "Boolean",
+                            "additionalPropertiesObjectType": "integer",
+                            "additionalPropertiesIntegerFormat": "int32",
+                            "subtype": "link",
+                            "nullable": false,
+                            "childType": "object",
+                            "type": "document",
+                            "GUID": "ed3c1bfa-03b1-4045-849c-44f00fe5b2cd"
+                        }
+                    ],
+                    "ignore_z_value": true,
+                    "snippet": "response",
+                    "subtype": "snippetChildrenOnly",
+                    "additionalProperties": false,
+                    "childType": "response",
+                    "type": "document",
+                    "GUID": "b7afa3fd-ee7e-4ec7-8f02-3126276e74ae"
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "999d3bc9-0bb7-456c-bb69-7568f0069d42"
+            },
+            "isActivated": true,
+            "additionalProperties": false,
+            "entityType": "response",
+            "subtype": "response",
+            "GUID": "3a04bc37-a367-4eff-86dc-88704c4a98c3",
+            "bucketId": "d1850253-f3b0-485c-870c-b582c7c45a87",
+            "parentCollection": "abed3812-5b10-4953-921c-e5dce7c6f032"
+        }
+    ],
+    "buckets": [
+        {
+            "name": "/git/repos",
+            "type": "bucket",
+            "collectionIds": [
+                "af7f1e6c-5f4d-4a9d-a2a5-bbc3880768e6",
+                "b8d247a2-a3f0-49f3-9a63-353c585a233a"
+            ],
+            "backgroundColor": {
+                "r": 216,
+                "g": 0,
+                "b": 115,
+                "a": 1
+            },
+            "show": true,
+            "isActivated": true,
+            "GUID": "4a301a0c-7d1c-4586-b13a-9acc3dabf0a1",
+            "summary": "Get all GitHub repos",
+            "description": "Returns a list of all my GitHub Repos"
+        },
+        {
+            "name": "/git/user",
+            "type": "bucket",
+            "collectionIds": [
+                "7677e347-2628-4454-ad3f-1e3344df4bf9",
+                "bdaf152d-0bca-49ef-9633-ffbce422b2a8"
+            ],
+            "backgroundColor": {
+                "r": 0,
+                "g": 138,
+                "b": 0,
+                "a": 1
+            },
+            "show": true,
+            "isActivated": true,
+            "GUID": "6d801d36-1b6e-49a4-9f4d-58c018ee0e35"
+        },
+        {
+            "name": "/version",
+            "type": "bucket",
+            "collectionIds": [
+                "abed3812-5b10-4953-921c-e5dce7c6f032",
+                "3a04bc37-a367-4eff-86dc-88704c4a98c3"
+            ],
+            "backgroundColor": {
+                "r": 0,
+                "g": 188,
+                "b": 213,
+                "a": 1
+            },
+            "show": true,
+            "isActivated": true,
+            "GUID": "d1850253-f3b0-485c-870c-b582c7c45a87"
+        }
+    ],
+    "views": [],
+    "relationships": [],
+    "users": [],
+    "diagramViews": [],
+    "idToNameHashTable": {
+        "955f7546-28e6-419d-b79b-fedd12852c8d": "schemas",
+        "783e0763-ce1c-4d1e-ad0c-919991d782f4": "responses",
+        "28237994-ac3e-433e-a75b-ef6d16ed3f3c": "parameters",
+        "21182847-0274-4b7f-88da-f7f97653541b": "examples",
+        "d359102c-dae8-44b4-afa5-4abe8b78acb7": "requestBodies",
+        "2c441671-8c37-4ece-8bfa-c7204ccd9a6d": "headers",
+        "2e2cb1ca-ea5a-427b-8e21-8a40f9b4bf2c": "securitySchemes",
+        "9ced9504-0b56-4060-b1fd-f014436ac0a0": "links",
+        "51d925c9-8741-477f-a02d-dea2367721b7": "callbacks",
+        "3bb312cc-2c3b-42f4-87b0-0d720a4879d9": "Specification Extensions",
+        "a9de958d-493e-4f62-8afe-78516c8c074c": "parameters",
+        "66bf95da-fd61-45c8-821a-20804efbecd4": "requestBody",
+        "d3e15e8a-e83a-48c6-8a88-640c70133fa1": "callbacks",
+        "af7f1e6c-5f4d-4a9d-a2a5-bbc3880768e6": "get",
+        "4a301a0c-7d1c-4586-b13a-9acc3dabf0a1": "/git/repos",
+        "64329577-2fb8-418b-939d-251bbc91b78b": "response",
+        "b8d247a2-a3f0-49f3-9a63-353c585a233a": "200",
+        "eb6076f8-640a-4ada-b850-e9679ebec115": "api response",
+        "85285fae-44ad-4d37-b8c1-6ce6a4a4d60e": "User-Agent",
+        "0a880882-26d0-4a21-9ed9-bf4da1c1ce16": "schema",
+        "dcf3dd24-4594-4507-835e-a1d610512f62": "content",
+        "fe6bcb93-8f3e-46d2-a90e-58425d52b7c5": "examples",
+        "9f243035-0e91-41e8-b075-7782920df0e0": "User-Agent",
+        "4ef5475c-9193-4c8d-984f-a661e4b8baaf": "git repos response",
+        "8cfceedc-ce78-43da-9bc6-d7db51ee53b5": "success",
+        "9f7e61ad-94e7-4722-9dcd-73152d74be6b": "error",
+        "fa9b730d-fcad-4347-ae10-f2342e358b30": "Error",
+        "294c6615-b679-4107-8b61-165a72f0def4": "api response",
+        "de3fc420-f390-48ac-bc52-437e7e0d2898": "results",
+        "1624f5a7-0219-4f23-96ff-40f5b37ed498": "application/json",
+        "6d801d36-1b6e-49a4-9f4d-58c018ee0e35": "/git/user",
+        "72939a78-a5b3-42a3-838d-018d08599c28": "parameters",
+        "a5960287-06fa-43c4-aacd-abbb140e8e91": "requestBody",
+        "ab3de8eb-974d-49d6-a1da-cf61f97bee8a": "callbacks",
+        "7677e347-2628-4454-ad3f-1e3344df4bf9": "get",
+        "c046c467-e1b1-43cd-bd6e-bc31bb735652": "response",
+        "bdaf152d-0bca-49ef-9633-ffbce422b2a8": "200",
+        "0dbe4c19-88e3-4710-8854-e369b16f1b5e": "git user response",
+        "cdf5a05a-2ea3-4e44-8b67-3f772c85ea6c": "api response",
+        "a111fac3-e05b-4590-90e1-3bcd23f031e8": "results",
+        "d1850253-f3b0-485c-870c-b582c7c45a87": "/version",
+        "882e78fe-29c5-4277-9c08-b2783535991c": "parameters",
+        "1487f544-face-4b67-886b-75b53d479f7b": "requestBody",
+        "630e36ad-e83f-4198-8ecd-59f289a89358": "callbacks",
+        "abed3812-5b10-4953-921c-e5dce7c6f032": "get",
+        "b7afa3fd-ee7e-4ec7-8f02-3126276e74ae": "response",
+        "3a04bc37-a367-4eff-86dc-88704c4a98c3": "200",
+        "65db44b8-4f1c-4e5a-a94f-dd8ba368fbc7": "version response",
+        "c9d15a37-c714-415f-8c14-608d0f3e5658": "version response",
+        "065f15ac-7f25-4476-8c1e-e62085a0e68a": "results",
+        "7be178cd-0d35-492d-af21-17fec34ca6a7": "BuiltTime",
+        "60688eff-1bed-4c93-a1dd-22fad7d5d763": "GitHash",
+        "f4ef3709-f40e-4ea6-86a1-cd922fa7376e": "api response",
+        "fdf52d6f-054a-438c-ab7b-c470ff09fdee": "git repos response"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [
+            {
+                "name": "schemas",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true,
+                    "source": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": true,
+                "structureType": true,
+                "properties": [
+                    {
+                        "name": "api response",
+                        "hackoladeMeta": {
+                            "disableDelete": false,
+                            "disableAppend": false,
+                            "resetInsteadOfDelete": false,
+                            "displayNameFromField": false
+                        },
+                        "isActivated": true,
+                        "schemeType": "apiKey",
+                        "required": false,
+                        "primaryKey": false,
+                        "properties": [
+                            {
+                                "name": "success",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "nullable": false,
+                                "childType": "boolean",
+                                "type": "boolean",
+                                "GUID": "8cfceedc-ce78-43da-9bc6-d7db51ee53b5",
+                                "description": "If the request was successful",
+                                "error": {}
+                            },
+                            {
+                                "name": "error",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [
+                                    {
+                                        "name": "Error",
+                                        "hackoladeMeta": {
+                                            "disableAppend": false,
+                                            "disableDelete": false,
+                                            "disableReference": false,
+                                            "resetInsteadOfDelete": false
+                                        },
+                                        "isActivated": true,
+                                        "schemeType": "apiKey",
+                                        "required": false,
+                                        "primaryKey": false,
+                                        "nullable": false,
+                                        "type": "string",
+                                        "GUID": "fa9b730d-fcad-4347-ae10-f2342e358b30",
+                                        "description": "Error string",
+                                        "error": {}
+                                    }
+                                ],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "schema",
+                                "nullable": true,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "9f7e61ad-94e7-4722-9dcd-73152d74be6b",
+                                "readOnly": false,
+                                "description": "If there was an error with the request",
+                                "error": {}
+                            }
+                        ],
+                        "additionalProperties": false,
+                        "additionalPropControl": "Boolean",
+                        "additionalPropertiesObjectType": "integer",
+                        "additionalPropertiesIntegerFormat": "int32",
+                        "subtype": "schema",
+                        "nullable": false,
+                        "childType": "object",
+                        "type": "document",
+                        "GUID": "eb6076f8-640a-4ada-b850-e9679ebec115",
+                        "code": "base api response object",
+                        "error": {
+                            "name": false,
+                            "code": false
+                        },
+                        "definitionRefs": [
+                            [
+                                "42a32384-74ae-472d-896b-bf12808c84c8",
+                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                                "9311ea9e-a44e-4315-94fb-8e7e86254f9f",
+                                "294c6615-b679-4107-8b61-165a72f0def4"
+                            ],
+                            [
+                                "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                "0dbe4c19-88e3-4710-8854-e369b16f1b5e",
+                                "b97a8ac1-e434-4423-b11c-f2f3ed5addbf",
+                                "cdf5a05a-2ea3-4e44-8b67-3f772c85ea6c"
+                            ],
+                            [
+                                "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                "65db44b8-4f1c-4e5a-a94f-dd8ba368fbc7",
+                                "e4a493dd-759e-4496-a85f-058fd2beba8c",
+                                "f4ef3709-f40e-4ea6-86a1-cd922fa7376e"
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "git repos response",
+                        "hackoladeMeta": {},
+                        "isActivated": true,
+                        "schemeType": "apiKey",
+                        "required": false,
+                        "primaryKey": false,
+                        "properties": [
+                            {
+                                "name": "results",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "properties": [
+                                    {
+                                        "hackoladeMeta": {
+                                            "disableAppend": false,
+                                            "disableDelete": false,
+                                            "disableReference": false,
+                                            "resetInsteadOfDelete": false
+                                        },
+                                        "isActivated": true,
+                                        "schemeType": "apiKey",
+                                        "required": false,
+                                        "primaryKey": false,
+                                        "properties": [],
+                                        "additionalProperties": false,
+                                        "additionalPropControl": "Boolean",
+                                        "additionalPropertiesObjectType": "integer",
+                                        "additionalPropertiesIntegerFormat": "int32",
+                                        "subtype": "schema",
+                                        "nullable": false,
+                                        "childType": "object",
+                                        "type": "document",
+                                        "GUID": "7bb42d46-5933-4a35-91a4-e524eca44de2",
+                                        "arrayItem": true,
+                                        "displayName": "repo",
+                                        "externalDocs": {
+                                            "GUID": "29c7357b-bbb5-4878-ac1f-a733b7033313",
+                                            "externalDocsUrl": "https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories",
+                                            "externalDocsDescription": "GitHub API Docs"
+                                        },
+                                        "description": "Array of GitHub repos",
+                                        "error": {}
+                                    }
+                                ],
+                                "primaryKey": false,
+                                "additionalItems": true,
+                                "uniqueItems": false,
+                                "subtype": "schema",
+                                "nullable": false,
+                                "childType": "array",
+                                "type": "array",
+                                "GUID": "de3fc420-f390-48ac-bc52-437e7e0d2898",
+                                "error": {}
+                            },
+                            {
+                                "type": "choice",
+                                "properties": [
+                                    {
+                                        "GUID": "294c6615-b679-4107-8b61-165a72f0def4",
+                                        "name": "api response",
+                                        "type": "reference",
+                                        "$ref": "#model/definitions/schemas/api response",
+                                        "refType": "model",
+                                        "ref": "eb6076f8-640a-4ada-b850-e9679ebec115",
+                                        "refIdPath": [
+                                            "42a32384-74ae-472d-896b-bf12808c84c8",
+                                            "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                            "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                            "eb6076f8-640a-4ada-b850-e9679ebec115"
+                                        ],
+                                        "isActivated": true,
+                                        "code": "base api response object",
+                                        "required": false,
+                                        "nullable": false,
+                                        "displayName": "base api response object",
+                                        "subschema": true,
+                                        "error": {
+                                            "name": false
+                                        },
+                                        "hackoladeMeta": {
+                                            "disableAppend": false,
+                                            "disableDelete": false,
+                                            "disableReference": false,
+                                            "resetInsteadOfDelete": false
+                                        }
+                                    }
+                                ],
+                                "isActivated": true,
+                                "choice": "allOf",
+                                "GUID": "9311ea9e-a44e-4315-94fb-8e7e86254f9f",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                }
+                            }
+                        ],
+                        "additionalProperties": true,
+                        "additionalPropControl": "Boolean",
+                        "additionalPropertiesObjectType": "integer",
+                        "additionalPropertiesIntegerFormat": "int32",
+                        "subtype": "schema",
+                        "nullable": false,
+                        "childType": "object",
+                        "type": "document",
+                        "code": "base api response object(1)",
+                        "GUID": "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                        "parentRelationship": "",
+                        "childRelationships": [],
+                        "error": {},
+                        "definitionRefs": [
+                            [
+                                "b8d247a2-a3f0-49f3-9a63-353c585a233a",
+                                "64329577-2fb8-418b-939d-251bbc91b78b",
+                                "4790cb95-1ec5-480d-bdac-ea889aa84161",
+                                "1624f5a7-0219-4f23-96ff-40f5b37ed498",
+                                "fdf52d6f-054a-438c-ab7b-c470ff09fdee"
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "git user response",
+                        "hackoladeMeta": {
+                            "disableDelete": false,
+                            "disableAppend": false,
+                            "resetInsteadOfDelete": false,
+                            "displayNameFromField": false
+                        },
+                        "isActivated": true,
+                        "schemeType": "apiKey",
+                        "required": false,
+                        "primaryKey": false,
+                        "properties": [
+                            {
+                                "type": "choice",
+                                "properties": [
+                                    {
+                                        "GUID": "cdf5a05a-2ea3-4e44-8b67-3f772c85ea6c",
+                                        "name": "api response",
+                                        "type": "reference",
+                                        "$ref": "#model/definitions/schemas/api response",
+                                        "refType": "model",
+                                        "ref": "eb6076f8-640a-4ada-b850-e9679ebec115",
+                                        "refIdPath": [
+                                            "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                            "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                            "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                            "eb6076f8-640a-4ada-b850-e9679ebec115"
+                                        ],
+                                        "isActivated": true,
+                                        "code": "base api response object",
+                                        "required": false,
+                                        "nullable": false,
+                                        "displayName": "base api response object",
+                                        "subschema": true,
+                                        "error": {
+                                            "name": false
+                                        }
+                                    }
+                                ],
+                                "isActivated": true,
+                                "choice": "allOf",
+                                "GUID": "b97a8ac1-e434-4423-b11c-f2f3ed5addbf"
+                            },
+                            {
+                                "name": "results",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "schema",
+                                "nullable": false,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "a111fac3-e05b-4590-90e1-3bcd23f031e8",
+                                "externalDocs": {
+                                    "GUID": "c7135a7d-0b28-4bce-a7d1-3332464efa61",
+                                    "externalDocsUrl": "https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user",
+                                    "externalDocsDescription": "GitHub API Docs"
+                                },
+                                "description": "My GitHub user profile",
+                                "error": {}
+                            }
+                        ],
+                        "additionalProperties": true,
+                        "additionalPropControl": "Boolean",
+                        "additionalPropertiesObjectType": "integer",
+                        "additionalPropertiesIntegerFormat": "int32",
+                        "subtype": "schema",
+                        "nullable": false,
+                        "childType": "object",
+                        "type": "document",
+                        "GUID": "0dbe4c19-88e3-4710-8854-e369b16f1b5e",
+                        "error": {},
+                        "definitionRefs": [
+                            [
+                                "bdaf152d-0bca-49ef-9633-ffbce422b2a8",
+                                "c046c467-e1b1-43cd-bd6e-bc31bb735652",
+                                "4bef09df-1809-4609-9b4b-a84ad9c0150b",
+                                "f35441bc-02c3-4943-9c9f-1b676661566e",
+                                "e675410c-542f-4cd9-a438-4dcee203439a"
+                            ]
+                        ]
+                    },
+                    {
+                        "name": "version response",
+                        "hackoladeMeta": {
+                            "disableDelete": false,
+                            "disableAppend": false,
+                            "resetInsteadOfDelete": false,
+                            "displayNameFromField": false
+                        },
+                        "isActivated": true,
+                        "schemeType": "apiKey",
+                        "required": false,
+                        "primaryKey": false,
+                        "properties": [
+                            {
+                                "name": "results",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [
+                                    {
+                                        "name": "GitHash",
+                                        "hackoladeMeta": {
+                                            "disableAppend": false,
+                                            "disableDelete": false,
+                                            "disableReference": false,
+                                            "resetInsteadOfDelete": false
+                                        },
+                                        "isActivated": true,
+                                        "schemeType": "apiKey",
+                                        "required": true,
+                                        "primaryKey": false,
+                                        "nullable": false,
+                                        "type": "string",
+                                        "GUID": "60688eff-1bed-4c93-a1dd-22fad7d5d763",
+                                        "fakerFunction": "faker.git.commitSha()",
+                                        "description": "Long GitHub hash of version that is published.",
+                                        "error": {}
+                                    },
+                                    {
+                                        "hackoladeMeta": {
+                                            "disableAppend": false,
+                                            "disableDelete": false,
+                                            "disableReference": false,
+                                            "resetInsteadOfDelete": false
+                                        },
+                                        "isActivated": true,
+                                        "schemeType": "apiKey",
+                                        "required": true,
+                                        "primaryKey": false,
+                                        "nullable": false,
+                                        "type": "string",
+                                        "GUID": "7be178cd-0d35-492d-af21-17fec34ca6a7",
+                                        "name": "BuiltTime",
+                                        "format": "date-time",
+                                        "fakerFunction": "faker.date.soon({refDate: \"2022-09-27 18:00:00.000\"})",
+                                        "description": "Date time of when the current was published.",
+                                        "error": {}
+                                    }
+                                ],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "schema",
+                                "nullable": false,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "065f15ac-7f25-4476-8c1e-e62085a0e68a",
+                                "error": {}
+                            },
+                            {
+                                "type": "choice",
+                                "properties": [
+                                    {
+                                        "GUID": "f4ef3709-f40e-4ea6-86a1-cd922fa7376e",
+                                        "name": "api response",
+                                        "type": "reference",
+                                        "$ref": "#model/definitions/schemas/api response",
+                                        "refType": "model",
+                                        "ref": "eb6076f8-640a-4ada-b850-e9679ebec115",
+                                        "refIdPath": [
+                                            "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                                            "9609fcd4-6c09-4380-afe5-9860987c425a",
+                                            "955f7546-28e6-419d-b79b-fedd12852c8d",
+                                            "eb6076f8-640a-4ada-b850-e9679ebec115"
+                                        ],
+                                        "isActivated": true,
+                                        "code": "base api response object",
+                                        "required": false,
+                                        "nullable": false,
+                                        "displayName": "base api response object",
+                                        "subschema": true,
+                                        "error": {
+                                            "name": false
+                                        }
+                                    }
+                                ],
+                                "isActivated": true,
+                                "choice": "allOf",
+                                "GUID": "e4a493dd-759e-4496-a85f-058fd2beba8c",
+                                "hackoladeMeta": {
+                                    "disableAppend": false,
+                                    "disableDelete": false,
+                                    "disableReference": false,
+                                    "resetInsteadOfDelete": false
+                                }
+                            }
+                        ],
+                        "additionalProperties": true,
+                        "additionalPropControl": "Boolean",
+                        "additionalPropertiesObjectType": "integer",
+                        "additionalPropertiesIntegerFormat": "int32",
+                        "subtype": "schema",
+                        "nullable": false,
+                        "childType": "object",
+                        "type": "document",
+                        "GUID": "65db44b8-4f1c-4e5a-a94f-dd8ba368fbc7",
+                        "error": {},
+                        "definitionRefs": [
+                            [
+                                "3a04bc37-a367-4eff-86dc-88704c4a98c3",
+                                "b7afa3fd-ee7e-4ec7-8f02-3126276e74ae",
+                                "a0c5fff5-156e-4423-83bc-28dd5b38311c",
+                                "bdbedd62-212f-49e3-8c27-28b65fd96bad",
+                                "faa5a59a-3bfc-4158-833b-cf052aeb9375"
+                            ]
+                        ]
+                    }
+                ],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "schema",
+                "GUID": "955f7546-28e6-419d-b79b-fedd12852c8d",
+                "definitionRefs": [],
+                "error": {}
+            },
+            {
+                "name": "responses",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "response",
+                "GUID": "783e0763-ce1c-4d1e-ad0c-919991d782f4",
+                "definitionRefs": []
+            },
+            {
+                "name": "parameters",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "structureType": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "anyParameter",
+                "GUID": "28237994-ac3e-433e-a75b-ef6d16ed3f3c",
+                "definitionRefs": []
+            },
+            {
+                "name": "examples",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "example",
+                "GUID": "21182847-0274-4b7f-88da-f7f97653541b",
+                "definitionRefs": []
+            },
+            {
+                "name": "requestBodies",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "request",
+                "GUID": "d359102c-dae8-44b4-afa5-4abe8b78acb7",
+                "definitionRefs": []
+            },
+            {
+                "name": "headers",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [
+                    {
+                        "name": "User-Agent",
+                        "hackoladeMeta": {
+                            "disableDelete": false,
+                            "disableAppend": false,
+                            "resetInsteadOfDelete": false,
+                            "displayNameFromField": false
+                        },
+                        "isActivated": true,
+                        "schemeType": "apiKey",
+                        "required": true,
+                        "properties": [
+                            {
+                                "name": "schema",
+                                "hackoladeMeta": {
+                                    "disableAppend": true,
+                                    "disableReference": false
+                                },
+                                "isActivated": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "schema",
+                                "nullable": false,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "0a880882-26d0-4a21-9ed9-bf4da1c1ce16"
+                            },
+                            {
+                                "name": "content",
+                                "hackoladeMeta": {
+                                    "disableAppend": true,
+                                    "disableReference": false
+                                },
+                                "isActivated": true,
+                                "structureType": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "media",
+                                "nullable": false,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "dcf3dd24-4594-4507-835e-a1d610512f62"
+                            },
+                            {
+                                "name": "examples",
+                                "hackoladeMeta": {
+                                    "disableAppend": true,
+                                    "disableReference": false
+                                },
+                                "isActivated": true,
+                                "structureType": true,
+                                "schemeType": "apiKey",
+                                "required": false,
+                                "primaryKey": false,
+                                "properties": [
+                                    {
+                                        "name": "User-Agent",
+                                        "hackoladeMeta": {
+                                            "disableAdd": true
+                                        },
+                                        "isActivated": true,
+                                        "schemeType": "apiKey",
+                                        "required": false,
+                                        "ignore_z_value": true,
+                                        "subtype": "snippetChildrenOnly",
+                                        "additionalProperties": false,
+                                        "childType": "example",
+                                        "type": "document",
+                                        "GUID": "9f243035-0e91-41e8-b075-7782920df0e0",
+                                        "description": "\"My-User-Agent\"",
+                                        "error": {}
+                                    }
+                                ],
+                                "additionalProperties": false,
+                                "additionalPropControl": "Boolean",
+                                "additionalPropertiesObjectType": "integer",
+                                "additionalPropertiesIntegerFormat": "int32",
+                                "subtype": "example",
+                                "nullable": false,
+                                "childType": "object",
+                                "type": "document",
+                                "GUID": "fe6bcb93-8f3e-46d2-a90e-58425d52b7c5"
+                            }
+                        ],
+                        "ignore_z_value": true,
+                        "snippet": "parameter",
+                        "additionalProperties": false,
+                        "subtype": "structuralSchema",
+                        "childType": "header",
+                        "type": "document",
+                        "GUID": "85285fae-44ad-4d37-b8c1-6ce6a4a4d60e",
+                        "description": "User-Agent header. If there is no user-agent set then the request will be blocked.",
+                        "error": {}
+                    }
+                ],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "header",
+                "GUID": "2c441671-8c37-4ece-8bfa-c7204ccd9a6d",
+                "definitionRefs": []
+            },
+            {
+                "name": "securitySchemes",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "securityScheme",
+                "GUID": "2e2cb1ca-ea5a-427b-8e21-8a40f9b4bf2c",
+                "definitionRefs": []
+            },
+            {
+                "name": "links",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "link",
+                "GUID": "9ced9504-0b56-4060-b1fd-f014436ac0a0",
+                "definitionRefs": []
+            },
+            {
+                "name": "callbacks",
+                "hackoladeMeta": {
+                    "disableAdd": false,
+                    "disableDelete": true,
+                    "disableAppend": true,
+                    "disableChoices": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "additionalProperties": false,
+                "structureType": true,
+                "properties": [],
+                "childType": "componentObject",
+                "type": "document",
+                "subtype": "callback",
+                "GUID": "51d925c9-8741-477f-a02d-dea2367721b7",
+                "definitionRefs": []
+            },
+            {
+                "name": "Specification Extensions",
+                "hackoladeMeta": {
+                    "disableAdd": true,
+                    "disableReference": true,
+                    "disableDelete": true,
+                    "disableAppend": true
+                },
+                "isActivated": true,
+                "schemeType": "apiKey",
+                "required": false,
+                "ignore_z_value": true,
+                "structureType": true,
+                "subtype": "snippetChildrenOnly",
+                "additionalProperties": false,
+                "childType": "extensions",
+                "type": "document",
+                "GUID": "3bb312cc-2c3b-42f4-87b0-0d720a4879d9",
+                "definitionRefs": []
+            }
+        ],
+        "GUID": "9609fcd4-6c09-4380-afe5-9860987c425a"
+    },
+    "polyglotDefinitions": {
+        "type": "polyglotDefinitions",
+        "properties": [],
+        "GUID": "386b01f5-9bc3-4e97-b8b3-c300e6deb96f"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "3f1bd06c-9003-4ba1-b20a-3937016dd768"
+    },
+    "sources": [],
+    "decorativeSymbols": [],
+    "dbVersion": "3.0.3",
+    "dbVendor": "OpenAPI",
+    "appTarget": "OPENAPI",
+    "creationTS": "2023-07-15T18:16:53.024Z",
+    "GUID": "9207ad41-31e3-4942-bc27-90a7776a2cab",
+    "isLineageEnabled": false,
+    "hackoladeMeta": {
+        "validationErrors": {
+            "modelVersion": false
+        }
+    },
+    "title": "Cyb3r-Jak3 API",
+    "modelVersion": "1.7.0",
+    "contact": {
+        "GUID": "1c637a78-f4f5-4ffd-92a7-829fa08852fb",
+        "contactName": "Cyb3r-Jak3",
+        "contactURL": "https://cyberjake.xyz",
+        "contactemail": "git@cyberjake.xyz"
+    },
+    "license": {
+        "GUID": "9a72438e-f5e7-40b9-bdee-62e33cfc1e99",
+        "licenseName": "MIT",
+        "contactExtensions": [],
+        "licenseURL": "https://github.com/Cyb3r-Jak3/workers-serverless-api/blob/main/LICENSE"
+    },
+    "servers": [
+        {
+            "GUID": "e2b3e07b-4d90-4770-a65d-23596f5d4ef9",
+            "serverURL": "https://api.cyberjake.xyz",
+            "serverDescription": "Production Server"
+        }
+    ],
+    "scopesExtensions": [],
+    "lastModifTS": "2023-07-15T19:54:56.293Z",
+    "persistenceSchemaVersion": "6",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginName": "OpenAPI",
+        "pluginVersion": "0.1.63",
+        "pluginEngineVersion": "1.0.0"
+    },
+    "applicationInformation": {
+        "version": "6.10.12"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "af7f1e6c-5f4d-4a9d-a2a5-bbc3880768e6",
+                        "x": 907,
+                        "y": 895,
+                        "width": 219,
+                        "height": 87,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "b8d247a2-a3f0-49f3-9a63-353c585a233a",
+                        "x": 1156,
+                        "y": 913,
+                        "width": 243,
+                        "height": 51,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "7677e347-2628-4454-ad3f-1e3344df4bf9",
+                        "x": 907,
+                        "y": 1096,
+                        "width": 257,
+                        "height": 159,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "bdaf152d-0bca-49ef-9633-ffbce422b2a8",
+                        "x": 1194,
+                        "y": 1150,
+                        "width": 219,
+                        "height": 51,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "abed3812-5b10-4953-921c-e5dce7c6f032",
+                        "x": 907,
+                        "y": 1368,
+                        "width": 219,
+                        "height": 87,
+                        "color": {}
+                    },
+                    {
+                        "GUID": "3a04bc37-a367-4eff-86dc-88704c4a98c3",
+                        "x": 1156,
+                        "y": 1361.5,
+                        "width": 240,
+                        "height": 100,
+                        "color": {}
+                    }
+                ],
+                "erdDefinitions": {
+                    "erd": [
+                        {
+                            "GUID": "eb6076f8-640a-4ada-b850-e9679ebec115",
+                            "x": 1150,
+                            "y": 1050,
+                            "width": 194,
+                            "height": 87
+                        },
+                        {
+                            "GUID": "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                            "x": 1050,
+                            "y": 1200,
+                            "width": 229,
+                            "height": 213
+                        }
+                    ],
+                    "rootPath": [
+                        "42a32384-74ae-472d-896b-bf12808c84c8",
+                        "9609fcd4-6c09-4380-afe5-9860987c425a",
+                        "955f7546-28e6-419d-b79b-fedd12852c8d"
+                    ],
+                    "entities": [],
+                    "decorativeSymbols": [],
+                    "displayOptions": {}
+                },
+                "buckets": [
+                    {
+                        "x": 867,
+                        "y": 855,
+                        "GUID": "4a301a0c-7d1c-4586-b13a-9acc3dabf0a1"
+                    },
+                    {
+                        "x": 867,
+                        "y": 1056,
+                        "GUID": "6d801d36-1b6e-49a4-9f4d-58c018ee0e35"
+                    },
+                    {
+                        "x": 867,
+                        "y": 1321.5,
+                        "GUID": "d1850253-f3b0-485c-870c-b582c7c45a87"
+                    }
+                ],
+                "collapsedNodes": [
+                    "b8d247a2-a3f0-49f3-9a63-353c585a233a64329577-2fb8-418b-939d-251bbc91b78b",
+                    "bdaf152d-0bca-49ef-9633-ffbce422b2a8c046c467-e1b1-43cd-bd6e-bc31bb735652"
+                ],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false,
+                "graphView": {
+                    "erd": [],
+                    "buckets": [],
+                    "decorativeSymbols": [],
+                    "forceLayout": true,
+                    "defaultLinkLength": 300
+                },
+                "diagramViews": [],
+                "decorativeSymbols": [],
+                "nestedCollectionsLayout": "vertical",
+                "options": [],
+                "relationshipUpdateDisabled": false
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                    "9311ea9e-a44e-4315-94fb-8e7e86254f9f"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "eb6076f8-640a-4ada-b850-e9679ebec115"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "0dbe4c19-88e3-4710-8854-e369b16f1b5e",
+                    "b97a8ac1-e434-4423-b11c-f2f3ed5addbf",
+                    "cdf5a05a-2ea3-4e44-8b67-3f772c85ea6c",
+                    "eb6076f8-640a-4ada-b850-e9679ebec115"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                    "9311ea9e-a44e-4315-94fb-8e7e86254f9f"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "4ef5475c-9193-4c8d-984f-a661e4b8baaf",
+                    "de3fc420-f390-48ac-bc52-437e7e0d2898"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "955f7546-28e6-419d-b79b-fedd12852c8d",
+                    "4ef5475c-9193-4c8d-984f-a661e4b8baaf"
+                ],
+                [
+                    "9207ad41-31e3-4942-bc27-90a7776a2cab",
+                    "9609fcd4-6c09-4380-afe5-9860987c425a",
+                    "2c441671-8c37-4ece-8bfa-c7204ccd9a6d"
+                ]
+            ],
+            "shouldDistributeCollections": false
+        }
+    }
+}
