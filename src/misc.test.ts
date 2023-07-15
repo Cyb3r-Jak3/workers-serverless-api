@@ -9,6 +9,10 @@ describe('Misc Endpoints', () => {
         worker = await unstable_dev('src/index.ts', {
             experimental: { disableExperimentalWarning: true },
             local: true,
+            vars: {
+                GitHash: 'ThisVersion',
+                BuiltTime: 'thePast',
+            },
         })
     })
 
@@ -30,7 +34,7 @@ describe('Misc Endpoints', () => {
             'application/json; charset=UTF-8'
         )
         const json_resp = await resp.json()
-        expect(json_resp['results']['GitHash']).toEqual('dev')
-        expect(json_resp['results']['BuiltTime']).toEqual('now')
+        expect(json_resp['results']['GitHash']).toEqual('ThisVersion')
+        expect(json_resp['results']['BuiltTime']).toEqual('thePast')
     })
 })

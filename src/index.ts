@@ -18,7 +18,7 @@ export type ENV = {
     KV: KVNamespace
     AE: AnalyticsEngineDataset
     GitHash: string
-    BuildTime: string
+    BuiltTime: string
     ScrapeToken?: string
     ScrapeAccountID?: string
     PUBLIC_FILES: R2Bucket

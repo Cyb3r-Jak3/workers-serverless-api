@@ -11,6 +11,6 @@ export async function CFEndpoint(c: Context): Promise<Response> {
 export async function VersionEndpoint(c: Context): Promise<Response> {
     return JSONAPIResponse({
         GitHash: c.env.GitHash ?? 'dev',
-        BuiltTime: c.env.buildTime ?? 'now',
+        BuiltTime: c.env.BuiltTime ?? 'now',
     })
 }
