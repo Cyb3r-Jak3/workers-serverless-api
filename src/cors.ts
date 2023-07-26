@@ -12,9 +12,8 @@ const AllowedOrigins: string[] = [
     'localhost:8788',
 ]
 
-const cache = caches.default
-
 export async function CORSHandle(c: Context): Promise<Response> {
+    const cache = caches.default
     const req = c.req
     let response = await cache.match(req.raw)
 
