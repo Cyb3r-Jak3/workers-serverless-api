@@ -15,7 +15,7 @@ export async function VersionEndpoint(c: Context): Promise<Response> {
     })
 }
 
-export async function TraceEndpoint(_: Context): Promise<Response> {
+export async function TraceEndpoint(): Promise<Response> {
     const resp = await fetch('https://api.cyberjake.xyz/cf', {
         headers: {
             'User-Agent': 'Myself Cyb3rJak3 API',
