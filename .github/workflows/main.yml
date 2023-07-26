@@ -48,8 +48,8 @@ jobs:
       - name: Report Variables
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
-          echo "GitHash: ${{ github.sha }}
-          BuiltTime: ${{ github.event.repository.updated_at }}"
+          echo "GitHash: ${GITHUB_SHA}"
+          echo "BuiltTime: ${{ github.event.repository.updated_at }}"
 
       - name: Deploy to Cloudflare with Wrangler
         uses: cloudflare/wrangler-action@2.0.0

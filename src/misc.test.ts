@@ -37,4 +37,13 @@ describe('Misc Endpoints', () => {
         expect(json_resp['results']['GitHash']).toEqual('ThisVersion')
         expect(json_resp['results']['BuiltTime']).toEqual('thePast')
     })
+    it('Trace Endpoint', async () => {
+        const resp = await worker.fetch('/trace')
+        expect(resp.status).toBe(200)
+        expect(resp.headers.get('content-type')).toEqual(
+            'application/json; charset=UTF-8'
+        )
+        const json_resp = await resp.json()
+        expect(json_resp['success']).toEqual(true)
+    })
 })
