@@ -12,6 +12,7 @@ import {
     CloudflareAPIEndpoint,
 } from './cloudflare_api_proxy'
 import { DownloadProxyEndpoint } from './download_proxy'
+import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 declare const PRODUCTION: string
 
 export type ENV = {
@@ -24,7 +25,7 @@ export type ENV = {
     PUBLIC_FILES: R2Bucket
 }
 
-const app = new Hono<{ Bindings: ENV }>()
+export const app = new Hono<{ Bindings: ENV }>()
 
 app.use('*', async (c, next) => {
     await next()
@@ -54,6 +55,15 @@ if (PRODUCTION === 'true') {
     })
 }
 app.all('*', (c) => c.notFound())
+
+app.onError((err, c) => {
+    console.error(JSON.stringify(err))
+    WriteDataPoint(c, err)
+    return JSONAPIResponse(
+        { error: err.message, stack: err.stack },
+        { status: 500, error: err.message, success: false }
+    )
+})
 
 export default {
     fetch: app.fetch,
