@@ -16,11 +16,28 @@ export async function VersionEndpoint(c: Context): Promise<Response> {
 }
 
 export async function TraceEndpoint(): Promise<Response> {
-    const resp = await fetch('https://api.cyberjake.xyz/cf', {
+    const httpbin_resp = await fetch('https://httpbin.org/headers', {
         headers: {
-            'User-Agent': 'Myself Cyb3rJak3 API',
+            'User-Agent': 'Cyb3rJak3 API',
         },
     })
-    // console.log(resp.statusText)
-    return JSONAPIResponse(await resp.json())
+    const trace_endpoint_resp = await fetch(
+        'https://cloudflare.com/cdn-cgi/trace',
+        {
+            headers: {
+                'User-Agent': 'Cyb3rJak3 API',
+            },
+        }
+    )
+    const trace_text: string = await trace_endpoint_resp.text()
+    const trace_obj: Record<string, string> = {}
+    trace_text.split('\n').forEach((element) => {
+        const [key, value] = element.split('=')
+        trace_obj[key] = value
+    })
+    const resp = {
+        httpbin: await httpbin_resp.json(),
+        trace_endpoint: trace_obj,
+    }
+    return JSONAPIResponse(resp)
 }
