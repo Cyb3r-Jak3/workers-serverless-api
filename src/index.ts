@@ -25,7 +25,7 @@ export type ENV = {
     PUBLIC_FILES: R2Bucket
 }
 
-export const app = new Hono<{ Bindings: ENV }>()
+const app = new Hono<{ Bindings: ENV }>()
 
 app.use('*', async (c, next) => {
     await next()
