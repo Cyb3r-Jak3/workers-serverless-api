@@ -40,7 +40,7 @@
         "@cyb3r-jak3/workers-common": "^5.0.1",
         "@octokit/core": "^4.2.0",
         "domhandler": "^5.0.3",
-        "hono": "^3.2.7",
+        "hono": "^3.3.4",
         "htmlparser2": "^9.0.0",
         "openpgp": "^5.8.0"
     }
