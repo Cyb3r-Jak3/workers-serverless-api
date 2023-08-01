@@ -19,7 +19,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/workers-types": "^4.20230710.0",
+        "@cloudflare/workers-types": "^4.20230724.0",
         "@openpgp/web-stream-tools": "^0.0.13",
         "@types/openpgp": "^4.4.18",
         "@typescript-eslint/eslint-plugin": "^5.59.8",
