@@ -46,4 +46,16 @@ describe('Misc Endpoints', () => {
         const json_resp = await resp.json()
         expect(json_resp['success']).toEqual(true)
     })
+    it('IP Endpoint', async () => {
+        const resp = await worker.fetch('/ip')
+        expect(resp.status).toBe(200)
+        expect(resp.headers.get('content-type')).toEqual('text/plain')
+    })
+    it('IP Endpoint JSON', async () => {
+        const resp = await worker.fetch('/ip?format=json')
+        expect(resp.status).toBe(200)
+        expect(resp.headers.get('content-type')).toEqual(
+            'application/json; charset=UTF-8'
+        )
+    })
 })

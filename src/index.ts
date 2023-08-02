@@ -4,7 +4,7 @@ import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
-import { VersionEndpoint, CFEndpoint, TraceEndpoint } from './misc'
+import { VersionEndpoint, CFEndpoint, TraceEndpoint, IPEndpoint } from './misc'
 import { WriteDataPoint } from './utils'
 import { PyPyChecksumsEndpoint } from './pypy'
 import {
@@ -43,6 +43,7 @@ app.get(`${RedirectPath}/:short_link`, Redirects)
 app.get('/cf', CFEndpoint)
 app.get('/version', VersionEndpoint)
 app.get('/trace', TraceEndpoint)
+app.get('/ip', IPEndpoint)
 app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.get('/download_proxy/', DownloadProxyEndpoint)

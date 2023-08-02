@@ -41,3 +41,15 @@ export async function TraceEndpoint(): Promise<Response> {
     }
     return JSONAPIResponse(resp)
 }
+
+export async function IPEndpoint(c: Context): Promise<Response> {
+    const ip = c.req.headers.get('CF-Connecting-IP')
+    if (c.req.query('format') == 'json') {
+        return JSONResponse({ ip })
+    }
+    return new Response(ip, {
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+    })
+}
