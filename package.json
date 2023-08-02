@@ -1,6 +1,6 @@
 {
     "name": "serverless-api",
-    "version": "1.9.0",
+    "version": "1.10.0",
     "description": "Serverless version of my API",
     "scripts": {
         "dev": "wrangler dev --test-scheduled",
