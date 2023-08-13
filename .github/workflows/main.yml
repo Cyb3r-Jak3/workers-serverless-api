@@ -23,7 +23,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Restore NPM cache
         uses: actions/cache@v3
@@ -52,12 +52,12 @@ jobs:
           echo "BuiltTime: ${{ github.event.repository.updated_at }}"
 
       - name: Deploy to Cloudflare with Wrangler
-        uses: cloudflare/wrangler-action@2.0.0
+        uses: cloudflare/wrangler-action@v3.0.2
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
           command: deploy --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          wranglerVersion: 3.1.1
+          wranglerVersion: 3.5.0
           secrets: |
             GitHash
             BuiltTime

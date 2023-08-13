@@ -10,6 +10,12 @@ type targetType = {
     name: string
     endpoint: string
 }
+type apiPermission = {
+    id: string
+    name: string
+    description: string
+    scopes: string[]
+}
 
 const apiTargets: targetType[] = [
     {
@@ -24,7 +30,7 @@ const apiTargets: targetType[] = [
 
 export async function CloudflareAPIEndpoint(c: Context): Promise<Response> {
     const cache = caches.default
-    let resp = await cache.match(c.req.raw)
+    let resp = await cache.match(c.req.raw.url)
     if (resp) {
         return HandleCachedResponse(resp)
     }
@@ -33,9 +39,29 @@ export async function CloudflareAPIEndpoint(c: Context): Promise<Response> {
         return JSONAPIErrorResponse('Target is required', 400)
     }
 
-    const data = await c.env.KV.get(`API_DATA_${target}`, { type: 'json' })
+    let data = await c.env.KV.get(`API_DATA_${target}`, { type: 'json' })
     if (!data) {
         return JSONResponse({}, { status: 404 })
+    }
+    const scope = c.req.query('scope')
+    if (target === 'token_permissions' && scope) {
+        const scope_map: { [key: string]: string } = {
+            r2: 'com.cloudflare.edge.r2.bucket',
+            account: 'com.cloudflare.api.account',
+            zone: 'com.cloudflare.api.account.zone',
+            user: 'com.cloudflare.api.user',
+        }
+        if (!scope_map[scope]) {
+            return JSONAPIErrorResponse(
+                `Invalid scope. Valid scopes are: ${Object.keys(scope_map).join(
+                    ', '
+                )}`,
+                400
+            )
+        }
+        data = data.filter(
+            (x: apiPermission) => x.scopes[0] === scope_map[scope]
+        )
     }
     resp = JSONResponse(data, {
         extra_headers: { 'Cache-Control': 'public, max-age=3600' },

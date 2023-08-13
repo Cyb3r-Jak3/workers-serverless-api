@@ -11,7 +11,7 @@ interface supported_program {
 const supported_programs: supported_program = {
     maven: {
         url: (version: string) =>
-            `https://dlcdn.apache.org/maven/maven-${version[0]}/${version}/binaries/apache-maven-${version}-bin.tar.gz`,
+            `https://archive.apache.org/dist/maven/maven-${version[0]}/${version}/binaries/apache-maven-${version}-bin.tar.gz`,
         filename: (version: string) => `apache-maven-${version}-bin.tar.gz`,
     },
     node: {
