@@ -64,4 +64,4 @@ jobs:
         env:
           GitHash: ${{ github.sha }}
           BuiltTime:  ${{ github.event.repository.updated_at }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          # CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
