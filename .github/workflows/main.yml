@@ -57,6 +57,7 @@ jobs:
         with:
           command: deploy --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
           wranglerVersion: 3.5.0
           secrets: |
             GitHash
@@ -64,4 +65,3 @@ jobs:
         env:
           GitHash: ${{ github.sha }}
           BuiltTime:  ${{ github.event.repository.updated_at }}
-          # CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
