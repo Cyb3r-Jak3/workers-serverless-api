@@ -34,7 +34,7 @@
         "typescript": "^5.1.6",
         "vitest": "^0.34.3",
         "vitest-environment-miniflare": "^2.14.0",
-        "wrangler": "^3.14.0"
+        "wrangler": "https://prerelease-registry.devprod.cloudflare.dev/workers-sdk/runs/6566867866/npm-package-wrangler-4175"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
