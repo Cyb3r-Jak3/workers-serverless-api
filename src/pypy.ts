@@ -4,7 +4,7 @@ import {
     JSONAPIErrorResponse,
     JSONAPIResponse,
 } from '@cyb3r-jak3/workers-common'
-import type { Context } from 'hono'
+import { DefinedContext } from './types'
 
 interface ChecksumPair {
     filename: string
@@ -83,7 +83,9 @@ const CacheToKV = async (KV: KVNamespace) => {
     })
 }
 
-export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
+export async function PyPyChecksumsEndpoint(
+    c: DefinedContext
+): Promise<Response> {
     const cache = caches.default
     let response = await cache.match(c.req.raw)
     if (response) {
@@ -134,7 +136,7 @@ export async function PyPyChecksumsEndpoint(c: Context): Promise<Response> {
         }
     }
 
-    const cached_data: ChecksumPair[] = await c.env.KV.get(
+    const cached_data: ChecksumPair[] | null = await c.env.KV.get(
         'pypy_checksums_all',
         { type: 'json' }
     )

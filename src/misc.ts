@@ -1,14 +1,14 @@
-import type { Context } from 'hono'
 import { JSONResponse, JSONAPIResponse } from '@cyb3r-jak3/workers-common'
+import { DefinedContext } from './types'
 
-export async function CFEndpoint(c: Context): Promise<Response> {
+export async function CFEndpoint(c: DefinedContext): Promise<Response> {
     return JSONResponse({
         headers: Object.fromEntries(c.req.raw.headers.entries()),
         cf: c.req.raw.cf,
     })
 }
 
-export async function VersionEndpoint(c: Context): Promise<Response> {
+export async function VersionEndpoint(c: DefinedContext): Promise<Response> {
     return JSONAPIResponse({
         GitHash: c.env.GitHash ?? 'dev',
         BuiltTime: c.env.BuiltTime ?? 'now',
@@ -42,7 +42,7 @@ export async function TraceEndpoint(): Promise<Response> {
     return JSONAPIResponse(resp)
 }
 
-export async function IPEndpoint(c: Context): Promise<Response> {
+export async function IPEndpoint(c: DefinedContext): Promise<Response> {
     const ip = c.req.headers.get('CF-Connecting-IP')
     if (c.req.query('format') == 'json') {
         return JSONResponse({ ip })

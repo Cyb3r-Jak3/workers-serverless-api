@@ -1,5 +1,5 @@
 import { HandleCachedResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
-import { Context } from 'hono'
+import { DefinedContext } from './types'
 export const CORS_ENDPOINT = '/cors'
 
 const Allowed: string[] = [
@@ -12,7 +12,7 @@ const AllowedOrigins: string[] = [
     'localhost:8788',
 ]
 
-export async function CORSHandle(c: Context): Promise<Response> {
+export async function CORSHandle(c: DefinedContext): Promise<Response> {
     const cache = caches.default
     const req = c.req
     let response = await cache.match(req.raw)

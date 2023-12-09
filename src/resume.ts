@@ -1,8 +1,10 @@
-import { Context } from 'hono'
 import * as openpgp from 'openpgp'
 import { JSONAPIErrorResponse, HandleCORS } from '@cyb3r-jak3/workers-common'
+import { DefinedContext } from './types'
 
-export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
+export async function EncryptResumeEndpoint(
+    c: DefinedContext
+): Promise<Response> {
     const req = c.req
 
     // Handle Options
@@ -44,7 +46,7 @@ export async function EncryptResumeEndpoint(c: Context): Promise<Response> {
     })
 }
 
-async function GetResume(c: Context): Promise<Uint8Array> {
+async function GetResume(c: DefinedContext): Promise<Uint8Array> {
     const RESUME_URL = 'https://cyberjake.xyz/files/resume.pdf'
     const RESUME_KEY = 'RESUME_FILE'
 
