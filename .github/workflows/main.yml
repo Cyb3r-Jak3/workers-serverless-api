@@ -52,7 +52,7 @@ jobs:
           echo "BuiltTime: ${{ github.event.repository.updated_at }}"
 
       - name: Deploy to Cloudflare with Wrangler
-        uses: cloudflare/wrangler-action@v3.3.2
+        uses: cloudflare/wrangler-action@v3.4.1
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
           command: deploy --env production
