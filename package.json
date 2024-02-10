@@ -20,22 +20,19 @@
         ]
     },
     "devDependencies": {
+        "@cloudflare/vitest-pool-workers": "https://prerelease-registry.devprod.cloudflare.dev/workers-sdk/runs/7822659275/npm-package-cloudflare-vitest-pool-workers-4795",
         "@cloudflare/workers-types": "^4.20240129.0",
         "@openpgp/web-stream-tools": "^0.0.13",
         "@types/openpgp": "^4.4.18",
         "@typescript-eslint/eslint-plugin": "^6.9.1",
         "@typescript-eslint/parser": "^6.20.0",
-        "@vitest/coverage-c8": "^0.33.0",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^9.0.0",
         "eslint-config-typescript": "^3.0.0",
         "prettier": "^3.2.4",
-        "service-worker-mock": "^2.0.5",
-        "ts-loader": "^9.5.1",
         "typescript": "^5.3.3",
-        "vitest": "^0.34.6",
-        "vitest-environment-miniflare": "^2.14.2",
-        "wrangler": "^3.19.0"
+        "vitest": "^1.1.3",
+        "wrangler": "^3.28.1"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
