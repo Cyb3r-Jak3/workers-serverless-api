@@ -3,8 +3,7 @@ import {
     JSONAPIErrorResponse,
     HandleCachedResponse,
 } from '@cyb3r-jak3/workers-common'
-import type { Context } from 'hono'
-import type { ENV } from './index'
+import type { DefinedContext, ENV } from './types'
 
 type targetType = {
     name: string
@@ -28,7 +27,9 @@ const apiTargets: targetType[] = [
     },
 ]
 
-export async function CloudflareAPIEndpoint(c: Context): Promise<Response> {
+export async function CloudflareAPIEndpoint(
+    c: DefinedContext
+): Promise<Response> {
     const cache = caches.default
     let resp = await cache.match(c.req.raw.url)
     if (resp) {
@@ -90,7 +91,7 @@ export async function ScrapeCloudflareAPISettings(
                 verify.status
             }: ${await verify.text()}`
         )
-        return
+        throw new Error('Invalid token')
     }
 
     for (const target of apiTargets) {
@@ -106,9 +107,9 @@ export async function ScrapeCloudflareAPISettings(
         })
         if (response.status !== 200) {
             console.error(
-                `Did not get 200 error. Got ${
+                `Did not get 200 status. Got ${
                     response.status
-                }: ${await response.text()}`
+                }: ${await response.text()} for ${target.name} at ${url}`
             )
             continue
         }

@@ -3,13 +3,13 @@ import {
     JSONAPIResponse,
     GenerateHash,
 } from '@cyb3r-jak3/workers-common'
-import { Context } from 'hono'
+import { DefinedContext } from './types'
 
 interface GravatarRequestBody {
     email: string
 }
 
-export async function GravatarHash(c: Context): Promise<Response> {
+export async function GravatarHash(c: DefinedContext): Promise<Response> {
     const req = c.req
     const cache = caches.default
 
@@ -24,7 +24,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
                 return c.notFound()
             }
             response = JSONAPIResponse({
-                hash: await GenerateHash(request.email, 'md5'),
+                hash: await GenerateHash(request.email, 'MD5'),
             })
             break
         }
@@ -33,7 +33,7 @@ export async function GravatarHash(c: Context): Promise<Response> {
             if (!email) {
                 return c.notFound()
             }
-            response = new Response(await GenerateHash(email, 'md5'))
+            response = new Response(await GenerateHash(email, 'MD5'))
             break
         }
         default: {

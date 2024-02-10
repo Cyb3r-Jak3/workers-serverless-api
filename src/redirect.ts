@@ -1,5 +1,5 @@
 import { HandleCachedResponse } from '@cyb3r-jak3/workers-common'
-import type { Context } from 'hono'
+import { DefinedContext } from './types'
 const redirects: Redirect[] = [
     {
         path: 'blog',
@@ -54,7 +54,7 @@ export const RedirectPath = '/redirects'
  * @param c Request Context
  * @returns HTML page
  */
-export async function RedirectLanding(c: Context): Promise<Response> {
+export async function RedirectLanding(c: DefinedContext): Promise<Response> {
     const cache = caches.default
     let response = await cache.match(c.req.raw)
     if (response) {
@@ -72,7 +72,7 @@ export async function RedirectLanding(c: Context): Promise<Response> {
  * @param c Request Context
  * @returns Redirect Response if redirect found or 404 error
  */
-export async function Redirects(c: Context): Promise<Response> {
+export async function Redirects(c: DefinedContext): Promise<Response> {
     const cache = caches.default
 
     let response

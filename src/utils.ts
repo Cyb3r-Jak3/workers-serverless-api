@@ -16,7 +16,6 @@ Data input format
  - ClientTrustScore
  - Worker Cache Hit Header
 */
-
 declare const PRODUCTION: string
 
 export function WriteDataPoint(c: Context, error: Error | undefined): void {

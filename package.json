@@ -6,8 +6,9 @@
         "dev": "wrangler dev --test-scheduled",
         "dev:remote": "wrangler dev",
         "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
-        "lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}",
-        "test": "vitest run"
+        "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}",
+        "test:unit": "vitest run",
+        "test": "npm run test:lint && npm run test:unit"
     },
     "author": "cyb3r-jak3",
     "license": "MIT",

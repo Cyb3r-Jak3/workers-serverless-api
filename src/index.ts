@@ -13,17 +13,9 @@ import {
 } from './cloudflare_api_proxy'
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
-declare const PRODUCTION: string
+import type { ENV } from './types'
 
-export type ENV = {
-    KV: KVNamespace
-    AE: AnalyticsEngineDataset
-    GitHash: string
-    BuiltTime: string
-    ScrapeToken?: string
-    ScrapeAccountID?: string
-    PUBLIC_FILES: R2Bucket
-}
+declare const PRODUCTION: string
 
 const app = new Hono<{ Bindings: ENV }>()
 

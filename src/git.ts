@@ -3,12 +3,12 @@ import {
     JSONAPIResponse,
     HandleCachedResponse,
 } from '@cyb3r-jak3/workers-common'
-import { Context } from 'hono'
+import { DefinedContext } from './types'
 
 const GithubUsername = 'Cyb3r-Jak3'
 const PublicEmail = 'connect@cyberjake.xyz'
 
-export async function GithubRepos(c: Context): Promise<Response> {
+export async function GithubRepos(c: DefinedContext): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
 
@@ -25,7 +25,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
         })
         data = repos.data
         c.executionCtx.waitUntil(
-            await c.env.KV.put('GithubReposData', JSON.stringify(data), {
+            c.env.KV.put('GithubReposData', JSON.stringify(data), {
                 expirationTtl: 3600,
             })
         )
@@ -37,7 +37,7 @@ export async function GithubRepos(c: Context): Promise<Response> {
     return resp
 }
 
-export async function GithubUser(c: Context): Promise<Response> {
+export async function GithubUser(c: DefinedContext): Promise<Response> {
     const cache = caches.default
     const octokit = new Octokit()
     let resp = await cache.match(c.req.raw)

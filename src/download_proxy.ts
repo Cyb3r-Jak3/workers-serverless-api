@@ -1,5 +1,5 @@
-import type { Context } from 'hono'
 import { HandleCachedResponse } from '@cyb3r-jak3/workers-common'
+import { DefinedContext } from './types'
 
 interface supported_program {
     [key: string]: {
@@ -37,7 +37,9 @@ const supported_programs: supported_program = {
     },
 }
 
-export async function DownloadProxyEndpoint(c: Context): Promise<Response> {
+export async function DownloadProxyEndpoint(
+    c: DefinedContext
+): Promise<Response> {
     const cache = caches.default
     let response = await cache.match(c.req.raw)
     if (response) {
@@ -70,9 +72,8 @@ export async function DownloadProxyEndpoint(c: Context): Promise<Response> {
     const filename = supported_programs[program].filename(version, arch)
 
     const programPath = `${program}/${filename}`
-    const bucket_file: R2ObjectBody | null = await c.env.PUBLIC_FILES.get(
-        programPath
-    )
+    const bucket_file: R2ObjectBody | null =
+        await c.env.PUBLIC_FILES.get(programPath)
     const downloadUrl = supported_programs[program].url(version, arch)
 
     if (!bucket_file) {
