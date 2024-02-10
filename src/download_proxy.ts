@@ -72,9 +72,8 @@ export async function DownloadProxyEndpoint(
     const filename = supported_programs[program].filename(version, arch)
 
     const programPath = `${program}/${filename}`
-    const bucket_file: R2ObjectBody | null = await c.env.PUBLIC_FILES.get(
-        programPath
-    )
+    const bucket_file: R2ObjectBody | null =
+        await c.env.PUBLIC_FILES.get(programPath)
     const downloadUrl = supported_programs[program].url(version, arch)
 
     if (!bucket_file) {
