@@ -18,8 +18,8 @@ describe('Download proxy ', () => {
 
     it('Missing program', async () => {
         const resp = await worker.fetch('/download_proxy/')
-        expect(resp.status).toBe(400)
-        expect(await resp.text()).toBe('program is required')
+        expect(resp.status).toBe(200)
+        expect(await resp.json()).toEqual(['maven', 'node', 'python', 'pypy', 'node_exporter'])
     })
 
     it('Missing version', async () => {
@@ -41,7 +41,7 @@ describe('Download proxy ', () => {
     it('List supported versions', async () => {
         const resp = await worker.fetch('/download_proxy/supported')
         expect(resp.status).toBe(200)
-        expect(await resp.json()).toEqual(['maven', 'node', 'python', 'pypy'])
+        expect(await resp.json()).toEqual(['maven', 'node', 'python', 'pypy', 'node_exporter'])
     })
 
     describe('maven', () => {
@@ -118,6 +118,26 @@ describe('Download proxy ', () => {
         it('Missing PyPy version', async () => {
             const resp = await worker.fetch(
                 '/download_proxy/pypy?version=1.0.0'
+            )
+            expect(resp.status).toBe(404)
+        })
+    })
+    describe('node_exporter', () => {
+        it('Valid Node Exporter version', async () => {
+            const resp = await worker.fetch(
+                '/download_proxy/node_exporter?version=1.7.0'
+            )
+            expect(resp.status).toBe(200)
+        })
+        it('Valid Node Exporter version with arch', async () => {
+            const resp = await worker.fetch(
+                '/download_proxy/node_exporter?version=1.7.0&arch=arm64'
+            )
+            expect(resp.status).toBe(200)
+        })
+        it('Missing Node Exporter version', async () => {
+            const resp = await worker.fetch(
+                '/download_proxy/node_exporter?version=1.6.2'
             )
             expect(resp.status).toBe(404)
         })
