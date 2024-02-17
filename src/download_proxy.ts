@@ -3,8 +3,8 @@ import { DefinedContext } from './types'
 
 interface supported_program {
     [key: string]: {
-        url(version: string, arch?: string): string
-        filename(version: string, arch?: string): string
+        url(version: string, arch?: string, os?: string): string
+        filename(version: string, arch?: string, os?: string): string
     }
 }
 
@@ -35,6 +35,12 @@ const supported_programs: supported_program = {
         filename: (version: string, arch: string) =>
             `pypy${version}-${arch ?? 'linux64'}.tar.bz2`,
     },
+    node_exporter: {
+        url: (version: string, arch: string, os: string) =>
+            `https://github.com/prometheus/node_exporter/releases/download/v${version}/node_exporter-${version}.${os}-${arch ?? 'amd64'}.tar.gz`,
+        filename: (version: string, arch: string, os: string) =>
+            `node_exporter-${version}.${os}-${arch ?? 'amd64'}.tar.gz`,
+    },
 }
 
 export async function DownloadProxyEndpoint(
@@ -46,7 +52,7 @@ export async function DownloadProxyEndpoint(
         return HandleCachedResponse(response)
     }
     const program = c.req.param('program')
-    if (program === 'supported') {
+    if (program === 'supported' || !program) {
         return new Response(JSON.stringify(Object.keys(supported_programs)), {
             status: 200,
             headers: {
@@ -56,11 +62,16 @@ export async function DownloadProxyEndpoint(
     }
     const version = c.req.query('version')
     const arch = c.req.query('arch')
+    let os = c.req.query('os')
+
     if (!program) {
         return new Response('program is required', { status: 400 })
     }
     if (!version) {
         return new Response('version is required', { status: 400 })
+    }
+    if (!os) {
+        os = 'linux'
     }
 
     if (!Object.prototype.hasOwnProperty.call(supported_programs, program)) {
@@ -68,13 +79,12 @@ export async function DownloadProxyEndpoint(
             status: 400,
         })
     }
-
-    const filename = supported_programs[program].filename(version, arch)
+    const filename = supported_programs[program].filename(version, arch, os)
 
     const programPath = `${program}/${filename}`
     const bucket_file: R2ObjectBody | null =
         await c.env.PUBLIC_FILES.get(programPath)
-    const downloadUrl = supported_programs[program].url(version, arch)
+    const downloadUrl = supported_programs[program].url(version, arch, os)
 
     if (!bucket_file) {
         const downloadResponse = await fetch(downloadUrl, {
