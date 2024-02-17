@@ -19,7 +19,13 @@ describe('Download proxy ', () => {
     it('Missing program', async () => {
         const resp = await worker.fetch('/download_proxy/')
         expect(resp.status).toBe(200)
-        expect(await resp.json()).toEqual(['maven', 'node', 'python', 'pypy', 'node_exporter'])
+        expect(await resp.json()).toEqual([
+            'maven',
+            'node',
+            'python',
+            'pypy',
+            'node_exporter',
+        ])
     })
 
     it('Missing version', async () => {
@@ -41,7 +47,13 @@ describe('Download proxy ', () => {
     it('List supported versions', async () => {
         const resp = await worker.fetch('/download_proxy/supported')
         expect(resp.status).toBe(200)
-        expect(await resp.json()).toEqual(['maven', 'node', 'python', 'pypy', 'node_exporter'])
+        expect(await resp.json()).toEqual([
+            'maven',
+            'node',
+            'python',
+            'pypy',
+            'node_exporter',
+        ])
     })
 
     describe('maven', () => {
