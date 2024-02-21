@@ -1,11 +1,15 @@
-import { env, SELF, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
-import { describe, expect, it} from 'vitest'
+import {
+    env,
+    createExecutionContext,
+    waitOnExecutionContext,
+} from 'cloudflare:test'
+import { describe, expect, it } from 'vitest'
 import worker from '../src/index'
 
 describe('Resume Endpoints', () => {
     it('GET Request', async () => {
         const request = new Request('https://localhost/encrypted_resume')
-        const ctx = createExecutionContext();
+        const ctx = createExecutionContext()
         const resp = await worker.fetch(request, env, ctx)
         await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(405)
@@ -14,7 +18,7 @@ describe('Resume Endpoints', () => {
         const request = new Request('https://localhost/encrypted_resume', {
             method: 'POST',
         })
-        const ctx = createExecutionContext();
+        const ctx = createExecutionContext()
         const resp = await worker.fetch(request, env, ctx)
         await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(400)
@@ -37,7 +41,7 @@ describe('Resume Endpoints', () => {
             method: 'POST',
             body: formdata,
         })
-        const ctx = createExecutionContext();
+        const ctx = createExecutionContext()
         const resp = await worker.fetch(request, env, ctx)
         await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(200)

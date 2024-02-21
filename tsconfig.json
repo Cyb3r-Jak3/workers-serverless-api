@@ -9,7 +9,11 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "esModuleInterop": true,
-        "types": ["@cloudflare/workers-types/experimental", "@types/node", "@cloudflare/vitest-pool-workers"],
+        "types": [
+            "@cloudflare/workers-types/experimental",
+            "@types/node",
+            "@cloudflare/vitest-pool-workers",
+        ],
     },
     "include": [
         "src",

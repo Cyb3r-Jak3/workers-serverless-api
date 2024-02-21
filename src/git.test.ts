@@ -1,12 +1,15 @@
-import { env, SELF, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
-import { describe, expect, it} from 'vitest'
+import {
+    env,
+    createExecutionContext,
+    waitOnExecutionContext,
+} from 'cloudflare:test'
+import { describe, expect, it } from 'vitest'
 import worker from '../src/index'
 
 describe('Git Endpoints', () => {
-
     it('Git User', async () => {
         const request = new Request('https://localhost/git/user')
-        const ctx = createExecutionContext();
+        const ctx = createExecutionContext()
         const resp = await worker.fetch(request, env, ctx)
         await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(200)
@@ -16,7 +19,7 @@ describe('Git Endpoints', () => {
     })
     it('Git Repos', async () => {
         const request = new Request('https://localhost/git/repos')
-        const ctx = createExecutionContext();
+        const ctx = createExecutionContext()
         const resp = await worker.fetch(request, env, ctx)
         await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(200)
