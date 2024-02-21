@@ -7,7 +7,7 @@ minify = true
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
 ]
-
+compatibility_flags = ["nodejs_compat"]
 analytics_engine_datasets = [
     {binding = "AE", dataset = "api-dev"}
 ]

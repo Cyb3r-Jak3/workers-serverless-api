@@ -1,28 +1,22 @@
-import { unstable_dev } from 'wrangler'
-import type { UnstableDevWorker } from 'wrangler'
-import { describe, expect, it, beforeAll, afterAll } from 'vitest'
+import { env, SELF, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
+import { describe, expect, it} from 'vitest'
+import worker from '../src/index'
 
 describe('Resume Endpoints', () => {
-    let worker: UnstableDevWorker
-
-    beforeAll(async () => {
-        worker = await unstable_dev('src/index.ts', {
-            experimental: { disableExperimentalWarning: true },
-            local: true,
-        })
-    })
-
-    afterAll(async () => {
-        await worker.stop()
-    })
-
     it('GET Request', async () => {
-        const resp = await worker.fetch('/encrypted_resume')
+        const request = new Request('https://localhost/encrypted_resume')
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(405)
     })
-
     it('Missing Resume', async () => {
-        const resp = await worker.fetch('/encrypted_resume', { method: 'POST' })
+        const request = new Request('https://localhost/encrypted_resume', {
+            method: 'POST',
+        })
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(400)
     })
 
@@ -39,10 +33,13 @@ describe('Resume Endpoints', () => {
         const resume: Blob = await resume_resp.blob()
         const formdata = new FormData()
         formdata.append('key', resume)
-        const resp = await worker.fetch('/encrypted_resume', {
+        const request = new Request('https://localhost/encrypted_resume', {
             method: 'POST',
             body: formdata,
         })
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(200)
     })
 })

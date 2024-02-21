@@ -11,6 +11,9 @@ export default defineConfig({
         miniflare: {
           kvNamespaces: ["KV"],
         },
+        wrangler: {
+          configPath: "./wrangler.toml",
+        },
       }),
     },
   },

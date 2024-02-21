@@ -1,33 +1,29 @@
-import { unstable_dev } from 'wrangler'
-import type { UnstableDevWorker } from 'wrangler'
-import { describe, expect, it, beforeAll, afterAll } from 'vitest'
+import { env, SELF, createExecutionContext, waitOnExecutionContext } from "cloudflare:test";
+import { describe, expect, it} from 'vitest'
+import worker from '../src/index'
+
 
 describe('Redirect Endpoints', () => {
-    let worker: UnstableDevWorker
-
-    beforeAll(async () => {
-        worker = await unstable_dev('src/index.ts', {
-            experimental: { disableExperimentalWarning: true },
-            local: true,
-        })
-    })
-
-    afterAll(async () => {
-        await worker.stop()
-    })
 
     it('List Redirects', async () => {
-        const resp = await worker.fetch('/redirects')
+        const request = new Request('https://localhost/redirects')
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(200)
     })
-
     it('Get Redirected', async () => {
-        const resp = await worker.fetch('/redirects/blog')
+        const request = new Request('https://localhost/redirects/blog')
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.redirected).toEqual(true)
     })
-
     it('Missing redirect', async () => {
-        const resp = await worker.fetch('/redirects/missing')
+        const request = new Request('https://localhost/redirects/missing')
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx)
+        await waitOnExecutionContext(ctx)
         expect(resp.status).toBe(404)
         expect(await resp.text()).toEqual(
             "You requested redirect 'missing' and it does not exist"
