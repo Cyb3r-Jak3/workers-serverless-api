@@ -14,6 +14,10 @@ export default defineConfig({
     // https://github.com/vitejs/vite/blob/v5.1.4/packages/vite/src/node/plugins/resolve.ts#L175
     target: "webworker",
   },
+  define: {
+    // Define `PRODUCTION` as a string in the test environment:
+    PRODUCTION: "true",
+  },
   test: {
     pool: "@cloudflare/vitest-pool-workers",
     poolOptions: {

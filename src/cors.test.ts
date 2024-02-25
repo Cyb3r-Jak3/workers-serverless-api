@@ -6,7 +6,6 @@ import {
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
 import worker from '../src/index'
-import { ENV } from './types'
 const IncomingRequest = Request<unknown, IncomingRequestCfProperties>
 
 describe('CORS ', () => {
@@ -14,7 +13,9 @@ describe('CORS ', () => {
         const request = new IncomingRequest(
             'https://localhost/cors?api_url=developers.cloudflare.com/schema&allowed_origin=http://localhost:8788'
         )
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
     })
 
@@ -22,7 +23,9 @@ describe('CORS ', () => {
         const request = new IncomingRequest(
             'https://localhost/cors?allowed_origin=http://localhost:8788'
         )
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(404)
     })
 
@@ -30,7 +33,9 @@ describe('CORS ', () => {
         const request = new IncomingRequest(
             'https://localhost/cors?api_url=developers.cloudflare.com/schema&allowed_origin=https://google.com'
         )
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(400)
     })
 
@@ -38,7 +43,9 @@ describe('CORS ', () => {
         const request = new IncomingRequest(
             'https://localhost/cors?api_url=google.com&allowed_origin=https://google.com'
         )
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(400)
     })
 })

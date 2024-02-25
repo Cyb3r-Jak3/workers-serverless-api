@@ -42,11 +42,11 @@ app.get('/download_proxy/', DownloadProxyEndpoint)
 app.get('/download_proxy/:program', DownloadProxyEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
-// if ( PRODUCTION && PRODUCTION === 'true') {
-//     app.all('/', async (c) => {
-//         return c.redirect('https://cyberjake.xyz/', 301)
-//     })
-// }
+if ( PRODUCTION && PRODUCTION === 'true') {
+    app.all('/', async (c) => {
+        return c.redirect('https://cyberjake.xyz/', 301)
+    })
+}
 app.all('*', (c) => c.notFound())
 
 app.onError((err, c) => {

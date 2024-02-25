@@ -10,7 +10,9 @@ import worker from '../src/index'
 describe('Git Endpoints', () => {
     it('Git User', async () => {
         const request = new Request('https://localhost/git/user')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -18,7 +20,9 @@ describe('Git Endpoints', () => {
     })
     it('Git Repos', async () => {
         const request = new Request('https://localhost/git/repos')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'

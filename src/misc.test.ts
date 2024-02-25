@@ -10,7 +10,9 @@ import worker from '../src/index'
 describe('Misc Endpoints', () => {
     it('CF JSON Endpoint', async () => {
         const request = new Request('https://localhost/cf')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -18,7 +20,9 @@ describe('Misc Endpoints', () => {
     })
     it('Version Endpoint', async () => {
         const request = new Request('https://localhost/version')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -29,7 +33,9 @@ describe('Misc Endpoints', () => {
     })
     it('Trace Endpoint', async () => {
         const request = new Request('https://localhost/trace')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -39,13 +45,17 @@ describe('Misc Endpoints', () => {
     })
     it('IP Endpoint', async () => {
         const request = new Request('https://localhost/ip')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual('text/plain')
     })
     it('IP Endpoint JSON', async () => {
         const request = new Request('https://localhost/ip?format=json')
-        const resp = await SELF.fetch(request, env)
+        const ctx = createExecutionContext();
+        const resp = await worker.fetch(request, env, ctx);
+        await waitOnExecutionContext(ctx);
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
