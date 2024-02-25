@@ -4,7 +4,7 @@
     "description": "Serverless version of my API",
     "scripts": {
         "dev": "wrangler dev --test-scheduled",
-        "dev:remote": "wrangler dev",
+        "dev:remote": "wrangler dev --remote",
         "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
         "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}",
         "test:unit": "vitest run",

@@ -16,12 +16,12 @@ Data input format
  - ClientTrustScore
  - Worker Cache Hit Header
 */
-declare const PRODUCTION: string
+// declare const PRODUCTION: string
 
 export function WriteDataPoint(c: Context, error: Error | undefined): void {
-    if (!c.env || PRODUCTION !== 'true') {
-        return
-    }
+    // if (!c.env || PRODUCTION !== 'true') {
+    //     return
+    // }
     if (!c.env.AE) {
         console.error('Analytics Engine is not defined')
         return

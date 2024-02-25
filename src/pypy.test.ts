@@ -2,6 +2,7 @@ import {
     env,
     createExecutionContext,
     waitOnExecutionContext,
+    SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
 import worker from '../src/index'
@@ -23,9 +24,7 @@ describe('PyPy Endpoints', () => {
         const request = new Request(
             'https://localhost/pypy/checksums/pypy3.9-v7.3.11'
         )
-        const ctx = createExecutionContext()
-        const resp = await worker.fetch(request, env, ctx)
-        await waitOnExecutionContext(ctx)
+        const resp = await SELF.fetch(request, env)
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -37,9 +36,7 @@ describe('PyPy Endpoints', () => {
         const request = new Request(
             'https://localhost/pypy/checksums/pypy3.10-v7.3.12'
         )
-        const ctx = createExecutionContext()
-        const resp = await worker.fetch(request, env, ctx)
-        await waitOnExecutionContext(ctx)
+        const resp = await SELF.fetch(request, env)
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -51,9 +48,7 @@ describe('PyPy Endpoints', () => {
         const request = new Request(
             'https://localhost/pypy/checksums/pypy3.9-v7.3.11-src.tar.bz2'
         )
-        const ctx = createExecutionContext()
-        const resp = await worker.fetch(request, env, ctx)
-        await waitOnExecutionContext(ctx)
+        const resp = await SELF.fetch(request, env)
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
