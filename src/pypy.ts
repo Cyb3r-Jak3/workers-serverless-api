@@ -127,7 +127,7 @@ export async function PyPyChecksumsEndpoint(
     if (kvKey) {
         const data = await c.env.KV.get(kvKey, { type: 'json' })
         if (data) {
-            console.log(`PyPy: Got KV hit: ${kvKey}`)
+            // console.log(`PyPy: Got KV hit: ${kvKey}`)
             response = JSONAPIResponse(data, {
                 extra_headers: { 'Cache-control': 'public; max-age=604800' },
             })

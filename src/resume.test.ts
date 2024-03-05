@@ -9,19 +9,14 @@ import worker from '../src/index'
 
 describe('Resume Endpoints', () => {
     it('GET Request', async () => {
-        const request = new Request('https://localhost/encrypted_resume')
-        const ctx = createExecutionContext();
-        const resp = await worker.fetch(request, env, ctx);
-        await waitOnExecutionContext(ctx);
+        const resp = await SELF.fetch('https://localhost/encrypted_resume')
         expect(resp.status).toBe(405)
     })
     it('Missing Resume', async () => {
         const request = new Request('https://localhost/encrypted_resume', {
             method: 'POST',
         })
-        const ctx = createExecutionContext();
-        const resp = await worker.fetch(request, env, ctx);
-        await waitOnExecutionContext(ctx);
+        const resp = await SELF.fetch(request)
         expect(resp.status).toBe(400)
     })
 
@@ -34,7 +29,6 @@ describe('Resume Endpoints', () => {
                 `Unable to get key. Got HTTP status ${resume_resp.status}`
             )
         }
-        console.log(resume_resp.status)
         const resume: Blob = await resume_resp.blob()
         const formdata = new FormData()
         formdata.append('key', resume)
@@ -42,9 +36,7 @@ describe('Resume Endpoints', () => {
             method: 'POST',
             body: formdata,
         })
-        const ctx = createExecutionContext();
-        const resp = await worker.fetch(request, env, ctx);
-        await waitOnExecutionContext(ctx);
+        const resp = await SELF.fetch(request)
         expect(resp.status).toBe(200)
     })
 })

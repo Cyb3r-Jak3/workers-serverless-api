@@ -28,7 +28,6 @@ export async function CORSHandle(c: DefinedContext): Promise<Response> {
     const givenURL = c.req.query('api_url')
     const givenWildCard = c.req.query('allow_wild')
     const givenOrigin = c.req.query('allowed_origin')
-    console.log(givenURL, givenWildCard, givenOrigin)
     if (!givenURL || !givenOrigin) {
         return new Response(null, { status: 404 })
     }
