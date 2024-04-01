@@ -35,7 +35,7 @@
         "typescript": "^5.3.3",
         "vitest": "^0.34.6",
         "vitest-environment-miniflare": "^2.14.2",
-        "wrangler": "^3.19.0"
+        "wrangler": "^3.41.0"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
