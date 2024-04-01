@@ -1,5 +1,6 @@
 import { JSONResponse, JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import { DefinedContext } from './types'
+declare const PRODUCTION: string
 
 export async function CFEndpoint(c: DefinedContext): Promise<Response> {
     return JSONResponse({
@@ -43,10 +44,11 @@ export async function TraceEndpoint(): Promise<Response> {
 }
 
 export async function IPEndpoint(c: DefinedContext): Promise<Response> {
-    const ip = c.req.headers.get('CF-Connecting-IP')
+    const ip = c.req.header('CF-Connecting-IP')
     if (c.req.query('format') == 'json') {
         return JSONResponse({ ip })
     }
+    console.log(PRODUCTION)
     return new Response(ip, {
         headers: {
             'Content-Type': 'text/plain',

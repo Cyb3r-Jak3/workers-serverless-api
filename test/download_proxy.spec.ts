@@ -1,7 +1,5 @@
-// import { unstable_dev } from 'wrangler'
-// import type { UnstableDevWorker } from 'wrangler'
 import {
-    env,
+    env, createExecutionContext, waitOnExecutionContext,
     SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
@@ -49,10 +47,12 @@ describe('Download proxy ', () => {
         it('Valid maven version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/maven?version=3.9.3')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
         it('Missing maven version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/maven?version=1.0.0')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
     })
 
@@ -60,9 +60,12 @@ describe('Download proxy ', () => {
         it('Valid Python version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/python?version=3.11.4')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
+        })
         it('Missing Python version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/python?version=1.0.0')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
     })
 
@@ -70,21 +73,25 @@ describe('Download proxy ', () => {
         it('Valid NodeJS version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node?version=16.10.0')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
 
         it('Valid NodeJS version with arch', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node?version=16.10.0&arch=linux-x64')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
 
         it('Valid NodeJS version with invalid arch', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node?version=16.10.0&arch=nope')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
 
         it('Missing NodeJS version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node?version=1.0.0')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
     })
 
@@ -92,31 +99,37 @@ describe('Download proxy ', () => {
         it('Valid PyPy version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/pypy?version=3.10-v7.3.12')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         }, {
             timeout: 10000
         })
         it('Valid PyPy version with arch', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/pypy?version=3.10-v7.3.12&arch=linux64')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
         it('Missing PyPy version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/pypy?version=1.0.0')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
     })
     describe('node_exporter', () => {
         it('Valid Node Exporter version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node_exporter?version=1.7.0')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
         it('Valid Node Exporter version with arch', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node_exporter?version=1.7.0&arch=arm64')
             expect(resp.status).toBe(200)
+            await resp.arrayBuffer(); // (drain)
         })
         it('Missing Node Exporter version', async () => {
             const resp = await SELF.fetch('https://localhost/download_proxy/node_exporter?version=1.6.2')
             expect(resp.status).toBe(404)
+            await resp.arrayBuffer(); // (drain)
         })
     })
 })
-})
+// })

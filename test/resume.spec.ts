@@ -1,11 +1,8 @@
 import {
     env,
-    createExecutionContext,
-    waitOnExecutionContext,
     SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
-import worker from '../src/index'
 
 describe('Resume Endpoints', () => {
     it('GET Request', async () => {

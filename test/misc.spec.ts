@@ -1,5 +1,4 @@
 import {
-    env,
     SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'

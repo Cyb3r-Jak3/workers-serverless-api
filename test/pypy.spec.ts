@@ -3,7 +3,6 @@ import {
     SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
-import worker from '../src/index'
 
 describe('PyPy Endpoints', () => {
     it('PyPy All', async () => {
@@ -14,6 +13,9 @@ describe('PyPy Endpoints', () => {
         )
         const json_resp = await resp.json()
         expect(json_resp.results.length).toBeGreaterThanOrEqual(329)
+        // const kv_data = await env.KV.get('pypy_checksums_all')
+        // console.log('PyPy All', kv_data)
+        // expect(kv_data).toBeDefined()
     })
     it('PyPy Version', async () => {
         const resp = await SELF.fetch('https://localhost/pypy/checksums/pypy3.9-v7.3.11')

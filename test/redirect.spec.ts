@@ -1,11 +1,7 @@
 import {
-    env,
-    createExecutionContext,
-    waitOnExecutionContext,
     SELF
 } from 'cloudflare:test'
 import { describe, expect, it } from 'vitest'
-import worker from '../src/index'
 
 describe('Redirect Endpoints', () => {
     it('List Redirects', async () => {
@@ -13,7 +9,7 @@ describe('Redirect Endpoints', () => {
         expect(resp.status).toBe(200)
     })
     it('Get Redirected', async () => {
-        const resp = await SELF.fetch('https://localhost/redirects/redirected')
+        const resp = await SELF.fetch('https://localhost/redirects/home')
         expect(resp.redirected).toEqual(true)
     })
     it('Missing redirect', async () => {

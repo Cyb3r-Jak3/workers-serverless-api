@@ -10,16 +10,11 @@
         "sourceMap": true,
         "esModuleInterop": true,
         "types": [
-            "@cloudflare/workers-types/experimental",
             "@types/node",
+            "@cloudflare/workers-types/experimental",
             "@cloudflare/vitest-pool-workers",
         ],
     },
-    "include": [
-        "src",
-        "__tests__/index.test.ts",
-        "src/misc.test.ts",
-        "src/index.test.ts.ignore",
-    ],
+    "include": ["./**/*.ts", "test/index.spec.ts"],
     "exclude": ["node_modules", "dist", "test"],
 }
