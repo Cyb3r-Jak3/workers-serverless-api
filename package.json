@@ -41,5 +41,8 @@
         "hono": "^4.0.8",
         "htmlparser2": "^9.0.0",
         "openpgp": "^5.11.1"
-    }
+    },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.9.5"
+      }
 }
