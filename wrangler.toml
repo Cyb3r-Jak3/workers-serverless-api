@@ -4,10 +4,12 @@ compatibility_date = "2022-11-30"
 workers_dev = false
 main = "./src/index.ts"
 minify = true
+compatibility_flags = ["nodejs_compat"]
+
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
 ]
-compatibility_flags = ["nodejs_compat"]
+
 analytics_engine_datasets = [
     {binding = "AE", dataset = "api-dev"}
 ]
@@ -24,6 +26,7 @@ PRODUCTION = '"false"'
 
 [env.production]
 name = "severless-api"
+compatibility_flags = ["nodejs_compat"]
 logpush = true
 workers_dev = false
 kv_namespaces = [
