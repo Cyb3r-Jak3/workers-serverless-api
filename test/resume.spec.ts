@@ -1,28 +1,19 @@
-import { unstable_dev } from 'wrangler'
-import type { UnstableDevWorker } from 'wrangler'
-import { describe, expect, it, beforeAll, afterAll } from 'vitest'
+import {
+    env,
+    SELF
+} from 'cloudflare:test'
+import { describe, expect, it } from 'vitest'
 
 describe('Resume Endpoints', () => {
-    let worker: UnstableDevWorker
-
-    beforeAll(async () => {
-        worker = await unstable_dev('src/index.ts', {
-            experimental: { disableExperimentalWarning: true },
-            local: true,
-        })
-    })
-
-    afterAll(async () => {
-        await worker.stop()
-    })
-
     it('GET Request', async () => {
-        const resp = await worker.fetch('/encrypted_resume')
+        const resp = await SELF.fetch('https://localhost/encrypted_resume')
         expect(resp.status).toBe(405)
     })
-
     it('Missing Resume', async () => {
-        const resp = await worker.fetch('/encrypted_resume', { method: 'POST' })
+        const request = new Request('https://localhost/encrypted_resume', {
+            method: 'POST',
+        })
+        const resp = await SELF.fetch(request)
         expect(resp.status).toBe(400)
     })
 
@@ -35,14 +26,14 @@ describe('Resume Endpoints', () => {
                 `Unable to get key. Got HTTP status ${resume_resp.status}`
             )
         }
-        console.log(resume_resp.status)
         const resume: Blob = await resume_resp.blob()
         const formdata = new FormData()
         formdata.append('key', resume)
-        const resp = await worker.fetch('/encrypted_resume', {
+        const request = new Request('https://localhost/encrypted_resume', {
             method: 'POST',
             body: formdata,
         })
+        const resp = await SELF.fetch(request)
         expect(resp.status).toBe(200)
     })
 })

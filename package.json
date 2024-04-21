@@ -4,9 +4,9 @@
     "description": "Serverless version of my API",
     "scripts": {
         "dev": "wrangler dev --test-scheduled",
-        "dev:remote": "wrangler dev",
-        "format": "prettier --write *.{json,js} src/**/*.{js,ts} ",
-        "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js} src/**/*.{js,ts}",
+        "dev:remote": "wrangler dev --remote",
+        "format": "prettier --write *.{json,js,ts} src/**/*.{js,ts} ",
+        "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js,ts} src/**/*.{js,ts}",
         "test:unit": "vitest run",
         "test": "npm run test:lint && npm run test:unit"
     },
@@ -20,22 +20,19 @@
         ]
     },
     "devDependencies": {
+        "@cloudflare/vitest-pool-workers": "^0.1.10",
         "@cloudflare/workers-types": "^4.20240129.0",
         "@openpgp/web-stream-tools": "^0.0.13",
         "@types/openpgp": "^4.4.18",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.1.0",
-        "@vitest/coverage-c8": "^0.33.0",
         "eslint": "^8.20.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-config-typescript": "^3.0.0",
         "prettier": "^3.2.4",
-        "service-worker-mock": "^2.0.5",
-        "ts-loader": "^9.5.1",
         "typescript": "^5.3.3",
-        "vitest": "^0.34.6",
-        "vitest-environment-miniflare": "^2.14.2",
-        "wrangler": "^3.19.0"
+        "vitest": "^1.1.3",
+        "wrangler": "^3.42.0"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
@@ -44,5 +41,8 @@
         "hono": "^4.0.8",
         "htmlparser2": "^9.0.0",
         "openpgp": "^5.11.1"
-    }
+    },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.9.5"
+      }
 }
