@@ -59,7 +59,7 @@ jobs:
         # if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: |
           echo "GitHash: ${GITHUB_SHA}"
-          export BuiltTime=$(git show -s --format=%ci ${GITHUB_SHA::8})
+          echo "BuiltTime: $(git show -s --format=%ci ${GITHUB_SHA::8})"
 
       - name: Deploy to Cloudflare with Wrangler
         uses: cloudflare/wrangler-action@v3.4.1
@@ -68,7 +68,7 @@ jobs:
           command: deploy --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          wranglerVersion: 3.29.0
+          wranglerVersion: 3.51.2
           secrets: |
             GitHash
             BuiltTime
