@@ -8,7 +8,7 @@
         "format": "prettier --write *.{json,js,ts} src/**/*.{js,ts} ",
         "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js,ts} src/**/*.{js,ts}",
         "test:unit": "vitest run",
-        "test": "npm run test:lint && npm run test:unit"
+        "test": "pnpm run test:lint && npm run test:unit"
     },
     "author": "cyb3r-jak3",
     "license": "MIT",
