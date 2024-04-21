@@ -8,7 +8,7 @@
         "format": "prettier --write *.{json,js,ts} src/**/*.{js,ts} ",
         "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js,ts} src/**/*.{js,ts}",
         "test:unit": "vitest run",
-        "test": "npm run test:lint && npm run test:unit"
+        "test": "pnpm run test:lint && npm run test:unit"
     },
     "author": "cyb3r-jak3",
     "license": "MIT",
@@ -20,9 +20,10 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.1.10",
+        "@cloudflare/vitest-pool-workers": "^0.2.2",
         "@cloudflare/workers-types": "^4.20240129.0",
         "@openpgp/web-stream-tools": "^0.1.1",
+        "@types/node": "20.8.3",
         "@types/openpgp": "^4.4.18",
         "@typescript-eslint/eslint-plugin": "^7.1.0",
         "@typescript-eslint/parser": "^7.7.0",
@@ -31,7 +32,7 @@
         "eslint-config-typescript": "^3.0.0",
         "prettier": "^3.2.4",
         "typescript": "^5.4.5",
-        "vitest": "^1.1.3",
+        "vitest": "1.3.0",
         "wrangler": "^3.51.2"
     },
     "dependencies": {
@@ -44,5 +45,13 @@
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "4.9.5"
-      }
+    },
+    "overrides": {
+        "@types/node": "20.8.3"
+    },
+    "pnpm": {
+        "override": {
+            "@types/node": "20.8.3"
+        }
+    }
 }

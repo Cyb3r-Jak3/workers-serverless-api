@@ -25,6 +25,14 @@ const apiTargets: targetType[] = [
         name: 'alert_types',
         endpoint: '/accounts/:account_id/alerting/v3/available_alerts',
     },
+    {
+        name: 'account_rulesets',
+        endpoint: '/accounts/:account_id/rulesets',
+    },
+    {
+        name: 'zone_rulesets',
+        endpoint: '/zones/:zone_id/rulesets',
+    },
 ]
 
 export async function CloudflareAPIEndpoint(
@@ -95,10 +103,9 @@ export async function ScrapeCloudflareAPISettings(
     }
 
     for (const target of apiTargets) {
-        const url = (baseURL + target.endpoint).replace(
-            ':account_id',
-            env.ScrapeAccountID
-        )
+        const url = (baseURL + target.endpoint)
+            .replace(':account_id', env.ScrapeAccountID)
+            .replace(':zone_id', env.ScrapeZoneID)
         const response = await fetch(url, {
             headers: {
                 'Content-Type': 'application/json',

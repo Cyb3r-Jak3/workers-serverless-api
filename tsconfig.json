@@ -10,7 +10,6 @@
         "sourceMap": true,
         "esModuleInterop": true,
         "types": [
-            "@types/node",
             "@cloudflare/workers-types/experimental",
             "@cloudflare/vitest-pool-workers",
         ],

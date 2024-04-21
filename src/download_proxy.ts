@@ -65,10 +65,12 @@ export async function DownloadProxyEndpoint(
     let os = c.req.query('os')
 
     if (!program) {
-        return new Response('program is required', { status: 400 })
+        return new Response('`program` parameter is required', { status: 400 })
     }
     if (!version) {
-        return new Response('version is required', { status: 400 })
+        return new Response('`version`url query parameter is required', {
+            status: 400,
+        })
     }
     if (!os) {
         os = 'linux'

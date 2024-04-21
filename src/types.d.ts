@@ -9,5 +9,6 @@ export type ENV = {
     BuiltTime: string
     ScrapeToken?: string
     ScrapeAccountID?: string
+    ScrapeZoneID?: string
     PUBLIC_FILES: R2Bucket
 }
