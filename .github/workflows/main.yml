@@ -61,7 +61,7 @@ jobs:
           echo "BuiltTime=$(git show -s --format=%ci ${GITHUB_SHA::8})" >> $GITHUB_ENV
 
       - name: Deploy to Cloudflare with Wrangler
-        uses: cloudflare/wrangler-action@v3.4.1
+        uses: cloudflare/wrangler-action@v3.5.0
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
           command: deploy --env production
