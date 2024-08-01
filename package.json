@@ -23,7 +23,7 @@
         "@cloudflare/vitest-pool-workers": "^0.2.2",
         "@cloudflare/workers-types": "^4.20240725.0",
         "@openpgp/web-stream-tools": "^0.1.1",
-        "@types/node": "20.13.0",
+        "@types/node": "22.0.2",
         "@types/openpgp": "^4.4.22",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
