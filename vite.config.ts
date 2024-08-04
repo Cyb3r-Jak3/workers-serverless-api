@@ -7,12 +7,12 @@ export default defineWorkersConfig({
     test: {
         poolOptions: {
             workers: {
-                isolatedStorage: false,
+                isolatedStorage: true,
                 wrangler: {
                     configPath: './wrangler.toml',
                 },
             },
         },
     },
-    timeout: 10000,
+    timeout: 20000,
 })

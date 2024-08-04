@@ -11,9 +11,9 @@
         "esModuleInterop": true,
         "types": [
             "@cloudflare/workers-types/experimental",
-            "@cloudflare/vitest-pool-workers",
-        ],
+            "@cloudflare/vitest-pool-workers"
+        ]
     },
     "include": ["./**/*.ts", "test/index.spec.ts"],
-    "exclude": ["node_modules", "dist", "test"],
+    "exclude": ["node_modules", "dist", "test"]
 }
