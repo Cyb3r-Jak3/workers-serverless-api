@@ -43,7 +43,6 @@ app.get('/download_proxy/:program', DownloadProxyEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
-    console.log('Production mode enabled')
     app.all('/', async (c) => {
         return c.redirect('https://cyberjake.xyz/', 301)
     })

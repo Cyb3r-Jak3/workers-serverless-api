@@ -63,7 +63,9 @@ export async function RedirectLanding(c: DefinedContext): Promise<Response> {
     const host = new URL(c.req.url).hostname
     response = renderHtml(render_Page({ RedirectPath, redirects, host }))
     response.headers.set('Cache-Control', 'public, max-age=3600')
-    c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
+    if (c.req.method !== 'HEAD') {
+        c.executionCtx.waitUntil(cache.put(c.req.raw, response.clone()))
+    }
     return response
 }
 
