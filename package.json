@@ -22,7 +22,7 @@
     "devDependencies": {
         "@cloudflare/vitest-pool-workers": "^0.4.27",
         "@cloudflare/workers-types": "^4.20240725.0",
-        "@openpgp/web-stream-tools": "^0.1.1",
+        "@openpgp/web-stream-tools": "^0.1.3",
         "@types/node": "22.0.2",
         "@types/openpgp": "^4.4.22",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
