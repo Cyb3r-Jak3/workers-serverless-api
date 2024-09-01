@@ -14,6 +14,7 @@ import {
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import type { ENV } from './types'
+import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
 declare const PRODUCTION: string
 
@@ -58,9 +59,21 @@ app.onError((err, c) => {
     )
 })
 
-export default {
+const handler = {
     fetch: app.fetch,
-    async scheduled(_: ScheduledEvent, env: ENV, ctx: ExecutionContext) {
+    scheduled(_: ScheduledEvent, env: ENV, ctx: ExecutionContext) {
         ctx.waitUntil(ScrapeCloudflareAPISettings(env, ctx))
     },
 }
+
+const config: ResolveConfigFn = (env: ENV) => {
+    return {
+        exporter: {
+            url: 'https://otel.baselime.io/v1',
+            headers: { 'x-api-key': env.BASELIME_API_KEY },
+        },
+        service: { name: 'serverless-api' },
+    }
+}
+
+export default instrument(handler, config)
