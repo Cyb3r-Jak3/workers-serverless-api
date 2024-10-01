@@ -38,7 +38,7 @@
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
         "@microlabs/otel-cf-workers": "1.0.0-rc.45",
-        "@octokit/core": "^5.0.1",
+        "@octokit/core": "^6.1.2",
         "domhandler": "^5.0.3",
         "hono": "^4.5.10",
         "htmlparser2": "^9.1.0",
