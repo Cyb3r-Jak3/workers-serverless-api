@@ -47,13 +47,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Lint
-      #   if: ${{github.ref_type == 'branch'}}
-      #   run: npm run test:lint
+      - name: Lint
+        if: ${{github.ref_type == 'branch'}}
+        run: pnpm run test:lint
 
       # - name: Test
       #   if: ${{github.ref_type == 'branch'}}
-      #   run: npm run test:unit
+      #   run: pnpm run test:unit
 
       - name: Report Variables
         run: |
