@@ -45,7 +45,7 @@
         "openpgp": "^5.11.2"
     },
     "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "4.28.0"
+        "@rollup/rollup-linux-x64-gnu": "4.34.0"
     },
     "overrides": {
         "@types/node": "20.8.3"
