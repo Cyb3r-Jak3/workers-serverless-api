@@ -31,8 +31,8 @@ importers:
         version: 5.11.2
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu':
-        specifier: 4.28.0
-        version: 4.28.0
+        specifier: 4.34.0
+        version: 4.34.0
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: ^0.4.27
@@ -733,8 +733,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@rollup/rollup-linux-x64-gnu@4.28.0':
-    resolution: {integrity: sha512-Nl4KIzteVEKE9BdAvYoTkW19pa7LR/RBrT6F1dJCV/3pbjwDcaOq+edkP0LXuJ9kflW/xOK414X78r+K84+msw==}
+  '@rollup/rollup-linux-x64-gnu@4.34.0':
+    resolution: {integrity: sha512-chZLTUIPbgcpm+Z7ALmomXW8Zh+wE2icrG+K6nt/HenPLmtwCajhQC5flNSk1Xy5EDMt/QAOz2MhzfOfJOLSiA==}
     cpu: [x64]
     os: [linux]
 
@@ -2319,7 +2319,7 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.24.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.28.0':
+  '@rollup/rollup-linux-x64-gnu@4.34.0':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.24.0':
