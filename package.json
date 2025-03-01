@@ -24,7 +24,7 @@
         "@cloudflare/workers-types": "^4.20250204.0",
         "@openpgp/web-stream-tools": "^0.1.3",
         "@types/node": "22.13.0",
-        "@types/openpgp": "^4.4.22",
+        "@types/openpgp": "^5.0.0",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
         "eslint": "^8.20.0",
