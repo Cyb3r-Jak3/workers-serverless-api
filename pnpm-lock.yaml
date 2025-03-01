@@ -47,8 +47,8 @@ importers:
         specifier: 22.13.0
         version: 22.13.0
       '@types/openpgp':
-        specifier: ^4.4.22
-        version: 4.4.22
+        specifier: ^5.0.0
+        version: 5.0.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.18.0
         version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.7.3))(eslint@8.57.0)(typescript@5.7.3)
@@ -750,17 +750,15 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@types/bn.js@5.1.1':
-    resolution: {integrity: sha512-qNrYbZqMx0uJAfKnKclPh+dTwK33KfLHYqtyODwd5HnXOjnkhc4qgn3BrK6RWyGZm5+sIFE7Q7Vz6QQtJB7w7g==}
-
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
   '@types/node@22.13.0':
     resolution: {integrity: sha512-ClIbNe36lawluuvq3+YYhnIN2CELi+6q8NpnM7PYp4hBn/TatfboPgVSm2rwKRfnV2M+Ty9GWDFI64KEe+kysA==}
 
-  '@types/openpgp@4.4.22':
-    resolution: {integrity: sha512-afQsbrWITIcSI3OBBJtTA87H5Av2/bjRn6YBHD+abxqJVpD2HRwjP6DL7drboJcuizwcnwnVKSupXYYdImdIoQ==}
+  '@types/openpgp@5.0.0':
+    resolution: {integrity: sha512-bzIQl7uFcb4bQLyl5UN6ZUSixpf00cyaUdBNqIaQQocNfcAB07v+NGBANBqDiNffm3xe3UC1iKaUw0UP25XyJw==}
+    deprecated: This is a stub types definition. openpgp provides its own type definitions, so you do not need this installed.
 
   '@typescript-eslint/eslint-plugin@7.18.0':
     resolution: {integrity: sha512-94EQTWZ40mzBc42ATNIBimBEDltSJ9RQHCC8vc/PDbxi4k8dVwUAv4o98dk50M1zB+JGFxp43FP7f8+FP8R6Sw==}
@@ -2244,19 +2242,15 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.24.0':
     optional: true
 
-  '@types/bn.js@5.1.1':
-    dependencies:
-      '@types/node': 22.13.0
-
   '@types/estree@1.0.6': {}
 
   '@types/node@22.13.0':
     dependencies:
       undici-types: 6.20.0
 
-  '@types/openpgp@4.4.22':
+  '@types/openpgp@5.0.0':
     dependencies:
-      '@types/bn.js': 5.1.1
+      openpgp: 6.1.0
 
   '@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.0)(typescript@5.7.3))(eslint@8.57.0)(typescript@5.7.3)':
     dependencies:
