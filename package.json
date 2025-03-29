@@ -20,18 +20,18 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.7.5",
-        "@cloudflare/workers-types": "^4.20250321.0",
+        "@cloudflare/vitest-pool-workers": "^0.7.8",
+        "@cloudflare/workers-types": "^4.20250327.0",
         "@openpgp/web-stream-tools": "^0.1.3",
         "@types/node": "22.13.0",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
-        "eslint": "^8.20.0",
+        "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-config-typescript": "^3.0.0",
-        "prettier": "^3.4.2",
-        "typescript": "^5.5.2",
-        "vitest": "~3.0.7",
+        "prettier": "^3.5.3",
+        "typescript": "^5.8.2",
+        "vitest": "~3.0.9",
         "wrangler": "4.6.0"
     },
     "dependencies": {
@@ -39,7 +39,7 @@
         "@microlabs/otel-cf-workers": "1.0.0-rc.49",
         "@octokit/core": "^6.1.4",
         "domhandler": "^5.0.3",
-        "hono": "^4.6.15",
+        "hono": "^4.7.5",
         "htmlparser2": "^10.0.0",
         "openpgp": "^6.1.0"
     }
