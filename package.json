@@ -20,7 +20,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.7.8",
+        "@cloudflare/vitest-pool-workers": "^0.8.0",
         "@cloudflare/workers-types": "^4.20250327.0",
         "@openpgp/web-stream-tools": "^0.1.3",
         "@types/node": "22.13.14",
