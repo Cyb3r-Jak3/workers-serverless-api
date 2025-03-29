@@ -14,7 +14,7 @@ import {
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import type { ENV } from './types'
-import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
+// import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
 declare const PRODUCTION: string
 
@@ -66,14 +66,16 @@ const handler = {
     },
 }
 
-const config: ResolveConfigFn = (env: ENV) => {
-    return {
-        exporter: {
-            url: 'https://otel.baselime.io/v1',
-            headers: { 'x-api-key': env.BASELIME_API_KEY },
-        },
-        service: { name: 'serverless-api' },
-    }
-}
+// const config: ResolveConfigFn = (env: ENV) => {
+//     return {
+//         exporter: {
+//             url: 'https://otel.baselime.io/v1',
+//             headers: { 'x-api-key': env.BASELIME_API_KEY },
+//         },
+//         service: { name: 'serverless-api' },
+//     }
+// }
 
-export default instrument(handler, config)
+// export default instrument(handler, config)
+
+export default handler
