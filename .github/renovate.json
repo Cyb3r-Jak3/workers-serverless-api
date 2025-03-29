@@ -1,0 +1,5 @@
+{
+    "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+    "compatibility": { "pnpm": "^10.0.0" },
+    "lockFileMaintenance": { "enabled": true }
+  }
