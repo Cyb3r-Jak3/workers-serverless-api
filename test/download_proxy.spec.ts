@@ -1,8 +1,5 @@
-import {
-    env, createExecutionContext, waitOnExecutionContext,
-    SELF
-} from 'cloudflare:test'
-import { describe, expect, it } from 'vitest'
+import { SELF } from 'cloudflare:test';
+import { describe, it, expect } from 'vitest';
 
 describe('Download proxy ', () => {
     it('Missing program', async () => {

@@ -14,5 +14,5 @@ export default defineWorkersConfig({
             },
         },
     },
-    timeout: 20000,
+    timeout: 60000,
 })
