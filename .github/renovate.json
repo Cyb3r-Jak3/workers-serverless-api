@@ -1,9 +1,13 @@
 {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
     "constraints": {
         "pnpm": "^10.0.0"
     },
     "lockFileMaintenance": {
         "enabled": true
-    }
+    },
+    "schedule": [
+        "* * * * 1"
+    ]
 }
