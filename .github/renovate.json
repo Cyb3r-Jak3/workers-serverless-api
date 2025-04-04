@@ -15,5 +15,8 @@
             "matchPackageNames": ["@cloudflare/*", "wrangler"],
             "groupName": "Cloudflare packages"
         }
-    ]
+    ],
+    "reviewers": ["Cyb3r-Jak3"],
+    "assignees": ["Cyb3r-Jak3"],
+    "labels": ["dependencies", "renovate"]
 }
