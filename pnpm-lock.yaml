@@ -76,8 +76,8 @@ importers:
         specifier: ~3.0.9
         version: 3.0.9(@types/node@22.13.17)
       wrangler:
-        specifier: 4.6.0
-        version: 4.6.0(@cloudflare/workers-types@4.20250327.0)
+        specifier: 4.7.0
+        version: 4.7.0(@cloudflare/workers-types@4.20250327.0)
 
 packages:
 
