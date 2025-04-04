@@ -9,5 +9,11 @@
     },
     "schedule": [
         "* * * * 1"
+    ],
+    "packageRules": [
+        {
+            "matchPackageNames": ["@cloudflare/*", "wrangler"],
+            "groupName": "Cloudflare packages"
+        }
     ]
 }
