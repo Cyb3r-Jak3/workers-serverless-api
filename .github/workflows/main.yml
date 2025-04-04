@@ -12,7 +12,7 @@ on:
       - "v*"
   pull_request:
     branches: [main]
-    paths: ['package.json']
+    paths: ['package.json', '**/pnpm-lock.yaml']
 
 jobs:
   deploy:
