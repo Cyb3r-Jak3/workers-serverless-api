@@ -1,22 +1,17 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+    "extends": [
+        "config:recommended",
+        "helpers:pinGitHubActionDigests",
+        "github>Cyb3r-Jak3/renovate-configs//assign-me.json",
+        "github>Cyb3r-Jak3/renovate-configs//group-cf-workers-packages.json",
+        "github>Cyb3r-Jak3/renovate-configs//first-day-of-the-month.json"
+    ],
+        
     "constraints": {
         "pnpm": "^10.0.0"
     },
     "lockFileMaintenance": {
         "enabled": true
-    },
-    "schedule": [
-        "* * * * 1"
-    ],
-    "packageRules": [
-        {
-            "matchPackageNames": ["@cloudflare/*", "wrangler"],
-            "groupName": "Cloudflare packages"
-        }
-    ],
-    "reviewers": ["Cyb3r-Jak3"],
-    "assignees": ["Cyb3r-Jak3"],
-    "labels": ["dependencies", "renovate"]
+    }
 }
