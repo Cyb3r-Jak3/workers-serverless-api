@@ -22,7 +22,7 @@ importers:
         version: 5.0.3
       hono:
         specifier: ^4.7.5
-        version: 4.7.5
+        version: 4.7.6
       htmlparser2:
         specifier: ^10.0.0
         version: 10.0.0
@@ -1300,8 +1300,8 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  hono@4.7.5:
-    resolution: {integrity: sha512-fDOK5W2C1vZACsgLONigdZTRZxuBqFtcKh7bUQ5cVSbwI2RWjloJDcgFOVzbQrlI6pCmhlTsVYZ7zpLj4m4qMQ==}
+  hono@4.7.6:
+    resolution: {integrity: sha512-564rVzELU+9BRqqx5k8sT2NFwGD3I3Vifdb6P7CmM6FiarOSY+fDC+6B+k9wcCb86ReoayteZP2ki0cRLN1jbw==}
     engines: {node: '>=16.9.0'}
 
   htmlparser2@10.0.0:
@@ -2816,7 +2816,7 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  hono@4.7.5: {}
+  hono@4.7.6: {}
 
   htmlparser2@10.0.0:
     dependencies:
