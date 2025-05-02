@@ -2,7 +2,7 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:recommended",
-        "helpers:pinGitHubActionDigests",
+        "helpers:pinGitHubActionDigestsToSemver",
         "github>Cyb3r-Jak3/renovate-configs//assign-me.json",
         "github>Cyb3r-Jak3/renovate-configs//group-cf-workers-packages.json",
         "github>Cyb3r-Jak3/renovate-configs//first-day-of-the-month.json"
