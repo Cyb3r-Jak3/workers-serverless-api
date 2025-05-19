@@ -28,7 +28,7 @@ jobs:
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
         name: Install pnpm
         with:
-          version: 8
+          version: 10
           run_install: false
 
       - name: Get pnpm store directory
@@ -67,7 +67,7 @@ jobs:
           command: deploy --env production
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          wranglerVersion: 4.6.0
+          wranglerVersion: 4.15.2
           secrets: |
             GitHash
             BuiltTime
