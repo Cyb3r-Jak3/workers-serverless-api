@@ -27,8 +27,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       openpgp:
-        specifier: ^6.1.0
-        version: 6.1.0
+        specifier: ^6.1.1
+        version: 6.1.1
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: ^0.8.0
@@ -1269,8 +1269,8 @@ packages:
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
-  openpgp@6.1.0:
-    resolution: {integrity: sha512-fRTeitP+hoGJD3kbdUlAI++wE6MvfvXw1rBqHwmBMxIpLjowatJ2zb5ThkORpIkSz5F12wO+xCYRSTbT7M4qKA==}
+  openpgp@6.1.1:
+    resolution: {integrity: sha512-V/DXZ5AGCz3q4X8psUSc3q4SxnH/bfICaTSpNcla7wvBFhrxa9/ajm31rtMwZ1qj7Fu2oMpfX6ZcxKmTBlb6Yg==}
     engines: {node: '>= 18.0.0'}
 
   optionator@0.9.4:
@@ -2683,7 +2683,7 @@ snapshots:
 
   ohash@2.0.11: {}
 
-  openpgp@6.1.0: {}
+  openpgp@6.1.1: {}
 
   optionator@0.9.4:
     dependencies:
