@@ -5,6 +5,7 @@ workers_dev = false
 main = "./src/index.ts"
 compatibility_flags = ["nodejs_compat", ]
 upload_source_maps = true 
+preview_urls = false
 
 kv_namespaces = [
     { binding = "KV", preview_id = "a3030e4701ed406ba337ca8bd9108dda", id = "902aa7ef8f574c66a87d80fd9a3e9ebe"}
@@ -29,7 +30,8 @@ name = "severless-api"
 compatibility_flags = ["nodejs_compat"]
 logpush = true
 workers_dev = false
-upload_source_maps = true 
+preview_urls = false
+upload_source_maps = true
 minify = true
 
 kv_namespaces = [
@@ -50,6 +52,8 @@ r2_buckets  = [
 [triggers]
 crons = ["0 * * * *"]
 
+[env.production.observability]
+enabled = true
 
 [env.production.define]
 PRODUCTION = '"true"'

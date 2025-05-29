@@ -51,7 +51,17 @@ if (PRODUCTION === 'true') {
         return c.redirect('https://cyberjake.xyz/', 301)
     })
 }
-app.all('*', (c: DefinedContext) => c.notFound())
+app.all('*', (c: DefinedContext) => {
+    console.log(c.req.header())
+    if (c.req.header('accept')?.includes('application/json')) {
+        return JSONAPIResponse(
+            { error: 'Not Found' },
+            { status: 404, error: 'Not Found', success: false }
+        )
+    }
+
+    return c.notFound()
+})
 
 app.onError((err, c) => {
     console.error(JSON.stringify(err))
