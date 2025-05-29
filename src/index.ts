@@ -13,8 +13,9 @@ import {
 } from './cloudflare_api_proxy'
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
-import type { ENV } from './types'
-// import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
+import { SERVICE_NAME, type DefinedContext, type ENV } from './types'
+import { CollectRackspaceData, RackspaceEndpoint } from './rackspace'
+import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
 declare const PRODUCTION: string
 
@@ -41,14 +42,15 @@ app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.get('/download_proxy/', DownloadProxyEndpoint)
 app.get('/download_proxy/:program', DownloadProxyEndpoint)
+app.get('/rackspace/servers/:server_class', RackspaceEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
-    app.all('/', async (c) => {
+    app.all('/', async (c: DefinedContext) => {
         return c.redirect('https://cyberjake.xyz/', 301)
     })
 }
-app.all('*', (c) => c.notFound())
+app.all('*', (c: DefinedContext) => c.notFound())
 
 app.onError((err, c) => {
     console.error(JSON.stringify(err))
@@ -63,19 +65,23 @@ const handler = {
     fetch: app.fetch,
     scheduled(_: ScheduledEvent, env: ENV, ctx: ExecutionContext) {
         ctx.waitUntil(ScrapeCloudflareAPISettings(env, ctx))
+        ctx.waitUntil(CollectRackspaceData(env, ctx))
     },
 }
 
-// const config: ResolveConfigFn = (env: ENV) => {
-//     return {
-//         exporter: {
-//             url: 'https://otel.baselime.io/v1',
-//             headers: { 'x-api-key': env.BASELIME_API_KEY },
-//         },
-//         service: { name: 'serverless-api' },
-//     }
-// }
+const config: ResolveConfigFn = (env: ENV, _trigger) => {
+    return {
+        exporter: {
+            url: 'https://api.axiom.co/v1/traces',
+            headers: {
+                Authorization: `Bearer ${env.AXIOM_API_TOKEN || ''}`,
+                'X-Axiom-Dataset': SERVICE_NAME,
+            },
+        },
+        service: { name: 'axiom-cloudflare-workers' },
+    }
+}
 
-// export default instrument(handler, config)
+export default instrument(handler, config)
 
-export default handler
+// export default handler

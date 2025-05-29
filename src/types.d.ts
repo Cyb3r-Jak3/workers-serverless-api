@@ -11,5 +11,7 @@ export type ENV = {
     ScrapeAccountID?: string
     ScrapeZoneID?: string
     PUBLIC_FILES: R2Bucket
-    BASELIME_API_KEY: string
+    AXIOM_API_TOKEN?: string
 }
+
+export const SERVICE_NAME = 'serverless-api'
