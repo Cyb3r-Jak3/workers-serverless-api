@@ -13,7 +13,7 @@ import {
 } from './cloudflare_api_proxy'
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
-import { SERVICE_NAME, type DefinedContext, type ENV } from './types'
+import { SERVICE_NAME, DefinedContext, ENV } from './types'
 import { CollectRackspaceData, RackspaceEndpoint } from './rackspace'
 import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
