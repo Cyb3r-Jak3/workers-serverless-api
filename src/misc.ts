@@ -1,5 +1,7 @@
 import { JSONResponse, JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import { DefinedContext } from './types'
+import { ScrapeCloudflareAPISettings } from './cloudflare_api_proxy'
+import { CollectRackspaceData } from './rackspace'
 
 export async function CFEndpoint(c: DefinedContext): Promise<Response> {
     return JSONResponse({
@@ -52,4 +54,29 @@ export async function IPEndpoint(c: DefinedContext): Promise<Response> {
             'Content-Type': 'text/plain',
         },
     })
+}
+
+export async function HealthEndpoint(c: DefinedContext): Promise<Response> {
+    let status: 'ok' | 'error' = 'error'
+    try {
+        status = c.env !== undefined && c.env.KV !== undefined && c.env.PUBLIC_FILES !== undefined ? 'ok' : 'error'
+    }
+    catch (e) {
+        console.error('Health check failed:', e)
+    }
+    if (c.req.query('format') === 'json' || c.req.header('accept')?.includes('application/json')) {
+        return JSONResponse({ status: status }, { status: status === 'ok' ? 200 : 500 })
+    }
+    return new Response(status, {
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        status: status === 'ok' ? 200 : 500,
+    })
+}
+
+export async function TriggerCron(c: DefinedContext): Promise<Response> {
+    c.executionCtx.waitUntil(ScrapeCloudflareAPISettings(c.env, c.executionCtx))
+    c.executionCtx.waitUntil(CollectRackspaceData(c.env, c.executionCtx))
+    return JSONAPIResponse({ status: 'ok' }, { status: 200, success: true })
 }

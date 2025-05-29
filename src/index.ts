@@ -4,7 +4,7 @@ import { RedirectLanding, RedirectPath, Redirects } from './redirect'
 import { CORSHandle, CORS_ENDPOINT } from './cors'
 import { Hono } from 'hono'
 import { EncryptResumeEndpoint } from './resume'
-import { VersionEndpoint, CFEndpoint, TraceEndpoint, IPEndpoint } from './misc'
+import { VersionEndpoint, CFEndpoint, TraceEndpoint, IPEndpoint, HealthEndpoint, TriggerCron } from './misc'
 import { WriteDataPoint } from './utils'
 import { PyPyChecksumsEndpoint } from './pypy'
 import {
@@ -44,6 +44,11 @@ app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.get('/download_proxy/', DownloadProxyEndpoint)
 app.get('/download_proxy/:program', DownloadProxyEndpoint)
 app.get('/rackspace/server_history/:server_class', RackspaceEndpoint)
+app.get('/health', HealthEndpoint)
+app.post('/cron', TriggerCron)
+app.all("/v1/traces", async (c: DefinedContext) => {
+    return c.html("ok")
+})
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
@@ -81,6 +86,15 @@ const handler = {
 }
 
 const config: ResolveConfigFn = (env: ENV) => {
+    if (env.AXIOM_API_TOKEN === undefined) {
+        return {
+            exporter: {
+                url: "https://api.cyberjake.xyz/v1/traces",
+                headers: {}
+            },
+            service: { name: 'axiom-cloudflare-workers' },
+        }
+    }
     return {
         exporter: {
             url: 'https://api.axiom.co/v1/traces',
@@ -92,6 +106,7 @@ const config: ResolveConfigFn = (env: ENV) => {
         service: { name: 'axiom-cloudflare-workers' },
     }
 }
+
 
 export default instrument(handler, config)
 
