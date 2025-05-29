@@ -13,5 +13,3 @@ export type ENV = {
     PUBLIC_FILES: R2Bucket
     AXIOM_API_TOKEN?: string
 }
-
-export const SERVICE_NAME = 'serverless-api'

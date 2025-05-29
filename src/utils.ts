@@ -51,3 +51,5 @@ export function WriteDataPoint(c: Context, error: Error | undefined): void {
         ],
     })
 }
+
+export const SERVICE_NAME = 'serverless-api'
