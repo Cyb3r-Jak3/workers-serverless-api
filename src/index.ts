@@ -43,7 +43,7 @@ app.get('/pypy/checksums/:filename', PyPyChecksumsEndpoint)
 app.get('/cloudflare_api/:target', CloudflareAPIEndpoint)
 app.get('/download_proxy/', DownloadProxyEndpoint)
 app.get('/download_proxy/:program', DownloadProxyEndpoint)
-app.get('/rackspace/servers/:server_class', RackspaceEndpoint)
+app.get('/rackspace/server_history/:server_class', RackspaceEndpoint)
 app.all(`${CORS_ENDPOINT}`, CORSHandle)
 
 if (PRODUCTION === 'true') {
