@@ -69,7 +69,7 @@ const handler = {
     },
 }
 
-const config: ResolveConfigFn = (env: ENV, _trigger) => {
+const config: ResolveConfigFn = (env: ENV) => {
     return {
         exporter: {
             url: 'https://api.axiom.co/v1/traces',

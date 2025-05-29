@@ -52,4 +52,4 @@ Get all of the possible permissions for a Cloudflare API Token.
 
 ## Development
 
-Create an API Token using this [link](https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22api_tokens%22%2C%22type%22%3A%22read%22%7D%5D&name=Serverless+API+Reader) then add it and the account id to your `.dev.vars` file for local development.
+Create an API Token using this [token shortcut](https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22api_tokens%22%2C%22type%22%3A%22read%22%7D%5D&name=Serverless+API+Reader) then add it and the account id to your `.dev.vars` file for local development.

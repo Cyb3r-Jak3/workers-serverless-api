@@ -69,7 +69,7 @@ export async function CollectRackspaceData(
     // related to Rackspace. Currently, it does nothing.
     const baseURL =
         'https://ngpc-prod-public-data.s3.us-east-2.amazonaws.com/history'
-    var allData: RackspaceHistory[] = []
+    const allData: RackspaceHistory[] = []
     for (const serverClass of validRackspaceServerClasses) {
         const url = `${baseURL}/${serverClass}`
         const resp = await fetch(url, {
