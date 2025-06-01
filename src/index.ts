@@ -24,6 +24,7 @@ import type { DefinedContext } from './types'
 import { SERVICE_NAME } from './utils'
 import {
     RackspaceBidHistoryEndpoint,
+    RackspaceMetaInfoEndpoint,
     RackspaceResponseTimeEndpoint,
 } from './rackspace'
 import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
@@ -55,6 +56,7 @@ app.get('/download_proxy/', DownloadProxyEndpoint)
 app.get('/download_proxy/:program', DownloadProxyEndpoint)
 app.get('/rackspace/bid_history/:server_class', RackspaceBidHistoryEndpoint)
 app.get('/rackspace/response_time', RackspaceResponseTimeEndpoint)
+app.get('/rackspace/meta/:choice', RackspaceMetaInfoEndpoint)
 app.get('/health', HealthEndpoint)
 app.post('/cron', TriggerCron)
 app.all('/v1/traces', async (c: DefinedContext) => {
