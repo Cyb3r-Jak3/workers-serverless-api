@@ -5,6 +5,14 @@ export default defineWorkersConfig({
         PRODUCTION: 'true',
     },
     test: {
+        deps: {
+			optimizer: {
+				ssr: {
+					enabled: true,
+					include: ["@microlabs/otel-cf-workers"],
+				},
+			},
+		},
         poolOptions: {
             workers: {
                 isolatedStorage: true,

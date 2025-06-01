@@ -1,6 +1,6 @@
 name = "severless-api-dev"
 account_id = "8be772befd147a8df540aae0fa15c047"
-compatibility_date = "2022-11-30"
+compatibility_date = "2024-04-03"
 workers_dev = false
 main = "./src/index.ts"
 compatibility_flags = ["nodejs_compat", ]
@@ -20,6 +20,10 @@ tail_consumers = [
 
 r2_buckets  = [
   { binding = "PUBLIC_FILES", bucket_name = "public-files-dev", preview_bucket_name = "public-files-dev"}
+]
+
+services = [
+  { binding = "RACKSPACE_MONITOR", service = "rackspace-monitor" }
 ]
 
 [define]
@@ -47,6 +51,10 @@ tail_consumers = [
 
 r2_buckets  = [
   { binding = "PUBLIC_FILES", bucket_name = "public-files", preview_bucket_name = "public-files-dev"}
+]
+
+services = [
+  { binding = "RACKSPACE_MONITOR", service = "rackspace-monitor" }
 ]
 
 [triggers]

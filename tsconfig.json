@@ -1,14 +1,11 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "lib": ["esnext"],
+        "target": "es2021",
+        "lib": ["es2021"],
         "experimentalDecorators": true,
         "module": "esnext",
-        "moduleResolution": "node",
-        "types": [
-            "@cloudflare/workers-types/experimental",
-            "@cloudflare/vitest-pool-workers"
-        ],
+        "moduleResolution": "Bundler",
+        "types": ["./worker-configuration.d.ts"],
         "resolveJsonModule": true,
         "allowJs": true,
         "noEmit": true,
@@ -25,6 +22,6 @@
         "skipLibCheck": true,
         "noImplicitOverride": true
     },
-    "include": ["./**/*.ts", "test/index.spec.ts"],
-    "exclude": ["src/**/*.js", "dist/**/*.ts", "test"]
+    "include": ["src/**/*.ts", "worker-configuration.d.ts"],
+    "exclude": ["test"]
 }
