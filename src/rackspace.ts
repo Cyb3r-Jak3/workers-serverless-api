@@ -17,9 +17,13 @@ export async function RackspaceMetaInfoEndpoint(
         return new Response('Invalid choice parameter', { status: 400 })
     }
     if (choice === 'server_classes') {
-        return c.env.RACKSPACE_MONITOR.fetch(`http://example.com/server_classes/list`)
+        return c.env.RACKSPACE_MONITOR.fetch(
+            `http://example.com/server_classes/list`
+        )
     }
-    return c.env.RACKSPACE_MONITOR.fetch(`http://example.com/server_classes/${choice}`)
+    return c.env.RACKSPACE_MONITOR.fetch(
+        `http://example.com/server_classes/${choice}`
+    )
 }
 
 export async function RackspaceResponseTimeEndpoint(
