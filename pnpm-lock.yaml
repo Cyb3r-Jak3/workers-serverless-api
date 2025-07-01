@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@cyb3r-jak3/workers-common':
         specifier: ^5.4.1
-        version: 5.4.1
+        version: 5.5.1
       '@microlabs/otel-cf-workers':
         specifier: 1.0.0-rc.52
         version: 1.0.0-rc.52(@opentelemetry/api@1.9.0)
@@ -129,8 +129,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@cyb3r-jak3/workers-common@5.4.1':
-    resolution: {integrity: sha512-wg4Vf4vI+x/7fPU2REcm8udtLgfYZwdpD3ac0uqZfFeqSjlZEiTjMpnhm06w6fUK8uIcYp1tRW6BvvqcnPyE6g==}
+  '@cyb3r-jak3/workers-common@5.5.1':
+    resolution: {integrity: sha512-Gz5jChjOYe3Q5xx1Oy6pkMLILmipibMspDcNBkwr17/2BGFnUH58nZUyE7iyUBDwDP1RIwNEshaxeAy1i9I87A==}
 
   '@emnapi/runtime@1.4.3':
     resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
@@ -1647,7 +1647,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@cyb3r-jak3/workers-common@5.4.1': {}
+  '@cyb3r-jak3/workers-common@5.5.1': {}
 
   '@emnapi/runtime@1.4.3':
     dependencies:
