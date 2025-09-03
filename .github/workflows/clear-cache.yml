@@ -1,0 +1,17 @@
+name: Clear Cache on PR Close
+on:
+  pull_request:
+    types: [ closed ]
+
+jobs:
+  clear-caches:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      actions: write
+    steps:
+      - name: Clear caches
+        uses: theAngularGuy/clear-cache-of-pull-request@b72bb60cd2fa48c01695afdf0ca755b34b115429
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
