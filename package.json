@@ -41,7 +41,7 @@
         "@microlabs/otel-cf-workers": "1.0.0-rc.52",
         "@octokit/core": "^7.0.0",
         "domhandler": "^5.0.3",
-        "hono": "^4.10.2",
+        "hono": "^4.10.3",
         "htmlparser2": "^10.0.0",
         "openpgp": "^6.1.0"
     }
