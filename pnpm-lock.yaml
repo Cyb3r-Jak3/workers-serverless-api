@@ -40,8 +40,8 @@ importers:
         specifier: ^9.23.0
         version: 9.39.0
       '@openpgp/web-stream-tools':
-        specifier: ^0.2.0
-        version: 0.2.1(@types/node@24.9.2)(typescript@5.9.3)
+        specifier: ^0.3.0
+        version: 0.3.0(@types/node@24.9.2)(typescript@5.9.3)
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.0.0
         version: 8.48.0(@typescript-eslint/parser@8.48.0(eslint@9.39.0)(typescript@5.9.3))(eslint@9.39.0)(typescript@5.9.3)
@@ -645,8 +645,8 @@ packages:
   '@octokit/types@16.0.0':
     resolution: {integrity: sha512-sKq+9r1Mm4efXW1FCk7hFSeJo4QKreL/tTbR0rz/qx/r1Oa2VV83LTA/H/MuCOX7uCIJmQVRKBcbmWoySjAnSg==}
 
-  '@openpgp/web-stream-tools@0.2.1':
-    resolution: {integrity: sha512-gE6+8mVrpKOa9RurAP+TToUo/DCGLNfpnRiq/YuA5Dq/rUAVSeM6Ejrgl25qpRiOQb/qcGyM25m1l9eE4aPdfw==}
+  '@openpgp/web-stream-tools@0.3.0':
+    resolution: {integrity: sha512-WGCcIti5uAwySkdny5IJ975Vu6fS45LE9Ce3M7vylIWOZwzL4qFUFclskZ6JU7rQ1zgoze6CQ//QKFc/ML2uqw==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
       '@types/node': '>=18.0.0'
@@ -2080,7 +2080,7 @@ snapshots:
     dependencies:
       '@octokit/openapi-types': 27.0.0
 
-  '@openpgp/web-stream-tools@0.2.1(@types/node@24.9.2)(typescript@5.9.3)':
+  '@openpgp/web-stream-tools@0.3.0(@types/node@24.9.2)(typescript@5.9.3)':
     optionalDependencies:
       '@types/node': 24.9.2
       typescript: 5.9.3
