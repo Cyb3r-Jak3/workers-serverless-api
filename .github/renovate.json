@@ -1,17 +1,15 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:recommended",
-        "helpers:pinGitHubActionDigestsToSemver",
-        "github>Cyb3r-Jak3/renovate-configs//assign-me.json",
-        "github>Cyb3r-Jak3/renovate-configs//group-cf-workers-packages.json",
-        "github>Cyb3r-Jak3/renovate-configs//first-day-of-the-month.json"
-    ],
-        
+        "github>Cyb3r-Jak3/renovate-configs//standard-cf-worker.json"
+    ],  
     "constraints": {
         "pnpm": "^10.0.0"
     },
     "lockFileMaintenance": {
-        "enabled": true
+        "enabled": true,
+        "schedule": [
+            "* 0-3 1 * *"
+        ]
     }
 }

@@ -63,5 +63,11 @@ crons = ["0 * * * *"]
 [env.production.observability]
 enabled = true
 
+[env.production.observability.traces]
+enabled = true
+
+[env.production.observability.logs]
+enabled = true
+
 [env.production.define]
 PRODUCTION = '"true"'
