@@ -28,7 +28,7 @@ importers:
         version: 10.0.0
       openpgp:
         specifier: ^6.1.0
-        version: 6.2.2
+        version: 6.3.0
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: ^0.10.0
@@ -1380,8 +1380,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  openpgp@6.2.2:
-    resolution: {integrity: sha512-P/dyEqQ3gfwOCo+xsqffzXjmUhGn4AZTOJ1LCcN21S23vAk+EAvMJOQTsb/C8krL6GjOSBxqGYckhik7+hneNw==}
+  openpgp@6.3.0:
+    resolution: {integrity: sha512-pLzCU8IgyKXPSO11eeharQkQ4GzOKNWhXq79pQarIRZEMt1/ssyr+MIuWBv1mNoenJLg04gvPx+fi4gcKZ4bag==}
     engines: {node: '>= 18.0.0'}
 
   optionator@0.9.4:
@@ -2822,7 +2822,7 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  openpgp@6.2.2: {}
+  openpgp@6.3.0: {}
 
   optionator@0.9.4:
     dependencies:
