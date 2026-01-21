@@ -34,7 +34,7 @@
         "prettier": "^3.5.3",
         "typescript": "^5.5.2",
         "vitest": "~4.0.0",
-        "wrangler": "4.54.0"
+        "wrangler": "4.59.1"
     },
     "dependencies": {
         "@cyb3r-jak3/workers-common": "^5.4.1",
