@@ -34,9 +34,10 @@
         "prettier": "^3.5.3",
         "typescript": "^5.5.2",
         "vitest": "~3.2.4",
-        "wrangler": "4.71.0"
+        "wrangler": "4.87.0"
     },
     "dependencies": {
+        "@cloudflare/workers-types": "^4.20260503.1",
         "@cyb3r-jak3/workers-common": "^5.4.1",
         "@microlabs/otel-cf-workers": "1.0.0-rc.52",
         "@octokit/core": "^7.0.0",

@@ -21,13 +21,13 @@ import {
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import type { DefinedContext } from './types'
-import { SERVICE_NAME } from './utils'
+// import { SERVICE_NAME } from './utils'
 import {
     RackspaceBidHistoryEndpoint,
     RackspaceMetaInfoEndpoint,
     RackspaceResponseTimeEndpoint,
 } from './rackspace'
-import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
+// import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
 declare const PRODUCTION: string
 
@@ -97,28 +97,28 @@ const handler = {
     },
 }
 
-const config: ResolveConfigFn = (env: Env) => {
-    if (env.AXIOM_API_TOKEN === undefined) {
-        return {
-            exporter: {
-                url: 'https://api.cyberjake.xyz/v1/traces',
-                headers: {},
-            },
-            service: { name: 'axiom-cloudflare-workers' },
-        }
-    }
-    return {
-        exporter: {
-            url: 'https://api.axiom.co/v1/traces',
-            headers: {
-                Authorization: `Bearer ${env.AXIOM_API_TOKEN || ''}`,
-                'X-Axiom-Dataset': SERVICE_NAME,
-            },
-        },
-        service: { name: 'axiom-cloudflare-workers' },
-    }
-}
+// const config: ResolveConfigFn = (env: Env) => {
+//     if (env.AXIOM_API_TOKEN === undefined) {
+//         return {
+//             exporter: {
+//                 url: 'https://api.cyberjake.xyz/v1/traces',
+//                 headers: {},
+//             },
+//             service: { name: 'axiom-cloudflare-workers' },
+//         }
+//     }
+//     return {
+//         exporter: {
+//             url: 'https://api.axiom.co/v1/traces',
+//             headers: {
+//                 Authorization: `Bearer ${env.AXIOM_API_TOKEN || ''}`,
+//                 'X-Axiom-Dataset': SERVICE_NAME,
+//             },
+//         },
+//         service: { name: 'axiom-cloudflare-workers' },
+//     }
+// }
 
-export default instrument(handler, config)
+// export default instrument(handler, config)
 
-// export default handler
+export default handler

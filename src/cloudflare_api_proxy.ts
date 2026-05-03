@@ -3,7 +3,7 @@ import {
     JSONAPIErrorResponse,
     HandleCachedResponse,
 } from '@cyb3r-jak3/workers-common'
-import type { DefinedContext, ENV } from './types'
+import type { DefinedContext, } from './types'
 
 type targetType = {
     name: string
@@ -33,6 +33,10 @@ const apiTargets: targetType[] = [
         name: 'zone_rulesets',
         endpoint: '/zones/:zone_id/rulesets',
     },
+    {
+        name: "ai_models",
+        endpoint: "/accounts/:account_id/ai/models/search"
+    }
 ]
 
 export async function CloudflareAPIEndpoint(
@@ -50,7 +54,7 @@ export async function CloudflareAPIEndpoint(
 
     let data = await c.env.KV.get(`API_DATA_${target}`, { type: 'json' })
     if (!data) {
-        return JSONResponse({}, { status: 404 })
+        return JSONResponse({ error: 'Data not found' }, { status: 404 })
     }
     const scope = c.req.query('scope')
     if (target === 'token_permissions' && scope) {
@@ -80,7 +84,7 @@ export async function CloudflareAPIEndpoint(
 }
 
 export async function ScrapeCloudflareAPISettings(
-    env: ENV,
+    env: Env,
     ctx: ExecutionContext
 ) {
     if (!env.ScrapeToken || !env.ScrapeAccountID) {

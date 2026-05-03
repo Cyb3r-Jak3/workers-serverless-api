@@ -15,7 +15,7 @@ export async function EncryptResumeEndpoint(
         return new Response('Method not allowed', { status: 405 })
     }
 
-    if (req.headers.get('Content-Type') === null) {
+    if (req.header('Content-Type') === null) {
         return JSONAPIErrorResponse('Not multipart form request', 400)
     }
     const data = await req.formData()

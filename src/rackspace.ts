@@ -1,11 +1,10 @@
 import { DefinedContext } from './types'
-
+const RACKSPACE_BASE_URL = 'https://rackspace-monitor.cyberjake.xyz/'
 export async function RackspaceBidHistoryEndpoint(
     c: DefinedContext
 ): Promise<Response> {
-    const server_class = c.req.param('server_class')
-    return c.env.RACKSPACE_MONITOR.fetch(
-        `http://example.com/bid_history/${server_class}`
+    return fetch(
+        `${RACKSPACE_BASE_URL}bid_history/${c.req.param('server_class')}`
     )
 }
 
@@ -17,17 +16,11 @@ export async function RackspaceMetaInfoEndpoint(
         return new Response('Invalid choice parameter', { status: 400 })
     }
     if (choice === 'server_classes') {
-        return c.env.RACKSPACE_MONITOR.fetch(
-            `http://example.com/server_classes/list`
-        )
+        return fetch(`${RACKSPACE_BASE_URL}server_classes/list`)
     }
-    return c.env.RACKSPACE_MONITOR.fetch(
-        `http://example.com/server_classes/${choice}`
-    )
+    return fetch(`${RACKSPACE_BASE_URL}server_classes/${choice}`)
 }
 
-export async function RackspaceResponseTimeEndpoint(
-    c: DefinedContext
-): Promise<Response> {
-    return c.env.RACKSPACE_MONITOR.fetch(`http://example.com/response_time`)
+export async function RackspaceResponseTimeEndpoint(): Promise<Response> {
+    return fetch(`${RACKSPACE_BASE_URL}response_time`)
 }
