@@ -33,7 +33,7 @@
         "globals": "^17.0.0",
         "prettier": "^3.5.3",
         "typescript": "^5.5.2",
-        "vitest": "~3.2.4",
+        "vitest": "~4.1.0",
         "wrangler": "4.87.0"
     },
     "dependencies": {
