@@ -12,6 +12,7 @@ export async function CFEndpoint(c: DefinedContext): Promise<Response> {
 export async function VersionEndpoint(c: DefinedContext): Promise<Response> {
     return JSONAPIResponse({
         GitHash: c.env.GitHash ?? 'dev',
+        GitHubLink: `https://https://github.com/Cyb3r-Jak3/workers-serverless-api/commit/${c.env.GitHash ?? 'main'}`,
         BuiltTime: c.env.BuiltTime ?? 'now',
     })
 }
