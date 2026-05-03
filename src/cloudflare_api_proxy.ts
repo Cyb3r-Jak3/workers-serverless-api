@@ -54,7 +54,11 @@ export async function CloudflareAPIEndpoint(
 
     let data = await c.env.KV.get(`API_DATA_${target}`, { type: 'json' })
     if (!data) {
-        return JSONResponse({ error: 'Data not found' }, { status: 404 })
+        await ScrapeCloudflareAPISettings(c.env, c.executionCtx)
+        data = await c.env.KV.get(`API_DATA_${target}`, { type: 'json' })
+        if (!data) {
+            return JSONAPIErrorResponse('Data not found after scrape', 500)
+        }
     }
     const scope = c.req.query('scope')
     if (target === 'token_permissions' && scope) {
