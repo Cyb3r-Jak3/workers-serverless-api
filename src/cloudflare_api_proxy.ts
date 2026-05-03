@@ -3,7 +3,7 @@ import {
     JSONAPIErrorResponse,
     HandleCachedResponse,
 } from '@cyb3r-jak3/workers-common'
-import type { DefinedContext, } from './types'
+import type { DefinedContext } from './types'
 
 type targetType = {
     name: string
@@ -34,9 +34,9 @@ const apiTargets: targetType[] = [
         endpoint: '/zones/:zone_id/rulesets',
     },
     {
-        name: "ai_models",
-        endpoint: "/accounts/:account_id/ai/models/search"
-    }
+        name: 'ai_models',
+        endpoint: '/accounts/:account_id/ai/models/search',
+    },
 ]
 
 export async function CloudflareAPIEndpoint(
