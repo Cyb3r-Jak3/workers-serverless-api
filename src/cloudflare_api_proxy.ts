@@ -41,6 +41,11 @@ const apiTargets: targetType[] = [
         name: 'ai_models_catalog',
         endpoint: '/accounts/:account_id/ai/catalog/models',
     },
+    {
+        name: 'ai_gateway_models_catalog',
+        endpoint:
+            '/accounts/:account_id/ai-gateway/inference/api-scraper/compat/models',
+    },
 ]
 
 export async function CloudflareAPIEndpoint(
@@ -133,10 +138,12 @@ export async function ScrapeCloudflareAPISettings(
             continue
         }
         const resp_json = await response.json()
+        const response_output_field =
+            target.name === 'ai_gateway_models_catalog' ? 'data' : 'result'
         ctx.waitUntil(
             env.KV.put(
                 `API_DATA_${target.name}`,
-                JSON.stringify(resp_json['result'])
+                JSON.stringify(resp_json[response_output_field])
             )
         )
     }
