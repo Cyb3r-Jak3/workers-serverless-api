@@ -37,6 +37,10 @@ const apiTargets: targetType[] = [
         name: 'ai_models',
         endpoint: '/accounts/:account_id/ai/models/search',
     },
+    {
+        name: 'ai_models_catalog',
+        endpoint: '/accounts/:account_id/ai/catalog/models',
+    },
 ]
 
 export async function CloudflareAPIEndpoint(
