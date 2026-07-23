@@ -21,7 +21,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.12.0",
+        "@cloudflare/vitest-pool-workers": "^0.18.0",
         "@eslint/eslintrc": "^3.3.1",
         "@eslint/js": "^9.23.0",
         "@openpgp/web-stream-tools": "^0.3.0",
@@ -34,7 +34,7 @@
         "prettier": "^3.5.3",
         "typescript": "^5.5.2",
         "vitest": "~3.2.4",
-        "wrangler": "4.87.0"
+        "wrangler": "4.113.0"
     },
     "dependencies": {
         "@cloudflare/workers-types": "^4.20260503.1",
