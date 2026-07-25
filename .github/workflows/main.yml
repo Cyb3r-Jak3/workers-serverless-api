@@ -30,19 +30,7 @@ jobs:
         with:
           version: 11
           run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
-        name: Setup pnpm cache
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: true
 
       - name: Install dependencies
         run: pnpm install
@@ -51,9 +39,9 @@ jobs:
         if: ${{github.ref_type == 'branch'}}
         run: pnpm run test:lint
 
-      # - name: Test
-      #   if: ${{github.ref_type == 'branch'}}
-      #   run: pnpm run test:unit
+      - name: Test
+        if: ${{github.ref_type == 'branch'}}
+        run: pnpm run test:unit
 
       - name: Report Variables
         run: |
