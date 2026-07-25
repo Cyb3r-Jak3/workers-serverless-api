@@ -9,7 +9,7 @@
         "test:lint": "eslint --max-warnings=0 src && prettier --check *.{json,js,ts} src/**/*.{js,ts}",
         "test:unit": "vitest run",
         "cf-typegen": "wrangler types",
-        "test": "pnpm run test:lint && npm run test:unit"
+        "test": "pnpm run test:lint && pnpm run test:unit"
     },
     "author": "cyb3r-jak3",
     "license": "MIT",
@@ -21,29 +21,29 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.12.0",
-        "@eslint/eslintrc": "^3.3.1",
-        "@eslint/js": "^9.23.0",
-        "@openpgp/web-stream-tools": "^0.3.0",
-        "@typescript-eslint/eslint-plugin": "^8.0.0",
-        "@typescript-eslint/parser": "^8.0.0",
-        "eslint": "^9.0.0",
-        "eslint-config-prettier": "^10.0.0",
+        "@cloudflare/vitest-pool-workers": "^0.18.7",
+        "@eslint/eslintrc": "^3.3.6",
+        "@eslint/js": "^9.39.5",
+        "@openpgp/web-stream-tools": "^0.3.1",
+        "@types/node": "^26.1.1",
+        "@typescript-eslint/eslint-plugin": "^8.65.0",
+        "@typescript-eslint/parser": "^8.65.0",
+        "eslint": "^9.39.5",
+        "eslint-config-prettier": "^10.1.8",
         "eslint-config-typescript": "^3.0.0",
-        "globals": "^17.0.0",
-        "prettier": "^3.5.3",
-        "typescript": "^5.5.2",
-        "vitest": "~3.2.4",
-        "wrangler": "4.87.0"
+        "globals": "^17.7.0",
+        "prettier": "^3.9.6",
+        "typescript": "^5.9.3",
+        "vitest": "~4.1.10",
+        "wrangler": "4.114.0"
     },
     "dependencies": {
-        "@cloudflare/workers-types": "^4.20260503.1",
-        "@cyb3r-jak3/workers-common": "^5.4.1",
-        "@microlabs/otel-cf-workers": "1.0.0-rc.52",
-        "@octokit/core": "^7.0.0",
-        "domhandler": "^6.0.0",
-        "hono": "^4.12.14",
+        "@cloudflare/workers-types": "^5.20260723.1",
+        "@cyb3r-jak3/workers-common": "^5.6.2",
+        "@octokit/core": "^7.0.6",
+        "domhandler": "^6.0.1",
+        "hono": "^4.12.31",
         "htmlparser2": "^12.0.0",
-        "openpgp": "^6.1.0"
+        "openpgp": "^6.3.1"
     }
 }

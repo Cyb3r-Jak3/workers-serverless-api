@@ -21,19 +21,17 @@ import {
 import { DownloadProxyEndpoint } from './download_proxy'
 import { JSONAPIResponse } from '@cyb3r-jak3/workers-common'
 import type { DefinedContext } from './types'
-// import { SERVICE_NAME } from './utils'
 import {
     RackspaceBidHistoryEndpoint,
     RackspaceMetaInfoEndpoint,
     RackspaceResponseTimeEndpoint,
 } from './rackspace'
-// import { instrument, ResolveConfigFn } from '@microlabs/otel-cf-workers'
 
 declare const PRODUCTION: string
 
 const app = new Hono<{ Bindings: Env }>()
 
-app.use('*', async (c, next) => {
+app.use('*', async (c: DefinedContext, next) => {
     await next()
     WriteDataPoint(c, c.error)
 })
@@ -70,7 +68,6 @@ if (PRODUCTION === 'true') {
     })
 }
 app.all('*', (c: DefinedContext) => {
-    console.log(c.req.header())
     if (c.req.header('accept')?.includes('application/json')) {
         return JSONAPIResponse(
             { error: 'Not Found' },
@@ -81,7 +78,7 @@ app.all('*', (c: DefinedContext) => {
     return c.notFound()
 })
 
-app.onError((err, c) => {
+app.onError((err: Error, c: DefinedContext) => {
     console.error(JSON.stringify(err))
     WriteDataPoint(c, err)
     return JSONAPIResponse(
@@ -90,35 +87,9 @@ app.onError((err, c) => {
     )
 })
 
-const handler = {
+export default {
     fetch: app.fetch,
-    scheduled(_: ScheduledEvent, env: Env, ctx: ExecutionContext) {
+    scheduled(_: ScheduledController, env: Env, ctx: ExecutionContext) {
         ctx.waitUntil(ScrapeCloudflareAPISettings(env, ctx))
     },
 }
-
-// const config: ResolveConfigFn = (env: Env) => {
-//     if (env.AXIOM_API_TOKEN === undefined) {
-//         return {
-//             exporter: {
-//                 url: 'https://api.cyberjake.xyz/v1/traces',
-//                 headers: {},
-//             },
-//             service: { name: 'axiom-cloudflare-workers' },
-//         }
-//     }
-//     return {
-//         exporter: {
-//             url: 'https://api.axiom.co/v1/traces',
-//             headers: {
-//                 Authorization: `Bearer ${env.AXIOM_API_TOKEN || ''}`,
-//                 'X-Axiom-Dataset': SERVICE_NAME,
-//             },
-//         },
-//         service: { name: 'axiom-cloudflare-workers' },
-//     }
-// }
-
-// export default instrument(handler, config)
-
-export default handler

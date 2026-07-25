@@ -156,19 +156,21 @@ export async function PyPyChecksumsEndpoint(
         }
     } else {
         checksum_response = await ParseChecksumsHTML(filename, checksum_mode)
-        c.executionCtx.waitUntil(CacheToKV(c.env.KV))
         if (
             checksum_response.length === 1 &&
             checksum_response[0].filename === 'error'
         ) {
             return JSONAPIResponse(checksum_response)
         }
+        if (checksum_mode !== 'all') {
+            c.executionCtx.waitUntil(CacheToKV(c.env.KV))
+        }
     }
 
     if (kvKey && checksum_response.length !== 0) {
-        c.executionCtx.waitUntil(
-            c.env.KV.put(kvKey, JSON.stringify(checksum_response))
-        )
+        await c.env.KV.put(kvKey, JSON.stringify(checksum_response), {
+            expirationTtl: 86400,
+        })
     }
 
     response = JSONAPIResponse(checksum_response, {

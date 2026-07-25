@@ -5,7 +5,10 @@
         "experimentalDecorators": true,
         "module": "esnext",
         "moduleResolution": "Bundler",
-        "types": ["./worker-configuration.d.ts"],
+        "types": [
+            "./worker-configuration.d.ts",
+            "@cloudflare/vitest-pool-workers/types"
+        ],
         "resolveJsonModule": true,
         "allowJs": true,
         "noEmit": true,
@@ -22,6 +25,6 @@
         "skipLibCheck": true,
         "noImplicitOverride": true
     },
-    "include": ["src/**/*.ts", "worker-configuration.d.ts"],
+    "include": ["src/**/*.ts"],
     "exclude": ["test"]
 }

@@ -1,45 +1,46 @@
-// import { SELF } from 'cloudflare:test';
-// import { describe, it, expect } from 'vitest';
+import { exports, } from "cloudflare:workers";
 
-// describe('Download proxy ', () => {
-//     it('Missing program', async () => {
-//         const resp = await SELF.fetch('https://localhost/download_proxy/')
-//         expect(resp.status).toBe(200)
-//         expect(await resp.json()).toEqual([
-//             'maven',
-//             'node',
-//             'python',
-//             'pypy',
-//             'node_exporter',
-//         ])
-//     })
+import { describe, it, expect } from 'vitest';
 
-//     it('Missing version', async () => {
-//         const resp = await SELF.fetch('https://localhost/download_proxy/not_a_program')
-//         expect(resp.status).toBe(400)
-//         expect(await resp.text()).toBe('version is required')
-//     })
+describe('Download proxy ', () => {
+    it('Missing program', async () => {
+        const resp = await exports.default.fetch('https://localhost/download_proxy/')
+        expect(resp.status).toBe(200)
+        expect(await resp.json()).toEqual([
+            'maven',
+            'node',
+            'python',
+            'pypy',
+            'node_exporter',
+        ])
+    })
 
-//     it('Invalid program', async () => {
-//         const resp = await SELF.fetch('https://localhost/download_proxy/not_a_program?version=1.0.0')
-//         expect(resp.status).toBe(400)
-//         expect(await resp.text()).toBe(
-//             "program 'not_a_program; is not supported"
-//         )
-//     })
+    it('Missing version', async () => {
+        const resp = await exports.default.fetch('https://localhost/download_proxy/not_a_program')
+        expect(resp.status).toBe(400)
+        expect(await resp.text()).toBe("`version`url query parameter is required")
+    })
 
-//     it('List supported versions', async () => {
-//         const resp = await SELF.fetch('https://localhost/download_proxy/supported')
-//         expect(resp.status).toBe(200)
-//         expect(await resp.json()).toEqual([
-//             'maven',
-//             'node',
-//             'python',
-//             'pypy',
-//             'node_exporter',
-//         ])
-//     })
+    it('Invalid program', async () => {
+        const resp = await exports.default.fetch('https://localhost/download_proxy/not_a_program?version=1.0.0')
+        expect(resp.status).toBe(400)
+        expect(await resp.text()).toBe(
+            "program 'not_a_program; is not supported"
+        )
+    })
 
+    it('List supported versions', async () => {
+        const resp = await exports.default.fetch('https://localhost/download_proxy/supported')
+        expect(resp.status).toBe(200)
+        expect(await resp.json()).toEqual([
+            'maven',
+            'node',
+            'python',
+            'pypy',
+            'node_exporter',
+        ])
+    })
+})
 //     describe('maven', () => {
 //     //     it('Valid maven version', async () => {
 //     //         const resp = await SELF.fetch('https://localhost/download_proxy/maven?version=3.9.3')

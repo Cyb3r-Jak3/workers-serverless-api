@@ -1,18 +1,17 @@
-import {
-    SELF
-} from 'cloudflare:test'
+import { exports } from "cloudflare:workers";
+
 import { describe, expect, it } from 'vitest'
 
 describe('Misc Endpoints', () => {
     it('CF JSON Endpoint', async () => {
-        const resp = await SELF.fetch('https://localhost/cf')
+        const resp = await exports.default.fetch('https://localhost/cf')
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
         )
     })
     it('Version Endpoint', async () => {
-        const resp = await SELF.fetch('https://localhost/version')
+        const resp = await exports.default.fetch('https://localhost/version')
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -22,7 +21,7 @@ describe('Misc Endpoints', () => {
         expect(json_resp['results']['BuiltTime']).toEqual('now')
     })
     it('Trace Endpoint', async () => {
-        const resp = await SELF.fetch('https://localhost/trace')
+        const resp = await exports.default.fetch('https://localhost/trace')
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
@@ -31,12 +30,12 @@ describe('Misc Endpoints', () => {
         expect(json_resp['success']).toEqual(true)
     })
     it('IP Endpoint', async () => {
-        const resp = await SELF.fetch('https://localhost/ip')
+        const resp = await exports.default.fetch('https://localhost/ip')
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual('text/plain')
     })
     it('IP Endpoint JSON', async () => {
-        const resp = await SELF.fetch('https://localhost/ip?format=json')
+        const resp = await exports.default.fetch('https://localhost/ip?format=json')
         expect(resp.status).toBe(200)
         expect(resp.headers.get('content-type')).toEqual(
             'application/json; charset=UTF-8'
