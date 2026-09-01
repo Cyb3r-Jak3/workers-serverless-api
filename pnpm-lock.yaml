@@ -13,7 +13,7 @@ importers:
         version: 5.20260826.1
       '@cyb3r-jak3/workers-common':
         specifier: ^5.6.2
-        version: 5.6.2
+        version: 5.7.2
       '@octokit/core':
         specifier: ^7.0.6
         version: 7.0.6
@@ -165,8 +165,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@cyb3r-jak3/workers-common@5.6.2':
-    resolution: {integrity: sha512-YqkCzaKmUzFMVeafC9FNVtKjlWjW1eGG9a2Nrki9Gou8kwMHijpvyXRHR+NV9EUNnduP1OABKBWtVOiV6doVVw==}
+  '@cyb3r-jak3/workers-common@5.7.2':
+    resolution: {integrity: sha512-Hqd2uK8usjIbLdIvPL/2WLbmf2QG30MtxOZdBVQmkwxrFN6DTGVmoHBKwO8gRik2T1b0rIRYnNwlr9tloai8Bg==}
 
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
@@ -1642,7 +1642,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@cyb3r-jak3/workers-common@5.6.2': {}
+  '@cyb3r-jak3/workers-common@5.7.2': {}
 
   '@emnapi/core@1.11.1':
     dependencies:
