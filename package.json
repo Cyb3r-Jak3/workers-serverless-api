@@ -39,7 +39,7 @@
     },
     "dependencies": {
         "@cloudflare/workers-types": "^5.20260723.1",
-        "@cyb3r-jak3/workers-common": "^5.6.2",
+        "@cyb3r-jak3/workers-common": "^6.0.0",
         "@octokit/core": "^7.0.6",
         "domhandler": "^6.0.1",
         "hono": "^4.12.31",
