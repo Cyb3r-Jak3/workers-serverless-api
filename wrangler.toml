@@ -51,10 +51,6 @@ analytics_engine_datasets = [
     {binding = "AE", dataset = "api-prod"}
 ]
 
-tail_consumers = [
-  { service = "worker-ae-analytics", environment = "production" }
-]
-
 r2_buckets  = [
   { binding = "PUBLIC_FILES", bucket_name = "public-files", preview_bucket_name = "public-files-dev"}
 ]

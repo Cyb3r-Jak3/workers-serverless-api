@@ -21,7 +21,7 @@
         ]
     },
     "devDependencies": {
-        "@cloudflare/vitest-pool-workers": "^0.23.0",
+        "@cloudflare/vitest-plugin": "^1.0.0",
         "@eslint/eslintrc": "^3.3.6",
         "@eslint/js": "^10.0.0",
         "@openpgp/web-stream-tools": "^0.3.1",
