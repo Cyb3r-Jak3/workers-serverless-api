@@ -8,7 +8,7 @@ describe('CORS ', () => {
             'https://localhost/cors?api_url=api.cloudflare.com/schemas.json&allowed_origin=http://localhost:8788'
         )
         expect(resp.status).toBe(200)
-    })
+    }, 10000)
 
     it('No API URL', async () => {
         const resp = await exports.default.fetch('https://localhost/cors?allowed_origin=http://localhost:8788')

@@ -6,7 +6,7 @@
 		"types": [
 			"../worker-configuration.d.ts",
 			"@cloudflare/workers-types/experimental",
-			"@cloudflare/vitest-pool-workers/types",
+			"@cloudflare/vitest-plugin/types",
 		]
 	}
 }
